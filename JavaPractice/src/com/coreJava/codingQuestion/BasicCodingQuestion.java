@@ -23,6 +23,8 @@ public class BasicCodingQuestion {
 		Scanner scanner=new Scanner(System.in);
 		printNumber();
 		
+		System.out.println("Hello world");
+		
 		scanner.close();
 	}
 
