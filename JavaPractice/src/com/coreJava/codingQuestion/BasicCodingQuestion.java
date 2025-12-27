@@ -24,6 +24,8 @@ public class BasicCodingQuestion {
 		printNumber();
 		
 		System.out.println("Hello world");
+		int a=scanner.nextInt();
+		System.out.println(a);
 		
 		scanner.close();
 	}
