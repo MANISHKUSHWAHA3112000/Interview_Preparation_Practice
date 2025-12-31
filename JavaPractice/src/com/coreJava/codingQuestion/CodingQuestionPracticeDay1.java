@@ -18,7 +18,7 @@ public class CodingQuestionPracticeDay1 {
 	// Day 1 : Remove Duplicates from unsorted array
 //	public static ArrayList<Integer>removeDuplicate(int arr[]){
 		// O(N) - Time complexity
-		Set<Integer> set = new HashSet<>();
+//		Set<Integer> set = new HashSet<>();
 //		ArrayList<Integer> ans = new ArrayList<>();
 //		
 //		for(int i=0;i<arr.length;i++) {
@@ -53,6 +53,26 @@ public class CodingQuestionPracticeDay1 {
 //		return res3;
 //	}
 	
+//	Day 1 : Make a Distinct Digit Array
+	
+	public static int [] common_digits(int [] nums) {
+		Set<Integer> res = new HashSet<>();
+        for (int num : nums) {
+            while (num > 0) {
+            int lastDigit = num % 10; 
+            res.add(lastDigit); 
+            num /= 10; 
+            } 
+            
+        }
+            int[] result = new int[res.size()]; 
+            int i = 0; for (int d : res) { 
+                result[i++] = d; 
+                
+            } 
+        return result;
+	}
+	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -82,6 +102,17 @@ public class CodingQuestionPracticeDay1 {
 //			System.out.print(ans.get(i) + " ");
 //		}
 		
+		// Day 1 : Question 3
+		
+		int [] arr = new int[n];
+		
+		for(int i=0;i<arr.length;i++) {
+			arr[i]=sc.nextInt();
+		}
+		
+		int [] ans = common_digits(arr);
+		
+		System.out.println(Arrays.toString(ans));
 		
 		sc.close();
 		
