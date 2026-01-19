@@ -104,15 +104,15 @@ public class CodingQuestionPracticeDay1 {
 		
 		// Day 1 : Question 3
 		
-		int [] arr = new int[n];
-		
-		for(int i=0;i<arr.length;i++) {
-			arr[i]=sc.nextInt();
-		}
-		
-		int [] ans = common_digits(arr);
-		
-		System.out.println(Arrays.toString(ans));
+//		int [] arr = new int[n];
+//		
+//		for(int i=0;i<arr.length;i++) {
+//			arr[i]=sc.nextInt();
+//		}
+//		
+//		int [] ans = common_digits(arr);
+//		
+//		System.out.println(Arrays.toString(ans));
 		
 		sc.close();
 		
