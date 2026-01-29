@@ -65,6 +65,7 @@ public class CodingQuestionPracticeDay3 {
 		ArrayList<Integer> ans2 = findArrayDuplicates(arr,n);
 		
 		System.out.println("Duplicates array are : "+ ans2);
+		
 		sc.close();
 	}
 
