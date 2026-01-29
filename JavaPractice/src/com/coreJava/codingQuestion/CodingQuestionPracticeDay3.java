@@ -25,6 +25,29 @@ public class CodingQuestionPracticeDay3 {
 		Collections.reverse(result);
 		return result;
 	}
+	
+	/**
+	 * Day 3 - Question 2:Given an array arr[] of size n, containing elements from the range 1 to n, 
+	 * and each element appears at most twice, return an array of all the integers that appears twice.
+	 * */
+	public static ArrayList<Integer>findArrayDuplicates(int arr[],int n){
+		
+		ArrayList<Integer> res = new ArrayList<>();
+		
+		for(int i=0;i<n;i++) {
+			int index = Math.abs(arr[i])-1;
+			
+			if(arr[index]<0) {
+				res.add(index+1);
+			}
+			else {
+				arr[index]=-arr[index];
+			}
+		}
+		Collections.sort(res);
+		return res;
+	}
+	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner (System.in);
@@ -38,6 +61,11 @@ public class CodingQuestionPracticeDay3 {
 		ArrayList<Integer> ans = findArrayLeaders(arr,n);
 		
 		System.out.println("Array leaders are : " + ans);
+		
+		ArrayList<Integer> ans2 = findArrayDuplicates(arr,n);
+		
+		System.out.println("Duplicates array are : "+ ans2);
+		sc.close();
 	}
 
 }
