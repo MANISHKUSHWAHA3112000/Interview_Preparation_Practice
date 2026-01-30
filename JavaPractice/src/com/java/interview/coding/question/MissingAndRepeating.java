@@ -48,8 +48,8 @@ public class MissingAndRepeating {
         result.addAll(findArrayDuplicates(arr,n));
         return result;
     }
-    
-    
+  
+  
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
