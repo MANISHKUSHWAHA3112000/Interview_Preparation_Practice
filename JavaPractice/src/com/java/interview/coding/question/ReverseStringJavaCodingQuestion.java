@@ -27,6 +27,7 @@ public class ReverseStringJavaCodingQuestion {
 		return str;
 	}
 
+	// using java 8
 	public static String reverseStringUsingJava8(String s) {
 		String reversed = IntStream.rangeClosed(1, s.length()).mapToObj(i -> s.charAt(s.length() - i))
 				.map(String::valueOf).collect(Collectors.joining());
