@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CheckEqualArray {
 	
-	public static boolean isCheckEqual(int arr1[],int arr2[],int n1,int n2) {
+	public static boolean isCheckEqual(int arr1[],int arr2[],int n) {
 		
 	
 		int sum1 =0,sum2=0;
