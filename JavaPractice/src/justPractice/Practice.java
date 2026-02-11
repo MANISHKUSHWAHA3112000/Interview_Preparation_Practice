@@ -23,6 +23,5 @@ public class Practice {
 		
 		System.out.println("Using Java 8"+reversed + " "+ reversed2);
 		
-
 	}
 }
