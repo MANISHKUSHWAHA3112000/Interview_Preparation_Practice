@@ -34,15 +34,19 @@ public class FindMissingElement {
 		
 		 Arrays.sort(arr);
 
-	        int sum1=0,sum2=0;
-
+		  n = arr.length;
+	        int sum1=0;
+	        int sum2=0;
+	        
 	        for(int i=0;i<n;i++){
 	            sum1^=arr[i];
 	        }
-	        for(int i=0;i<=n;i++){
+	        
+	        for(int i=1;i<=n+1;i++){
 	            sum2^=i;
 	        }
-	        return sum2^sum1;
+	        
+	        return sum1^sum2;
 	    
 	}
 
