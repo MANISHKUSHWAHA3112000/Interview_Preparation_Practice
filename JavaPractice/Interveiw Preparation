@@ -1,0 +1,75 @@
+                                    /***** Interview Question Set    *****/
+                                    
+                                    
+### Question 1: Can you briefly introduce yourself and highlight your key strengths?  
+-->. Hi, my name is Manish Kushwaha. I am a Full Stack Developer with 2 years of experience in building scalable web applications using Java,
+ Spring Boot, and Angular. At Capgemini, I developed REST APIs integrating multiple systems, optimized PostgreSQL queries to reduce latency,
+and created responsive Angular screens that improved efficiency for shipment tracking and cargo operations. I also streamlined CI/CD workflows with Docker and Kubernetes,
+cutting deployment time by 40%. My key strengths are problem-solving, attention to detail, and delivering high-quality solutions under tight deadlines. 
+Additionally, I hold certifications in Azure Fundamentals (AZ-900) and Developing Solutions for Microsoft Azure (AZ-204), which strengthen my cloud and DevOps knowledge.
+     
+
+Cross-Questions & Answers (Directly After Introduction)
+Interviewer: You mentioned scalability — can you share a situation where scalability was a challenge and how you solved it?
+Answer: In the shipment tracking project, we had performance issues when handling large cargo updates. I optimized PostgreSQL queries by adding proper indexing and restructuring joins, which reduced update latency by 25% and improved scalability for 10K+ records processed daily.
+
+Interviewer: How did you streamline CI/CD workflows with Docker and Kubernetes?
+Answer: Initially, deployments were manual and time-consuming. I containerized services with Docker, set up Kubernetes for orchestration, and integrated GitHub Actions for automation. This reduced deployment time by 40% and enabled zero-downtime releases.
+
+Interviewer: You highlighted improving page load speed by 35% — what techniques did you use?
+Answer: I implemented Angular’s lazy loading for modules, optimized bundle sizes, and used modular rendering. I measured improvements with Chrome DevTools and Lighthouse, which showed a 35% faster load time.
+
+Interviewer: How have your Azure certifications helped in real projects?
+Answer: My AZ-900 and AZ-204 certifications gave me a strong foundation in cloud services. I applied this knowledge when integrating Azure Event Grid and Service Bus, ensuring real-time communication with 99.9% uptime.
+
+Interviewer: Can you share an example of a critical issue you solved under tight deadlines?
+Answer: During cargo operations, microservices communication was delayed. I analyzed logs, identified bottlenecks, and integrated Azure Service Bus. This resolved the issue quickly and ensured smooth operations before the release deadline.
+
+Interviewer: What was your biggest contribution in the shipment tracking project?
+Answer: My biggest contribution was developing 10+ Angular screens and REST APIs that integrated 5+ systems. This allowed seamless tracking for 500+ users daily and improved operational efficiency significantly.
+
+Interviewer: You mentioned role-based access — how did you design it effectively?
+Answer: I implemented role-based access using Spring Security, defining 5+ user roles across 3 modules. This ensured secure access control while maintaining flexibility for admins, operators, and customers.
+
+### Question 2: What motivates you in your professional career?  
+**Answer:** I am motivated by the opportunity to solve complex problems and contribute to impactful projects. Seeing tangible results from my work and collaborating with talented teams inspires me to continuously improve and grow.  
+
+---
+
+### Question 3: How would you describe your approach to problem-solving?  
+**Answer:** I take a structured approach to problem-solving—first analyzing the issue, then researching potential solutions, and finally collaborating with colleagues to implement the most effective strategy.  
+
+---
+
+### Question 4: What are your main career goals, and how do you plan to achieve them?  
+**Answer:** My main goal is to advance into leadership roles where I can mentor others and drive innovation. I plan to achieve this through continuous learning, taking on challenging assignments, and building strong professional relationships.  
+
+---
+
+### Question 5: How do you differentiate yourself from other candidates in your field?  
+**Answer:** I differentiate myself through my ability to quickly learn new technologies, my strong attention to detail, and my commitment to delivering high-quality work even under tight deadlines.  
+
+---
+
+### Question 6: What values or principles guide your work ethic?  
+**Answer:** Integrity, accountability, and continuous improvement guide my work ethic. I believe in taking ownership of tasks and striving for excellence in everything I do.  
+
+---
+
+### Question 7: How do you adapt to new environments or challenges?  
+**Answer:** I adapt by being open-minded, proactive in learning, and receptive to feedback. This helps me quickly integrate into new teams and perform effectively in dynamic environments.  
+
+---
+
+### Question 8: Can you share an example where your qualities directly contributed to a successful outcome?  
+**Answer:** In my previous role, my adaptability and strong communication skills helped my team deliver a project ahead of schedule. We overcame unexpected challenges through effective collaboration and problem-solving.  
+
+---
+
+### Question 9: How do you leverage your strengths to add value to a team or organization?  
+**Answer:** I leverage my strengths by actively contributing to team discussions, sharing knowledge, and supporting colleagues to achieve common goals. This ensures collective success and fosters a collaborative environment.  
+
+---
+
+### Question 10: What is the most important lesson you’ve learned so far in your career?  
+**Answer:** The most important lesson I’ve learned is the value of collaboration and continuous learning. Working together and staying curious leads to better outcomes and long-term personal growth.  
