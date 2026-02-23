@@ -13,23 +13,105 @@ Cross-Questions & Answers (Directly After Introduction)
 Interviewer: You mentioned scalability — can you share a situation where scalability was a challenge and how you solved it?
 Answer: In the shipment tracking project, we had performance issues when handling large cargo updates. I optimized PostgreSQL queries by adding proper indexing and restructuring joins, which reduced update latency by 25% and improved scalability for 10K+ records processed daily.
 
+-- Optimized query for shipment tracking with cargo updates
+SELECT cu.cargo_id, cu.status, cu.update_date, s.shipment_name
+FROM cargo_updates cu
+JOIN shipments s ON cu.shipment_id = s.id
+WHERE cu.update_date > NOW() - INTERVAL '1 day'
+ORDER BY cu.update_date DESC;
+
+
 Interviewer: How did you streamline CI/CD workflows with Docker and Kubernetes?
 Answer: Initially, deployments were manual and time-consuming. I containerized services with Docker, set up Kubernetes for orchestration, and integrated GitHub Actions for automation. This reduced deployment time by 40% and enabled zero-downtime releases.
+
+
+# Example GitHub Actions workflow
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: docker build -t myapp:latest .
+      - name: Push to Registry
+        run: docker push myregistry/myapp:latest
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f k8s/deployment.yaml
+
 
 Interviewer: You highlighted improving page load speed by 35% — what techniques did you use?
 Answer: I implemented Angular’s lazy loading for modules, optimized bundle sizes, and used modular rendering. I measured improvements with Chrome DevTools and Lighthouse, which showed a 35% faster load time.
 
+// app-routing.module.ts
+const routes: Routes = [
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'reports', loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) }
+];
+
+
 Interviewer: How have your Azure certifications helped in real projects?
 Answer: My AZ-900 and AZ-204 certifications gave me a strong foundation in cloud services. I applied this knowledge when integrating Azure Event Grid and Service Bus, ensuring real-time communication with 99.9% uptime.
+
+// Example: Publishing event to Azure Event Grid
+EventGridPublisherClient client = new EventGridPublisherClient(
+    new Uri("https://<topic-name>.eventgrid.azure.net/api/events"),
+    new AzureKeyCredential("<access-key>")
+);
+
+await client.SendEventAsync(new EventGridEvent(
+    subject: "CargoUpdate",
+    eventType: "Cargo.StatusChanged",
+    dataVersion: "1.0",
+    data: new { CargoId = 123, Status = "Delivered" }
+));
+
 
 Interviewer: Can you share an example of a critical issue you solved under tight deadlines?
 Answer: During cargo operations, microservices communication was delayed. I analyzed logs, identified bottlenecks, and integrated Azure Service Bus. This resolved the issue quickly and ensured smooth operations before the release deadline.
 
+// Using Azure Service Bus for reliable messaging
+@Service
+public class CargoMessageService {
+    @Autowired
+    private ServiceBusSenderClient senderClient;
+
+    public void sendCargoUpdate(String cargoId, String status) {
+        ServiceBusMessage message = new ServiceBusMessage(cargoId + ":" + status);
+        senderClient.sendMessage(message);
+    }
+}
+
+
 Interviewer: What was your biggest contribution in the shipment tracking project?
 Answer: My biggest contribution was developing 10+ Angular screens and REST APIs that integrated 5+ systems. This allowed seamless tracking for 500+ users daily and improved operational efficiency significantly.
 
+// Example REST API for shipment tracking
+@GetMapping("/shipments/{id}")
+public Shipment getShipment(@PathVariable Long id) {
+    return shipmentRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Shipment not found"));
+}
+
+
 Interviewer: You mentioned role-based access — how did you design it effectively?
 Answer: I implemented role-based access using Spring Security, defining 5+ user roles across 3 modules. This ensured secure access control while maintaining flexibility for admins, operators, and customers.
+
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests()
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/operator/**").hasRole("OPERATOR")
+        .antMatchers("/customer/**").hasRole("CUSTOMER")
+        .anyRequest().authenticated()
+        .and().formLogin();
+}
+
 
 ### Question 2: What motivates you in your professional career?  
 **Answer:** I am motivated by the opportunity to solve complex problems and contribute to impactful projects. Seeing tangible results from my work and collaborating with talented teams inspires me to continuously improve and grow.  
