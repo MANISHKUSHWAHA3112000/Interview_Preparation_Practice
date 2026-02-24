@@ -250,7 +250,190 @@ Arrow operator (->): Separates parameters from the body.
 
 Body: The logic or expression to be executed.
 
+@FunctionalInterface
+	abstract interface Practice{
+		public abstract String findVowel(String s);
+	}
+	
+	Practice p = (s)-> {
+			int count=0;
+			StringBuilder result = new StringBuilder();
+			for(char c : s.toLowerCase().toCharArray()) {
+				if("aeiouAEIOU".indexOf(c)!=-1) {
+					result.append(Character.toUpperCase(c));
+					count++;
+				}
+				else {
+					result.append(c);
+				}
+			}
+			return "Vowel convert into Upper case:  = " + result.toString() + " and  the count of the vowels are :"+count;
+		};
+		System.out.println(p.findVowel("manish Kushwaha"));
+		
+Question - Types of Functional Interfaces in Java
+Java 8 introduced four main functional interface types under the package java.util.function.These are widely used in Stream API ,collection
+and lambda-based operations
 
+Q1. What is a Functional Interface in Java?
+A:  
+A functional interface is an interface that contains exactly one abstract method.
+It is used to represent a single functionality and is the foundation for lambda expressions and method references in Java.
+
+Examples: Runnable, Callable, Comparator, and all interfaces in java.util.function.
+
+Q2. What is the purpose of the @FunctionalInterface annotation?
+A:  
+@FunctionalInterface is used to explicitly mark an interface as functional.
+It ensures the compiler throws an error if more than one abstract method is added accidentally.
+
+Q3. What are the four main types of functional interfaces in Java?
+A:  
+Java provides four core functional interfaces:
+
+Supplier – produces a value
+
+Consumer – consumes a value
+
+Function – transforms a value
+
+Predicate – tests a condition
+
+These form the base of functional programming in Java.
+
+Q4. What is a Supplier functional interface? Give definition and example.
+A:  
+Definition:  
+Supplier<T> represents a function that takes no input and returns a value.
+
+Abstract method: T get()
+
+Example:
+
+java
+Supplier<Double> randomValue = () -> Math.random();
+System.out.println(randomValue.get());
+Q5. What is a Consumer functional interface? Give definition and example.
+A:  
+Definition:  
+Consumer<T> represents an operation that accepts one input and returns no result.
+
+Abstract method: void accept(T t)
+
+Example:
+
+java
+Consumer<String> printer = msg -> System.out.println(msg);
+printer.accept("Hello Manish");
+Q6. What is a Function functional interface? Give definition and example.
+A:  
+Definition:  
+Function<T, R> represents a function that takes one input and returns one output.
+
+Abstract method: R apply(T t)
+
+Example:
+
+java
+Function<String, Integer> lengthFn = str -> str.length();
+System.out.println(lengthFn.apply("Java"));
+Q7. What is a Predicate functional interface? Give definition and example.
+A:  
+Definition:  
+Predicate<T> represents a function that evaluates a condition and returns a boolean.
+
+Abstract method: boolean test(T t)
+
+Example:
+
+java
+Predicate<Integer> isEven = n -> n % 2 == 0;
+System.out.println(isEven.test(10)); // true
+Q8. What are Bi-functional interfaces?
+A:  
+Bi-functional interfaces accept two inputs.
+Examples include:
+
+BiFunction<T, U, R>
+
+BiConsumer<T, U>
+
+BiPredicate<T, U>
+
+Example:
+
+java
+BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+System.out.println(add.apply(5, 3));
+Q9. What is UnaryOperator?
+A:  
+Definition:  
+UnaryOperator<T> is a specialization of Function<T, T> where input and output types are the same.
+
+Example:
+
+java
+UnaryOperator<Integer> square = x -> x * x;
+System.out.println(square.apply(4));
+Q10. What is BinaryOperator?
+A:  
+Definition:  
+BinaryOperator<T> is a specialization of BiFunction<T, T, T> where both inputs and output are the same type.
+
+Q11. What are primitive functional interfaces? Why do we need them?
+A:  
+Primitive functional interfaces avoid boxing/unboxing overhead and improve performance.
+
+Examples:
+
+IntPredicate, LongPredicate, DoublePredicate
+
+IntSupplier, LongSupplier, DoubleSupplier
+
+IntFunction<R>, ToIntFunction<T>
+
+Q12. Can a functional interface have default and static methods?
+A:  
+Yes. A functional interface can have any number of default and static methods, but only one abstract method.
+
+Q13. Can a functional interface extend another interface?
+A:  
+Yes, as long as the resulting interface still has only one abstract method.
+
+Q14. What happens if you add a second abstract method to a functional interface?
+A:  
+If @FunctionalInterface is used, the compiler throws an error.
+Without the annotation, it compiles but is no longer a functional interface.
+
+Q15. What is the difference between Function and UnaryOperator?
+A:
+
+Function<T, R> → input and output may differ
+
+UnaryOperator<T> → input and output are the same (T → T)
+
+Q16. What is the difference between BiFunction and BinaryOperator?
+A:
+
+BiFunction<T, U, R> → two inputs, possibly different types
+
+BinaryOperator<T> → two inputs of the same type, returns same type
+
+Q17. Can lambda expressions throw checked exceptions?
+A:  
+Yes, but only if the functional interface method declares that exception.
+
+Q18. What is the purpose of Predicate’s default methods like and(), or(), negate()?
+A:  
+They allow logical composition of multiple predicates.
+
+Q19. Why are functional interfaces important for Streams API?
+A:  
+Streams rely on functional interfaces like Predicate, Function, and Consumer for filtering, mapping, and consuming data.
+
+Q20. Can enums implement functional interfaces?
+A:  
+Yes. Enums can implement functional interfaces and override the single abstract method.
 
 ## 1. Basic Questions
 
