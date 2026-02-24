@@ -249,3 +249,187 @@ Parameter list: The inputs to the function.
 Arrow operator (->): Separates parameters from the body.
 
 Body: The logic or expression to be executed.
+
+
+
+## 1. Basic Questions
+
+**Q: What is the Java Collection Framework?**  
+A: It is a unified architecture for storing and manipulating groups of objects. It provides interfaces (List, Set, Queue, Map) and concrete implementations (ArrayList, HashSet, HashMap, etc.) for efficient data handling.
+
+**Q: What are the main interfaces in the Collection Framework?**  
+A: `Collection` (root), `List`, `Set`, `Queue`, and `Map` (though Map is separate from Collection).
+
+**Q: What is the difference between Collection and Collections?**  
+A: `Collection` is an interface, while `Collections` is a utility class with static methods like `sort()`, `synchronizedList()`, etc.
+
+**Q: What is the root interface of the Collection hierarchy?**  
+A: `Collection` (though `Map` is not a child of Collection).
+
+**Q: What is the difference between List, Set, and Map?**  
+A:  
+- List → Ordered, allows duplicates.  
+- Set → Unordered, no duplicates.  
+- Map → Key-value pairs, keys unique.
+
+**Q: What are the differences between ArrayList and LinkedList?**  
+A:  
+- ArrayList → Backed by array, fast random access, slower insert/delete in middle.  
+- LinkedList → Doubly linked list, fast insert/delete, slower random access.
+
+**Q: What is the difference between HashSet and TreeSet?**  
+A:  
+- HashSet → Unordered, backed by HashMap, faster.  
+- TreeSet → Sorted, backed by TreeMap, slower but maintains order.
+
+**Q: What is the difference between HashMap and Hashtable?**  
+A:  
+- HashMap → Non-synchronized, allows one null key and multiple null values.  
+- Hashtable → Synchronized, no null key or values.
+
+**Q: What is the difference between ArrayList and Vector?**  
+A:  
+- ArrayList → Non-synchronized, modern choice.  
+- Vector → Synchronized, legacy class.
+
+**Q: What are the differences between Iterator and ListIterator?**  
+A:  
+- Iterator → Works for all collections, forward-only.  
+- ListIterator → Works only for List, supports bidirectional traversal and element modification.
+
+---
+
+## 2. Intermediate Questions
+
+**Q: How does HashMap work internally?**  
+A: It uses an array of buckets + linked list/tree (since Java 8). Hashing determines bucket, collisions handled via chaining or tree.
+
+**Q: Can you store a null key and null values in HashMap?**  
+A: Yes, one null key and multiple null values are allowed.
+
+**Q: What is fail-fast and fail-safe Iterator?**  
+A:  
+- Fail-fast → Throws `ConcurrentModificationException` if structure changes (e.g., ArrayList, HashMap).  
+- Fail-safe → Works on a copy, no exception (e.g., ConcurrentHashMap, CopyOnWriteArrayList).
+
+**Q: What is the difference between Comparable and Comparator interfaces?**  
+A:  
+- Comparable → Natural ordering via `compareTo()`.  
+- Comparator → Custom ordering via `compare()`.
+
+**Q: How do you synchronize a Collection?**  
+A: Use `Collections.synchronizedList()` or concurrent collections.
+
+**Q: What is ConcurrentHashMap? How is it different from HashMap?**  
+A: ConcurrentHashMap is thread-safe, uses fine-grained locking, and disallows null keys/values. HashMap is not thread-safe and allows nulls.
+
+**Q: What is the initial capacity and load factor in HashMap?**  
+A: Capacity is the size of the bucket array, load factor is the threshold for resizing (default 0.75).
+
+**Q: What are NavigableMap and NavigableSet?**  
+A: Extensions of SortedMap/SortedSet with navigation methods (`lower()`, `higher()`, etc.).
+
+**Q: How does TreeSet ensure elements are sorted?**  
+A: By using `compareTo()` or a `Comparator`.
+
+**Q: What is the use of EnumSet and EnumMap?**  
+A: Specialized collections for enums, highly efficient.
+
+---
+
+## 3. Advanced/Scenario-Based Questions
+
+**Q: How would you remove duplicates from a List?**  
+A: Convert to `Set` or use `stream().distinct()`.
+
+**Q: How does CopyOnWriteArrayList work?**  
+A: It creates a copy of the underlying array on modification, making it thread-safe and ideal for read-heavy scenarios.
+
+**Q: Explain the difference between fail-fast and fail-safe iterators with examples.**  
+A:  
+- Fail-fast: `ArrayList` → modifying while iterating throws exception.  
+- Fail-safe: `ConcurrentHashMap` → allows modification during iteration.
+
+**Q: What happens if you add duplicate elements to a Set?**  
+A: They are ignored; only unique elements are stored.
+
+**Q: How do you make a Collection read-only?**  
+A: Use `Collections.unmodifiableList()` or similar methods.
+
+**Q: Can you modify a Collection while iterating over it?**  
+A: Only via `Iterator.remove()`, otherwise `ConcurrentModificationException`.
+
+**Q: What are WeakHashMap and IdentityHashMap?**  
+A:  
+- WeakHashMap → Keys are weak references, garbage-collected.  
+- IdentityHashMap → Keys compared by reference (`==`) not `equals()`.
+
+**Q: What is the difference between Synchronized Collection and Concurrent Collection?**  
+A:  
+- Synchronized → Wrapper methods, single lock.  
+- Concurrent → Fine-grained locking, better performance.
+
+**Q: When would you use LinkedHashMap?**  
+A: When insertion order needs to be preserved, e.g., in caches (LRU).
+
+**Q: How do you sort a Collection of custom objects?**  
+A: Use `Comparable` or `Comparator`.
+
+---
+
+## 4. Code/Practical Questions
+
+**Q: Write a code to sort a List of custom objects.**  
+```java
+Collections.sort(list, Comparator.comparing(Employee::getSalary));
+```
+
+**Q: Write a code to remove all even numbers from a List using Iterator.**  
+```java
+Iterator<Integer> it = list.iterator();
+while(it.hasNext()) {
+    if(it.next() % 2 == 0) it.remove();
+}
+```
+
+**Q: Write a code to count the frequency of elements in an array using Map.**  
+```java
+Map<Integer, Integer> freq = new HashMap<>();
+for(int num : arr) freq.put(num, freq.getOrDefault(num, 0) + 1);
+```
+
+**Q: How do you convert an array to a List and vice versa?**  
+```java
+List<String> list = Arrays.asList(arr);
+String[] arr = list.toArray(new String[0]);
+```
+
+**Q: How to find if two Lists are equal?**  
+```java
+list1.equals(list2); // true if same order & elements
+```
+
+---
+
+## 5. Concurrency Questions
+
+**Q: What are concurrent collections? Name some classes.**  
+A: Thread-safe collections like `ConcurrentHashMap`, `CopyOnWriteArrayList`, `BlockingQueue`.
+
+**Q: Explain the difference between ConcurrentHashMap and Collections.synchronizedMap().**  
+A:  
+- ConcurrentHashMap → Fine-grained locking, better scalability.  
+- synchronizedMap → Single lock, less efficient.
+
+**Q: What is BlockingQueue?**  
+A: A thread-safe queue supporting blocking operations (`put()`, `take()`), useful in producer-consumer scenarios.
+
+**Q: Explain CopyOnWriteArrayList and its use cases.**  
+A: Thread-safe list that creates a copy on modification. Best for read-heavy, write-light scenarios.
+
+**Q: How do you handle ConcurrentModificationException?**  
+A:  
+- Use `Iterator.remove()` instead of modifying directly.  
+- Use concurrent collections (e.g., `CopyOnWriteArrayList`, `ConcurrentHashMap`).  
+- Or iterate over a snapshot (`new ArrayList<>(list)`).
+
