@@ -236,5 +236,16 @@ Perfect, Manish — I’ve pulled together **proper definitions** for the featur
 - **Strong Encapsulation of JDK Internals**: Prevents unauthorized access to internal APIs.  
 - **InstantSource API**: Provides a new abstraction for time sources.  
 - **Deprecations & Removals**: Outdated modules permanently removed.  
-- **LTS Support**: Enterprise-grade stability with long-term updates.   
+- **LTS Support**: Enterprise-grade stability with long-term updates. 
 
+Question - what is the Lambda Expression , with example and coding question in depth ?
+A Lambda Expression in Java (introduced in Java 8) is a concise way to represent an anonymous function—a block of code that can be passed around as data. 
+It enables developers to treat functionality as a method argument or assign it to a variable, thereby supporting functional programming within Java.
+
+Formally, a lambda expression provides:
+
+Parameter list: The inputs to the function.
+
+Arrow operator (->): Separates parameters from the body.
+
+Body: The logic or expression to be executed.
