@@ -155,3 +155,38 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ### Question 10: What is the most important lesson you’ve learned so far in your career?  
 **Answer:** The most important lesson I’ve learned is the value of collaboration and continuous learning. Working together and staying curious leads to better outcomes and long-term personal growth.  
+
+
+------------------------------------------ Java Interview question  -----------------------------------------------------------------
+
+Question. - How the java internally works?
+Java internally works by compiling source code into bytecode, which the JVM loads, verifies, and executes using an interpreter and 
+Just-In-Time compiler, while managing memory through garbage collection.
+
+Question - What is Java ?
+Java is a High Level object oriented programming language developed by Sun Microsystem in 1995. I t is used for developing the desktop application,web application,android apps and enterprise system.
+
+Question - What is the feature of Java ?
+
+Object-Oriented Programming (OOP): Java supports OOP concepts to create modular and reusable code.
+Platform Independence: Java programs can run on any operating system with a JVM.
+Robust and Secure: Java ensures reliability and security through strong memory management and exception handling.
+Multithreading and Concurrency: Java allows concurrent execution of multiple tasks for efficiency.
+Rich API and Standard Libraries: Java provides extensive built-in libraries for various programming needs.
+Frameworks for Enterprise and Web Development: Java supports frameworks that simplify enterprise and web application development.
+Open-Source Libraries: Java has a wide range of libraries to extend functionality and speed up development.
+Maintainability and Scalability: Java’s structured design allows easy maintenance and growth of applications.
+
+Question - How the Java program run and executed ?
+Java  Compiler " javac " compiles it into bytecode "fileName.class".Then JVM reads the .class file and interprets the Bytecode,
+JVM convert bytecode to machine readable code ie "binary (000101010) and then executed the program.
+
+
+
+       HelloWorld.java  ---->  Java compiler -----> HelloWorld.class 
+                                                          |
+                                                          | 
+        Program                    010101         ------ JVM
+        
+        
+Question - 
