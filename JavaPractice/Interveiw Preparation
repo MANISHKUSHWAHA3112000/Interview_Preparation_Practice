@@ -273,7 +273,7 @@ Body: The logic or expression to be executed.
 		
 Question - Types of Functional Interfaces in Java
 Java 8 introduced four main functional interface types under the package java.util.function.These are widely used in Stream API ,collection
-and lambda-based operations
+and lambda-based operations : Consumer, Predicate, Function,supplier
 
 Q1. What is a Functional Interface in Java?
 A:  
