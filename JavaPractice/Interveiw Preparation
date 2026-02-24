@@ -189,4 +189,52 @@ JVM convert bytecode to machine readable code ie "binary (000101010) and then ex
         Program                    010101         ------ JVM
         
         
-Question - 
+Question - What is the difference between Java, Java 8 ,Java 11 and Java 17 ?
+
+                     Core Java Features
+Perfect, Manish — I’ve pulled together **proper definitions** for the features of **Java (core), Java 8, Java 11, and Java 17** based on authoritative sources like GeeksforGeeks, Baeldung, TutorialsPoint, and Tpoint Tech. Let’s go step by step:
+
+---
+
+## 🌐 Core Java Features (General)
+- **Simple**: Syntax is clean and easy to learn, avoiding complexities like pointers and operator overloading.  
+- **Object-Oriented**: Everything is modeled as objects, supporting inheritance, polymorphism, and encapsulation.  
+- **Platform Independent**: Compiled into bytecode that runs on any system with JVM — “Write Once, Run Anywhere.”  
+- **Portable**: Code can be executed across different platforms without modification.  
+- **Secure**: Provides runtime checks, bytecode verification, and restricted access to memory.  
+- **Robust**: Strong memory management, exception handling, and type checking.  
+- **Multithreaded**: Supports concurrent execution of multiple tasks.  
+- **High Performance**: Uses Just-In-Time (JIT) compiler for faster execution.  
+- **Distributed**: Supports networking and remote method invocation (RMI).  
+- **Dynamic**: Classes are loaded at runtime, allowing flexibility.   
+
+---
+
+## 🚀 Java 8 Features (2014)
+- **Lambda Expressions**: Enable functional programming by passing behavior as parameters.  
+- **Functional Interfaces**: Interfaces with a single abstract method (SAM), used with lambdas.  
+- **Stream API**: Provides declarative data processing (filter, map, reduce).  
+- **Date and Time API (java.time)**: Modern replacement for `Date` and `Calendar`.  
+- **Default & Static Methods in Interfaces**: Allow adding new methods without breaking existing implementations.  
+- **Optional Class**: Helps avoid `NullPointerException` by wrapping values.  
+- **Nashorn JavaScript Engine**: Execute JavaScript code within JVM.  
+- **Collectors & ForEach**: Simplify collection operations.  
+- **Parallel Array Sorting**: Improves performance for large datasets.   
+
+
+## ⚡ Java 11 Features (2018, LTS)
+- **Local-Variable Syntax for Lambda Parameters**: Use `var` in lambda expressions for type inference.  
+- **HTTP Client API**: Standardized API supporting HTTP/2 and WebSocket.  
+- **New String Methods**: `isBlank()`, `lines()`, `strip()`, `repeat()`.  
+- **Removed Features**: Applet API, JavaFX bundled, Web Start — simplifying the JDK.  
+- **Flight Recorder & Mission Control**: Tools for profiling and monitoring applications.  
+- **Commercial Licensing Change**: Oracle JDK became paid for commercial use, OpenJDK widely adopted.   
+
+## 🛠️ Java 17 Features (2021, LTS)
+- **Sealed Classes & Interfaces**: Restrict inheritance to specific classes for better control.  
+- **Pattern Matching for `switch` (Preview)**: Simplifies conditional logic with type-safe matching.  
+- **Strong Encapsulation of JDK Internals**: Prevents unauthorized access to internal APIs.  
+- **InstantSource API**: Provides a new abstraction for time sources.  
+- **Deprecations & Removals**: Outdated modules permanently removed.  
+- **LTS Support**: Enterprise-grade stability with long-term updates.   
+
