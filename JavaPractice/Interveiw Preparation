@@ -280,6 +280,98 @@ double	Double
 char	Character
 boolean	Boolean
 
+Question - Why do we need wrapper classes?
+The wrapper class is an object class that encapsulates the primitive data types, and we need them for the following reasons:
+
+Wrapper classes are final and immutable
+Provides methods like valueOf(), parseInt(), etc.
+It provides the feature of autoboxing and unboxing.
+
+What is autoboxing and unboxing?
+Autoboxing: Autoboxing is the automatic conversion of a primitive type to its corresponding wrapper class object.
+Unboxing: Autoboxing and unboxing reduce boilerplate code. Can happen implicitly in expressions, assignments, and method calls.
+
+Question- What is a String in Java?
+A String is an object in Java that represents a sequence of characters. Strings are immutable, meaning once created, their value cannot be changed.
+
+String s = "Hello";
+
+Question-What does it mean that Strings are immutable?
+Once a String object is created, it cannot be modified. Any operation that seems to modify a String creates a new String object.
+
+String s1 = "Hello";
+String s2 = s1.concat(" World"); // s1 remains "Hello"
+
+Question-What are the differences between StringBuffer and StringBuilder?
+
+             StringBuffer                                                                               StringBuilder
+StringBuffer provides functionality to work with the strings.	                        StringBuilder is a class used to build a mutable string.
+It is thread-safe (two threads can't call the methods of StringBuffer simultaneously)	It is not thread-safe (two threads can call the methods concurrently)
+Comparatively slow as it is synchronized.	                                            Being non-synchronized, implementation is faster
+
+
+Question-How to copy an array in Java?
+In Java, there are multiple ways to copy an array based on the requirements:
+
+1. clone() Method (Shallow Copy)
+
+The clone() method creates a new array with its own memory but contains references to the same objects for non-primitive data types.
+For primitive arrays, it behaves like a deep copy since primitive values are directly copied.
+int[] arr = {1, 2, 3, 5, 0};
+int[] tempArr = arr.clone(); // Creates a new array with copied values
+
+2. System.arraycopy() Method (Deep Copy)
+
+This method creates a new array and copies elements from the original array.
+It allows partial copying by specifying an offset and length.
+int[] arr = {1, 2, 7, 9, 8};
+int[] tempArr = new int[arr.length];
+System.arraycopy(arr, 0, tempArr, 0, arr.length);
+
+3. Arrays.copyOf() Method (Creates New Array)
+
+This method creates a new array and copies the entire original array into it.
+If the specified length is greater than the original array, extra elements are initialized with default values.
+int[] arr = {1, 2, 4, 8};
+int[] tempArr = Arrays.copyOf(arr, arr.length);
+
+
+Question-What is an object-oriented paradigm and What are the main concepts of OOP in Java?
+The object-oriented paradigm is based on using objects as the main entities. These objects can use features like encapsulation, inheritance, and polymorphism to build structured programs.
+
+Question-What are Classes in Java? 
+In Java, Classes are the collection of objects sharing similar characteristics and attributes. Classes represent the blueprint or template from which objects are created.  Classes are not real-world entities but help us to create objects which are real-world entities. A class is declared using the class keyword. and It contains:
+
+Fields / Variables (data of an object)
+Methods (operations/functions)
+Constructors
+Nested classes
+Blocks (static & instance)
+
+Question- What is an object?
+The object is a real-life entity that has certain properties and methods associated with it. The object is also defined as the instance of a class. An object can be declared using a new keyword.
+
+Question-What are the different ways to create objects in Java?
+Methods to create objects in Java are mentioned below:
+
+Using new keyword
+Using new instance
+Using clone() method
+Using deserialization
+Using the newInstance() method of the Constructor class
+
+Question- What is this keyword in Java?
+‘this’ is a keyword used to reference a variable that refers to the current object.
+
+Question-What are Access Specifiers and Types of Access Specifiers?
+
+Access Specifiers in Java help to restrict the scope of a class, constructor, variable, method, or data member. There are four types of Access Specifiers in Java mentioned below:
+
+Public
+Private
+Protected
+Default
+
 ---------------------------- ----------- - -- ---- Core Java Features--------------------------------------------
 
 Question - What is the difference between Java, Java 8 ,Java 11 and Java 17 ?
