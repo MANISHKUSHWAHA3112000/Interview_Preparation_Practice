@@ -213,13 +213,76 @@ Question-What will happen if we don’t declare the main method as static?
 The main method in Java is declared as public static void main(String[] args) because the JVM needs to call it without creating an object.
 If the main method is not static, it becomes an instance method, and the JVM cannot call it directly since no object exists at the start of execution.
 The code will compile successfully, but at runtime, the JVM will throw an error like:
+
+Question- Why is Java not 100% Object-Oriented?
+Because it contains primitive data types (int, boolean, char, etc.) which are not objects
+
+Question - What is Java String Pool?
+A Java String Pool is a place in heap memory where all the strings defined in the program are stored.
+ A separate place in a stack is there where the variable storing the string is stored. Whenever we create a new string object, 
+ JVM checks for the presence of the object in the String pool, If String is available in the pool, the same object reference is shared with the variable, 
+ else a new object is created.
         
+Question - Where is `"abc"` stored when we write `String s = "abc";`?
+**A:** It is stored in the **String Constant Pool (SCP)** inside the heap. If `"abc"` already exists, Java reuses the same reference.
+
+
+### Q2: Where is `"abc"` stored when we write `String s = new String("abc");`?
+**A:** A **new String object** is created in the heap, even though `"abc"` also exists in the SCP. So you end up with two objects: one in SCP and one in heap.
+
+### Q3: What happens if we compare two string literals?
+
+String s1 = "abc";
+String s2 = "abc";
+```
+**A:**  
+- `s1 == s2` → **true** (same SCP reference)  
+- `s1.equals(s2)` → **true** (same content)
+
+
+### Q4: What happens if we compare a literal with `new String("abc")`?
+
+String s1 = "abc";
+String s3 = new String("abc");
+```
+**A:**  
+- `s1 == s3` → **false** (different references: SCP vs heap)  
+- `s1.equals(s3)` → **true** (same content)
+
+
+### Q5: What will `System.out.println` show?
+**A:** Both print `"abc"` because `toString()` of a String returns its content.
+
+### Q6: What is the difference between `==` and `.equals()` in Strings?
+**A:**  
+- `==` → compares **references** (memory addresses).  
+- `.equals()` → compares **values** (characters inside the string).
+
+### Q7: Can we make `new String("abc")` point to SCP?
+**A:** Yes, by using `.intern()`:
+```java
+String s3 = new String("abc").intern();
+```
+Now `s3` will point to the SCP object, so `s1 == s3` → **true**.
+
+Question-What is the Wrapper class in Java?
+A Wrapper Class in Java is a class that wraps (encapsulates) a primitive data type into an object. 
+Since Java is object-oriented, wrapper classes allow primitives to be used where objects are required, 
+like in Collections (ArrayList, HashMap, etc.).
+
+Primitive	Wrapper Class
+byte	Byte
+short	Short
+int	Integer
+long	Long
+float	Float
+double	Double
+char	Character
+boolean	Boolean
+
+---------------------------- ----------- - -- ---- Core Java Features--------------------------------------------
+
 Question - What is the difference between Java, Java 8 ,Java 11 and Java 17 ?
-
-                     Core Java Features
-Perfect, Manish — I’ve pulled together **proper definitions** for the features of **Java (core), Java 8, Java 11, and Java 17** based on authoritative sources like GeeksforGeeks, Baeldung, TutorialsPoint, and Tpoint Tech. Let’s go step by step:
-
----
 
 ## 🌐 Core Java Features (General)
 - **Simple**: Syntax is clean and easy to learn, avoiding complexities like pointers and operator overloading.  
