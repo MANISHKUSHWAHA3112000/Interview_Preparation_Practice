@@ -188,6 +188,31 @@ JVM convert bytecode to machine readable code ie "binary (000101010) and then ex
                                                           | 
         Program                    010101         ------ JVM
         
+Question-. Is Java Platform Independent? If yes, how?
+Yes, Java is a platform-independent language. Unlike many programming languages, the Java compiler (javac) compiles a program into bytecode (a .class file). 
+This bytecode is not tied to any specific hardware or operating system but requires a Java Virtual Machine (JVM) to execute.
+Although the JVM itself is platform-dependent.
+
+Question -Difference between JVM, JRE and JDK.
+JVM: JVM also known as Java Virtual Machine is a part of JRE. JVM is a type of interpreter responsible for converting bytecode into machine-readable code. JVM itself is platform dependent 
+but it interprets the bytecode which is the platform-independent reason why Java is platform-independent. 
+JRE: JRE stands for Java Runtime Environment, it is an installation package that provides an environment to run the Java program or application on any machine.
+JDK: JDK stands for Java Development Kit which provides the environment to develop and execute Java programs.
+
+Question-What are Memory storages available with JVM?
+
+JVM consists of a few memory storages as mentioned below:
+
+Class(Method) Area: stores class-level data of every class such as the runtime constant pool, field, and method data, and the code for methods.
+Heap: Objects are created or objects are stored. It is used to allocate memory to objects during run time.
+Stack: stores data and partial results which will be needed while returning value for method and performing dynamic linking
+Program Counter Register: stores the address of the Java virtual machine instruction currently being executed.
+Native Method Stack: stores all the native methods used in the application.
+
+Question-What will happen if we don’t declare the main method as static?
+The main method in Java is declared as public static void main(String[] args) because the JVM needs to call it without creating an object.
+If the main method is not static, it becomes an instance method, and the JVM cannot call it directly since no object exists at the start of execution.
+The code will compile successfully, but at runtime, the JVM will throw an error like:
         
 Question - What is the difference between Java, Java 8 ,Java 11 and Java 17 ?
 
