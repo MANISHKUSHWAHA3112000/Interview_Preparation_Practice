@@ -4,322 +4,353 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 /**
+ava is a pure object-oriented programming language (with minor exceptions like primitives). OOP is one of the most frequently tested topics in interviews. It models real-world entities using classes and objects and promotes code reusability, modularity and scalability.
 
+1. What is an object-oriented paradigm and What are the main concepts of OOP in Java?
+A paradigm means a method or style of programming. In programming, there are four main paradigms: Imperative, Logical, Functional and Object-Oriented. The object-oriented paradigm is based on using objects as the main entities. These objects can use features like encapsulation, inheritance, and polymorphism to build structured programs.
 
-Section 1: Core OOP Concepts
-----------------------------
-Q1. What is Object-Oriented Programming (OOP)?
-A: OOP is a paradigm where software is designed around objects and is based on using the object as entites that encapsulate state and behavior.
+The main concepts of OOPs in Java are mentioned below:
 
-Code Example:
-// Class = blueprint
+Inheritance
+Polymorphism
+Abstraction
+Encapsulation 
+2. What is the difference between an object-oriented programming language and an object-based programming language?
+Object-Oriented Programming Language
+
+Object-Based Programming Language
+
+Object-oriented programming language covers larger concepts like inheritance, polymorphism, abstraction, etc.   The scope of object-based programming is limited to the usage of objects and encapsulation.
+It supports all the built-in objects    It doesn’t support all the built-in objects
+Examples: Java, C#, etc.    Examples: Java script, visual basics, etc.
+3. What are Classes in Java? 
+In Java, Classes are the collection of objects sharing similar characteristics and attributes. Classes represent the blueprint or template from which objects are created.  Classes are not real-world entities but help us to create objects which are real-world entities. A class is declared using the class keyword. and It contains:
+
+Fields / Variables (data of an object)
+Methods (operations/functions)
+Constructors
+Nested classes
+Blocks (static & instance)
+Example: Below program creates a Car object, sets its brand and speed, and then displays those details to the user.
+
 class Car {
-    String color; // property
-    void drive() { // behavior
-    
-        System.out.println("Car is driving");
+    // fields
+    String brand;
+    int speed;
+
+    // method
+    void showDetails()
+    {
+        System.out.println(brand + " runs at " + speed
+                           + " km/h");
     }
 }
 
-// Object = instance
-Car myCar = new Car();
-myCar.color = "Red";
-myCar.drive();
+class GFG{
+    public static void main(String[] args)
+    {
+        // creating object
+        Car c1 = new Car();
+        c1.brand = "BMW";
+        c1.speed = 200;
 
-Cross-question: How does OOP improve maintainability compared to procedural programming?
-Answer: OOP improves maintainability by modularizing code into classes, promoting reusability, and reducing duplication.
-
-Q2. What are the four pillars of OOP?
-A: Encapsulation, Inheritance, Polymorphism, Abstraction.
-
-Cross-question: Which pillar is most critical in large-scale system design?
-Answer: Abstraction, because it hides complexity and exposes only essential features.
-
-Q3. Is Java 100% object-oriented?
-A: No, because it uses primitive data types (int, char, etc.).
-
-Cross-question: How can you make Java closer to pure OOP?
-Answer: By using wrapper classes like Integer, Double, Boolean instead of primitives.
-
----
-
-Section 2: Encapsulation
-------------------------
-Q4. Define encapsulation.
-A: Encapsulation is the practice of restricting direct access to fields and exposing controlled access via methods.
-
-Code Example:
-class BankAccount {
-    private double balance; // hidden field
-
-    public double getBalance() { return balance; }
-    public void deposit(double amount) {
-        if (amount > 0) balance += amount;
+        c1.showDetails();
     }
 }
 
-Cross-question: Why should fields be private instead of public?
-Answer: To prevent unauthorized modification, maintain integrity, and enforce validation logic.
+Output
+BMW runs at 200 km/h
+4. What is an object?
+The object is a real-life entity that has certain properties and methods associated with it. The object is also defined as the instance of a class. An object can be declared using a new keyword.
 
----
+Example:
 
-Section 3: Inheritance
-----------------------
-Q5. What is inheritance?
-A: Mechanism where one class acquires properties and behaviors of another.
-
-Code Example:
-class Vehicle {
-    void start() { System.out.println("Vehicle starting"); }
-}
-class Car extends Vehicle {
-    void honk() { System.out.println("Car honking"); }
-}
-
-Cross-question: Can constructors be inherited?
-Answer: No, but subclass can call parent constructor using super().
-
-Q6. Types of inheritance supported in Java?
-A: Single, Multilevel, Hierarchical. (Multiple inheritance via interfaces only.)
-
-Cross-question: Why doesn’t Java support multiple inheritance with classes?
-Answer: To avoid ambiguity (diamond problem). Interfaces solve this by providing contracts only.
-
----
-
-Section 4: Polymorphism
------------------------
-Q7. What is polymorphism?
-A: Ability of an object to take many forms.
-
-Code Example:
-// Compile-time polymorphism (overloading)
-class MathUtil {
-    int add(int a, int b) { return a+b; }
-    double add(double a, double b) { return a+b; }
-}
-
-// Runtime polymorphism (overriding)
-class Animal {
-    void sound() { System.out.println("Animal sound"); }
-}
-class Dog extends Animal {
-    @Override
-    void sound() { System.out.println("Dog barks"); }
-}
-
-Cross-question: Can static methods be overridden?
-Answer: No, they are hidden, not overridden.
-
-Q8. Difference between overloading and overriding?
-A: Overloading = same method name, different parameters. Overriding = same method signature, different implementation in subclass.
-
-Cross-question: Can private methods be overridden?
-Answer: No, because they are not visible outside the class.
-
----
-
-Section 5: Abstraction
-----------------------
-Q9. What is abstraction?
-A: Hiding implementation details and exposing only essential features.
-
-Code Example:
-abstract class Shape {
-    abstract void draw();
-}
-class Circle extends Shape {
-    void draw() { System.out.println("Drawing Circle"); }
-}
-
-Cross-question: Can abstract classes have constructors?
-Answer: Yes, but they cannot be instantiated directly. Subclasses call them.
-
-Q10. Difference between abstract class and interface?
-A: Abstract class can have state + behavior; interface defines contracts only. Interfaces support multiple inheritance.
-
-Cross-question: Can interfaces have variables?
-Answer: Yes, but they are implicitly public, static, and final.
-
----
-
-Section 6: Object Class
------------------------
-Q11. What is the significance of Object class?
-A: Root of all classes in Java. Provides methods like toString(), equals(), hashCode(), clone().
-
-Code Example:
-class Student {
-    int id;
+class Dog{
     String name;
-    @Override
-    public String toString() { return id + " - " + name; }
-}
-
-Cross-question: Why override equals() and hashCode() together?
-Answer: To ensure consistent behavior in collections like HashMap and HashSet.
-
----
-
-Section 7: Constructors
------------------------
-Q12. What is constructor chaining?
-A: Calling one constructor from another using this() or super().
-
-Code Example:
-class Employee {
-    String name;
-    Employee() { this("Unknown"); } // calls parameterized constructor
-    Employee(String name) { this.name = name; }
-}
-
-Cross-question: Can constructors be overridden?
-Answer: No, because they are not inherited.
-
----
-
-Section 8: Access Modifiers
----------------------------
-Q13. What are access modifiers?
-A: Keywords that define scope: public, private, protected, default.
-
-Cross-question: Can we reduce visibility of overridden methods?
-Answer: No, only increase or keep same.
-
----
-
-Section 9: Static & Final
--------------------------
-Q14. Difference between final, finally, finalize?
-A:
-- final: keyword to declare constants, prevent inheritance/overriding.
-- finally: block for cleanup code in try-catch.
-- finalize: method called by GC before object destruction.
-
-Cross-question: Why is finalize() discouraged?
-Answer: Because its execution is unpredictable and may not run before program termination.
-
----
-
-Section 10: Advanced OOP Topics
--------------------------------
-Q15. What is immutability?
-A: Immutable objects cannot change state after creation.
-
-Code Example:
-final class ImmutableStudent {
-    private final String name;
-    ImmutableStudent(String name) { this.name = name; }
-    public String getName() { return name; }
-}
-
-Cross-question: Why is immutability useful in multithreading?
-Answer: Because immutable objects are inherently thread-safe.
-
-Q16. Difference between aggregation and composition?
-A:
-- Aggregation: weak association (can exist independently).
-- Composition: strong association (lifecycle tied).
-
-Cross-question: Which is stronger, aggregation or composition?
-Answer: Composition, because child objects cannot exist without parent.
-
-Q17. What is shallow copy vs deep copy?
-A: Shallow copy copies references; deep copy creates independent copies.
-
-Cross-question: How do you implement deep copy in Java?
-Answer: By overriding clone() and manually copying mutable fields.
-
----
-
-Section 11: Design Patterns
----------------------------
-Q18. What is Singleton?
-A: A class that allows only one instance globally.
-
-Code Example:
-class Singleton {
-    private static Singleton instance;
-    private Singleton() {}
-    public static Singleton getInstance() {
-        if (instance == null) instance = new Singleton();
-        return instance;
+    void bark() {
+        System.out.println(name + " is barking!");
     }
 }
 
-Cross-question: How to make Singleton thread-safe?
-Answer: Use synchronized or double-checked locking.
-
-Q19. What is Factory pattern?
-A: Provides object creation logic without exposing instantiation.
-
-Cross-question: Difference between Factory and Builder?
-Answer: Factory creates objects; Builder constructs complex objects step by step.
-
----
-
-Section 12: Scenario-Based
---------------------------
-Q20. Design a class hierarchy for Vehicle, Car, Bike.
-A:
-- Vehicle (base class)
-- Car, Bike (subclasses)
-
-Cross-question: How would you add ElectricCar without breaking hierarchy?
-Answer: Extend Car class and add electric-specific behavior.
-
-Q21. How would you override equals() and hashCode() in Student class?
-A: Compare meaningful fields and generate consistent hash.
-
-Code Example:
-@Override
-public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (!(obj instanceof Student)) return false;
-    Student s = (Student) obj;
-    return this.id == s.id;
-}
-@Override
-public int hashCode() {
-    return Objects.hash(id);
+public class GFG {
+    public static void main(String[] args) {
+        Dog d1 = new Dog();   // object created
+        d1.name = "Tommy";    // setting value
+        d1.bark();            // calling method
+    }
 }
 
-Cross-question: Why is hashCode important in HashMap?
-Answer: Because it determines bucket placement for efficient lookup.
+Output
+Tommy is barking!
+Explanation: d1 is an object of the Dog class that stores data and performs actions.
 
----
+5. What are the different ways to create objects in Java?
+Methods to create objects in Java are mentioned below:
 
-Section 13: Trick & Edge Cases
-------------------------------
-Q22. Can we overload main()?
-A: Yes, but JVM calls only the standard signature.
+Using new keyword
+Using new instance
+Using clone() method
+Using deserialization
+Using the newInstance() method of the Constructor class
 
-Cross-question: Why would you overload main()?
-Answer: For testing purposes or custom entry points.
+6. How is the ‘new’ operator different from the ‘newInstance()’ operator in Java?
+1. new Operator
+The new operator is used to create objects at compile-time.
+Type is known beforehand.
+Example:
+Car c = new Car();  // using new
 
-Q23. Can constructors be private?
-A: Yes, used in Singleton pattern.
+2. newInstance() method:
+newInstance() operator creates an object at runtime using reflection.
+Type is decided dynamically.
+Throws exceptions (e.g., InstantiationException).
+Example:
+Car c = Car.class.newInstance();  // using newInstance()
 
-Cross-question: How do you instantiate a class with private constructor?
-Answer: Using static factory methods inside the class.
+7. What is the difference between static (class) method and instance method?
+Static(Class) method
+Instance method
 
-Q24. Can we create objects without new keyword?
-A: Yes, via reflection, cloning, or deserialization.
+Static method is associated with a class rather than an object.
+The instance method is associated with an object rather than a class.
+Static methods can be called using the class name only without creating an instance of a class.
+The instance methods can be called on a specific instance of a class using the object reference.
+Static methods do not have access to this keyword.
+Instance methods have access to this keyword.
+Static methods can access only static members of the class.
+Instance methods can access both static and non-static methods of the class.
+Static methods can’t be overridden (resolved at compile-time by reference type).
+While instance methods can be overridden (resolved at run-time by object type).
 
-Cross-question: Which method is most commonly used in frameworks?
-Answer: Reflection, especially in dependency injection frameworks.
+8. What is this keyword in Java?
+‘this’ is a keyword used to reference a variable that refers to the current object.
 
-Q25. Can abstract classes have main()?
-A: Yes, but cannot be instantiated directly.
+9. What are the advantages and disadvantages of object cloning?
+Advantages:
+Unlike = which copies only references, clone() creates a new object copy.
+Reduces code size since manual field copying is avoided.
+Useful for replicating complex objects (similar to Prototype pattern).
 
-Q26. Can interfaces extend multiple interfaces?
-A: Yes, supports multiple inheritance.
+Disadvantages:
+clone() is protected, so classes must override it and implement Cloneable.
+By default, it performs a shallow copy deep copy needs custom implementation.
+Can be tricky to maintain if objects have nested references.
 
-Q27. Can a class implement multiple interfaces?
-A: Yes, allows multiple contracts.
+10. What is the difference between shallow cloning and deep cloning in Java?
+Shallow cloning: Shallow cloning copies only the object’s top-level structure, meaning nested objects are shared between the original and the clone.
+Deep cloning: Deep cloning creates a completely independent copy, including all nested objects.
 
-Cross-question: How does this solve multiple inheritance problem?
-Answer: By separating contracts from implementation, avoiding ambiguity.
+11. What are Access Specifiers and Types of Access Specifiers?
+Access Specifiers in Java help to restrict the scope of a class, constructor, variable, method, or data member. There are four types of Access Specifiers in Java mentioned below:
+Public
+Private
+Protected
+Default
+
+12. What will be the initial value of an object reference which is defined as an instance variable?
+The initial value of an object reference which is defined as an instance variable is a NULL value.
+
+13. What is the constructor?
+Constructor is a special method that is used to initialize objects. Constructor is called when a object is created. The name of constructor is same as of the class.
+Purpose: To initialize the object’s state (i.e., assign values to instance variables) when an object is created.
+Name: Must be the same as the class name.
+No return type: Constructors do not have a return type.
+Automatically called: It is called automatically when the new keyword is used.
+Can be overloaded: We can define multiple constructors with different parameter
+
+Example:
+class XYZ{
+      private int val;
+      // Constructor
+      XYZ(){
+            val=0;
+      }
+};
+
+14. How many types of constructors are used in Java.
+There are four types of constructors in Java
+Default Constructor
+Parameterized Constructor
+Copy Constructor
+Private Constructor
+
+15. What happens if we don't provide constructor in class?
+If you don't provide a constructor in a class in Java, the compiler automatically generates a default constructor with no arguments and no operation which is a default constructor.
+
+16. What is the purpose of a default constructor?
+Constructors help to create instances of a class or can be said to create objects of a class. Constructor is called during the initialization of objects. A default constructor is a type of constructor which do not accept any parameter, So whatever value is assigned to properties of the objects are considered default values.
+
+17. Where and how can you use a private constructor?
+A private constructor is used if you don't want any other class to instantiate the object to avoid subclassing. Example: Singleton pattern.
+
+18. What are the differences between the constructors and methods?
+Constructor vs Method:
+Purpose: Creates/initializes an object vs Performs an action
+Name: Same as class name vs Any valid name
+Return type: No return type vs Has a return type
+Called when: Automatically vs Manually
+Default provided by compiler: Yes vs No
+
+19. What do you mean by data encapsulation?
+Encapsulation is one of the core principles of OOP. It wraps data and methods into a single unit (class), restricting direct access.
+
+20. What are the advantages of Encapsulation in Java?
+Data Hiding
+Flexibility
+Reusability
+Easy Testing
+
+21. How do you implement Encapsulation?
+Private variables + public getters/setters.
+
+22. What is the use of Getters and Setters?
+Getters: read private variables.
+Setters: update private variables safely.
+
+23. What is inheritance in Java?
+Inheritance allows a class to acquire properties of another class.
+
+24. What are the different types of inheritance in Java?
+Single, Multilevel, Hierarchical, Multiple (only via interfaces).
+
+25. What is multiple inheritance? Is it supported by Java?
+Multiple inheritance allows a class to inherit from many parents. Java does not support it for classes, only interfaces.
+
+26. Is there any limitation to using Inheritance?
+Yes, subclasses can become clustered and error-prone.
+
+27. What is the ‘IS-A‘ relationship in OOPs Java?
+IS-A represents inheritance.
+
+28. What is HAS-A relationship in OOP (Aggregation/Composition)?
+HAS-A represents aggregation or composition.
+
+29. What do you mean by aggregation?
+Aggregation is a HAS-A relationship, weaker than composition.
+
+30. What is an association?
+Association is a relation between two classes via objects.
+
+31. What is the composition of Java and State the difference between Composition and Aggregation?
+Composition: Strong HAS-A, dependent objects.
+Aggregation: Weak HAS-A, independent objects.
+
+32. What is Polymorphism?
+Polymorphism allows one interface/method to take many forms.
+
+33. How many types of Polymorphism.
+Compile-time (Overloading) and Runtime (Overriding).
+
+34. What is method overriding and method overloading?
+Overloading: Same name, different parameters.
+
+34. What is method overriding and method overloading?
+Method Overloading: In Java, Method Overloading allows different methods to have the same name, but different signatures where the signature can differ by the number of input parameters or type of input parameters, or a mixture of both.
+
+Method overriding: When a subclass provides its own implementation of a method that is already defined in its parent class, it is called method overriding.
+
+Method overloading in Java is also known as Compile-time Polymorphism, Static Polymorphism, or Early binding. In Method overloading compared to the parent argument, the child argument will get the highest priority.
+
+35. Can we override the static method?
+No, as static methods are part of the class rather than the object so we can't override them.
+
+36. Can we change the scope of the overridden method in the subclass?
+Yes, we can change the scope of an overridden method in the subclass, but only to make it wider or the same as the superclass method’s scope.
+
+If the overridden method in the superclass is public, the subclass method must be public (it cannot be protected, default, or private).
+If the overridden method in the superclass is protected, the subclass method can be protected or public, but not private or default.
+If the overridden method in the superclass has default (package-private) access, the subclass method can be default, protected, or public, but not private.
+A private method cannot be overridden because it is not visible to the subclass.
+
+37. What is Abstraction?
+Abstraction in Java is the process of hiding internal implementation details and showing only essential functionality to the user. It focuses on what an object does rather than how it does it.
+
+Abstraction hides the complex details and shows only essential features.
+Abstract classes may have methods without implementation and must be implemented by subclasses.
+By abstracting functionality, changes in the implementation do not affect the code that depends on the abstraction.
+
+38. How many ways to achieve abstraction in Java.
+Java provides two ways to implement abstraction:
+- Abstract Classes (Partial Abstraction)
+- Interface (100% Abstraction)
+
+39. What is Abstract class?
+A class declared as abstract, cannot be instantiated i.e., the object cannot be created. It may or may not contain abstract methods but if a class has at least one abstract method, it must be declared abstract.
+
+Example of an abstract class with abstract method:
+
+abstract class Fruits {
+    abstract void run();
+}
+class Apple extends Fruits {
+    void run() {
+        System.out.println("Abstract class example");
+    }
+    public static void main(String args[]) {
+        Fruits obj = new Apple();
+        obj.run();
+    }
+}
+
+Output
+Abstract class example
+
+40. What is an Interface?
+An interface in Java is a collection of static final variables and abstract methods that define the contract or agreement for a set of linked classes. Any class that implements an interface is required to implement a specific set of methods.
+
+Example:
+
+interface Shape {
+    double getArea();
+    double getPerimeter();
+}
+class Circle implements Shape {
+    private double radius;
+    public Circle(double radius) { this.radius = radius; }
+    public double getArea() { return Math.PI * radius * radius; }
+    public double getPerimeter() { return 2 * Math.PI * radius; }
+}
+class GFG {
+    public static void main(String[] args) {
+        Circle circle = new Circle(5.0);
+        System.out.println("Area of circle is " + circle.getArea());
+        System.out.println("Perimeter of circle is " + circle.getPerimeter());
+    }
+}
+
+Output
+Area of circle is 78.53981633974483
+Perimeter of circle is 31.41592653589793
+
+41. Give some features of the Interface.
+Features:
+- Helps achieve total abstraction.
+- Allows multiple inheritance in Java.
+- Any class can implement multiple interfaces.
+- Used to achieve loose coupling.
+
+42. What is a marker interface?
+An Interface with no fields or methods is called a marker interface. Examples: Serializable, Cloneable, Remote.
+
+43. What are the differences between abstract class and interface?
+Abstract Class vs Interface:
+
+Abstract Class:
+- Can have abstract and non-abstract methods.
+- Supports final methods.
+- Does not support multiple inheritance.
+- Declared using `abstract` keyword.
+- Extended using `extends`.
+- Members can be private, protected, etc.
+
+Interface:
+- Can have abstract, default, static (Java 8+) and private methods (Java 9+).
+- Does not support final methods.
+- Supports multiple inheritance.
+- Declared using `interface` keyword.
+- Implemented using `implements`.
+- All members are public by default.
+
 
 */
 public class OopsConcept {
