@@ -3,6 +3,265 @@ package com.coreJava.interview.question.answer;
 import java.util.HashMap;
 import java.util.Hashtable;
 
+/**
+Section 1: Core OOP Concepts
+----------------------------
+Q1. What is Object-Oriented Programming (OOP)?
+A: OOP is a paradigm where software is designed around objects that encapsulate state and behavior.
+
+Code Example:
+// Class = blueprint
+class Car {
+    String color; // property
+    void drive() { // behavior
+        System.out.println("Car is driving");
+    }
+}
+
+// Object = instance
+Car myCar = new Car();
+myCar.color = "Red";
+myCar.drive();
+
+Cross-question: How does OOP improve maintainability compared to procedural programming?
+
+Q2. What are the four pillars of OOP?
+A: Encapsulation, Inheritance, Polymorphism, Abstraction.
+
+Cross-question: Which pillar is most critical in large-scale system design? (Answer: Abstraction, because it hides complexity.)
+
+Q3. Is Java 100% object-oriented?
+A: No, because it uses primitive data types (int, char, etc.).
+
+Cross-question: How can you make Java closer to pure OOP? (Answer: Use wrapper classes like Integer, Double.)
+
+---
+
+Section 2: Encapsulation
+------------------------
+Q4. Define encapsulation.
+A: Encapsulation is the practice of restricting direct access to fields and exposing controlled access via methods.
+
+Code Example:
+class BankAccount {
+    private double balance; // hidden field
+
+    public double getBalance() { return balance; }
+    public void deposit(double amount) {
+        if (amount > 0) balance += amount;
+    }
+}
+
+Cross-question: Why should fields be private instead of public? (Answer: To prevent unauthorized modification and maintain integrity.)
+
+---
+
+Section 3: Inheritance
+----------------------
+Q5. What is inheritance?
+A: Mechanism where one class acquires properties and behaviors of another.
+
+Code Example:
+class Vehicle {
+    void start() { System.out.println("Vehicle starting"); }
+}
+class Car extends Vehicle {
+    void honk() { System.out.println("Car honking"); }
+}
+
+Cross-question: Can constructors be inherited? (Answer: No, but subclass can call parent constructor using super.)
+
+Q6. Types of inheritance supported in Java?
+A: Single, Multilevel, Hierarchical. (Multiple inheritance via interfaces only.)
+
+Cross-question: Why doesn’t Java support multiple inheritance with classes? (Answer: To avoid ambiguity, solved via interfaces.)
+
+---
+
+Section 4: Polymorphism
+-----------------------
+Q7. What is polymorphism?
+A: Ability of an object to take many forms.
+
+Code Example:
+// Compile-time polymorphism (overloading)
+class MathUtil {
+    int add(int a, int b) { return a+b; }
+    double add(double a, double b) { return a+b; }
+}
+
+// Runtime polymorphism (overriding)
+class Animal {
+    void sound() { System.out.println("Animal sound"); }
+}
+class Dog extends Animal {
+    @Override
+    void sound() { System.out.println("Dog barks"); }
+}
+
+Cross-question: Can static methods be overridden? (Answer: No, they are hidden, not overridden.)
+
+Q8. Difference between overloading and overriding?
+A: Overloading = same method name, different parameters. Overriding = same method signature, different implementation in subclass.
+
+---
+
+Section 5: Abstraction
+----------------------
+Q9. What is abstraction?
+A: Hiding implementation details and exposing only essential features.
+
+Code Example:
+abstract class Shape {
+    abstract void draw();
+}
+class Circle extends Shape {
+    void draw() { System.out.println("Drawing Circle"); }
+}
+
+Cross-question: Can abstract classes have constructors? (Answer: Yes, but cannot be instantiated directly.)
+
+Q10. Difference between abstract class and interface?
+A: Abstract class can have state + behavior; interface defines contracts only. Interfaces support multiple inheritance.
+
+---
+
+Section 6: Object Class
+-----------------------
+Q11. What is the significance of Object class?
+A: Root of all classes in Java. Provides methods like toString(), equals(), hashCode(), clone().
+
+Code Example:
+class Student {
+    int id;
+    String name;
+    @Override
+    public String toString() { return id + " - " + name; }
+}
+
+Cross-question: Why override equals() and hashCode() together? (Answer: To ensure consistent behavior in collections.)
+
+---
+
+Section 7: Constructors
+-----------------------
+Q12. What is constructor chaining?
+A: Calling one constructor from another using this() or super().
+
+Code Example:
+class Employee {
+    String name;
+    Employee() { this("Unknown"); } // calls parameterized constructor
+    Employee(String name) { this.name = name; }
+}
+
+Cross-question: Can constructors be overridden? (Answer: No.)
+
+---
+
+Section 8: Access Modifiers
+---------------------------
+Q13. What are access modifiers?
+A: Keywords that define scope: public, private, protected, default.
+
+Cross-question: Can we reduce visibility of overridden methods? (Answer: No, only increase or keep same.)
+
+---
+
+Section 9: Static & Final
+-------------------------
+Q14. Difference between final, finally, finalize?
+A:
+- final: keyword to declare constants, prevent inheritance/overriding.
+- finally: block for cleanup code in try-catch.
+- finalize: method called by GC before object destruction.
+
+Cross-question: Why is finalize() discouraged? (Answer: Unpredictable execution.)
+
+---
+
+Section 10: Advanced OOP Topics
+-------------------------------
+Q15. What is immutability?
+A: Immutable objects cannot change state after creation.
+
+Code Example:
+final class ImmutableStudent {
+    private final String name;
+    ImmutableStudent(String name) { this.name = name; }
+    public String getName() { return name; }
+}
+
+Cross-question: Why is immutability useful in multithreading? (Answer: No synchronization needed.)
+
+Q16. Difference between aggregation and composition?
+A:
+- Aggregation: weak association (can exist independently).
+- Composition: strong association (lifecycle tied).
+
+Q17. What is shallow copy vs deep copy?
+A: Shallow copy copies references; deep copy creates independent copies.
+
+---
+
+Section 11: Design Patterns
+---------------------------
+Q18. What is Singleton?
+A: A class that allows only one instance globally.
+
+Code Example:
+class Singleton {
+    private static Singleton instance;
+    private Singleton() {}
+    public static Singleton getInstance() {
+        if (instance == null) instance = new Singleton();
+        return instance;
+    }
+}
+
+Cross-question: How to make Singleton thread-safe? (Answer: Use synchronized or double-checked locking.)
+
+Q19. What is Factory pattern?
+A: Provides object creation logic without exposing instantiation.
+
+---
+
+Section 12: Scenario-Based
+--------------------------
+Q20. Design a class hierarchy for Vehicle, Car, Bike.
+A:
+- Vehicle (base class)
+- Car, Bike (subclasses)
+
+Cross-question: How would you add ElectricCar without breaking hierarchy?
+
+Q21. How would you override equals() and hashCode() in Student class?
+A: Compare meaningful fields and generate consistent hash.
+
+---
+
+Section 13: Trick & Edge Cases
+------------------------------
+Q22. Can we overload main()?
+A: Yes, but JVM calls only the standard signature.
+
+Q23. Can constructors be private?
+A: Yes, used in Singleton pattern.
+
+Q24. Can we create objects without new keyword?
+A: Yes, via reflection, cloning, or deserialization.
+
+Cross-question: Which method is most commonly used in frameworks? (Answer: Reflection.)
+
+Q25. Can abstract classes have main()?
+A: Yes, but cannot be instantiated directly.
+
+Q26. Can interfaces extend multiple interfaces?
+A: Yes, supports multiple inheritance.
+
+Q27. Can a class implement multiple interfaces?
+A: Yes, allows multiple contracts.
+*/
 public class OopsConcept {
 
 	// ================================
