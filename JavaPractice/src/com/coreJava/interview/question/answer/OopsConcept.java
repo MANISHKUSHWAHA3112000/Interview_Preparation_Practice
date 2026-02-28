@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 /**
+
+
 Section 1: Core OOP Concepts
 ----------------------------
 Q1. What is Object-Oriented Programming (OOP)?
-A: OOP is a paradigm where software is designed around objects that encapsulate state and behavior.
+A: OOP is a paradigm where software is designed around objects and is based on using the object as entites that encapsulate state and behavior.
 
 Code Example:
 // Class = blueprint
@@ -24,16 +26,19 @@ myCar.color = "Red";
 myCar.drive();
 
 Cross-question: How does OOP improve maintainability compared to procedural programming?
+Answer: OOP improves maintainability by modularizing code into classes, promoting reusability, and reducing duplication.
 
 Q2. What are the four pillars of OOP?
 A: Encapsulation, Inheritance, Polymorphism, Abstraction.
 
-Cross-question: Which pillar is most critical in large-scale system design? (Answer: Abstraction, because it hides complexity.)
+Cross-question: Which pillar is most critical in large-scale system design?
+Answer: Abstraction, because it hides complexity and exposes only essential features.
 
 Q3. Is Java 100% object-oriented?
 A: No, because it uses primitive data types (int, char, etc.).
 
-Cross-question: How can you make Java closer to pure OOP? (Answer: Use wrapper classes like Integer, Double.)
+Cross-question: How can you make Java closer to pure OOP?
+Answer: By using wrapper classes like Integer, Double, Boolean instead of primitives.
 
 ---
 
@@ -52,7 +57,8 @@ class BankAccount {
     }
 }
 
-Cross-question: Why should fields be private instead of public? (Answer: To prevent unauthorized modification and maintain integrity.)
+Cross-question: Why should fields be private instead of public?
+Answer: To prevent unauthorized modification, maintain integrity, and enforce validation logic.
 
 ---
 
@@ -69,12 +75,14 @@ class Car extends Vehicle {
     void honk() { System.out.println("Car honking"); }
 }
 
-Cross-question: Can constructors be inherited? (Answer: No, but subclass can call parent constructor using super.)
+Cross-question: Can constructors be inherited?
+Answer: No, but subclass can call parent constructor using super().
 
 Q6. Types of inheritance supported in Java?
 A: Single, Multilevel, Hierarchical. (Multiple inheritance via interfaces only.)
 
-Cross-question: Why doesn’t Java support multiple inheritance with classes? (Answer: To avoid ambiguity, solved via interfaces.)
+Cross-question: Why doesn’t Java support multiple inheritance with classes?
+Answer: To avoid ambiguity (diamond problem). Interfaces solve this by providing contracts only.
 
 ---
 
@@ -99,10 +107,14 @@ class Dog extends Animal {
     void sound() { System.out.println("Dog barks"); }
 }
 
-Cross-question: Can static methods be overridden? (Answer: No, they are hidden, not overridden.)
+Cross-question: Can static methods be overridden?
+Answer: No, they are hidden, not overridden.
 
 Q8. Difference between overloading and overriding?
 A: Overloading = same method name, different parameters. Overriding = same method signature, different implementation in subclass.
+
+Cross-question: Can private methods be overridden?
+Answer: No, because they are not visible outside the class.
 
 ---
 
@@ -119,10 +131,14 @@ class Circle extends Shape {
     void draw() { System.out.println("Drawing Circle"); }
 }
 
-Cross-question: Can abstract classes have constructors? (Answer: Yes, but cannot be instantiated directly.)
+Cross-question: Can abstract classes have constructors?
+Answer: Yes, but they cannot be instantiated directly. Subclasses call them.
 
 Q10. Difference between abstract class and interface?
 A: Abstract class can have state + behavior; interface defines contracts only. Interfaces support multiple inheritance.
+
+Cross-question: Can interfaces have variables?
+Answer: Yes, but they are implicitly public, static, and final.
 
 ---
 
@@ -139,7 +155,8 @@ class Student {
     public String toString() { return id + " - " + name; }
 }
 
-Cross-question: Why override equals() and hashCode() together? (Answer: To ensure consistent behavior in collections.)
+Cross-question: Why override equals() and hashCode() together?
+Answer: To ensure consistent behavior in collections like HashMap and HashSet.
 
 ---
 
@@ -155,7 +172,8 @@ class Employee {
     Employee(String name) { this.name = name; }
 }
 
-Cross-question: Can constructors be overridden? (Answer: No.)
+Cross-question: Can constructors be overridden?
+Answer: No, because they are not inherited.
 
 ---
 
@@ -164,7 +182,8 @@ Section 8: Access Modifiers
 Q13. What are access modifiers?
 A: Keywords that define scope: public, private, protected, default.
 
-Cross-question: Can we reduce visibility of overridden methods? (Answer: No, only increase or keep same.)
+Cross-question: Can we reduce visibility of overridden methods?
+Answer: No, only increase or keep same.
 
 ---
 
@@ -176,7 +195,8 @@ A:
 - finally: block for cleanup code in try-catch.
 - finalize: method called by GC before object destruction.
 
-Cross-question: Why is finalize() discouraged? (Answer: Unpredictable execution.)
+Cross-question: Why is finalize() discouraged?
+Answer: Because its execution is unpredictable and may not run before program termination.
 
 ---
 
@@ -192,15 +212,22 @@ final class ImmutableStudent {
     public String getName() { return name; }
 }
 
-Cross-question: Why is immutability useful in multithreading? (Answer: No synchronization needed.)
+Cross-question: Why is immutability useful in multithreading?
+Answer: Because immutable objects are inherently thread-safe.
 
 Q16. Difference between aggregation and composition?
 A:
 - Aggregation: weak association (can exist independently).
 - Composition: strong association (lifecycle tied).
 
+Cross-question: Which is stronger, aggregation or composition?
+Answer: Composition, because child objects cannot exist without parent.
+
 Q17. What is shallow copy vs deep copy?
 A: Shallow copy copies references; deep copy creates independent copies.
+
+Cross-question: How do you implement deep copy in Java?
+Answer: By overriding clone() and manually copying mutable fields.
 
 ---
 
@@ -219,10 +246,14 @@ class Singleton {
     }
 }
 
-Cross-question: How to make Singleton thread-safe? (Answer: Use synchronized or double-checked locking.)
+Cross-question: How to make Singleton thread-safe?
+Answer: Use synchronized or double-checked locking.
 
 Q19. What is Factory pattern?
 A: Provides object creation logic without exposing instantiation.
+
+Cross-question: Difference between Factory and Builder?
+Answer: Factory creates objects; Builder constructs complex objects step by step.
 
 ---
 
@@ -234,9 +265,26 @@ A:
 - Car, Bike (subclasses)
 
 Cross-question: How would you add ElectricCar without breaking hierarchy?
+Answer: Extend Car class and add electric-specific behavior.
 
 Q21. How would you override equals() and hashCode() in Student class?
 A: Compare meaningful fields and generate consistent hash.
+
+Code Example:
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (!(obj instanceof Student)) return false;
+    Student s = (Student) obj;
+    return this.id == s.id;
+}
+@Override
+public int hashCode() {
+    return Objects.hash(id);
+}
+
+Cross-question: Why is hashCode important in HashMap?
+Answer: Because it determines bucket placement for efficient lookup.
 
 ---
 
@@ -245,13 +293,20 @@ Section 13: Trick & Edge Cases
 Q22. Can we overload main()?
 A: Yes, but JVM calls only the standard signature.
 
+Cross-question: Why would you overload main()?
+Answer: For testing purposes or custom entry points.
+
 Q23. Can constructors be private?
 A: Yes, used in Singleton pattern.
+
+Cross-question: How do you instantiate a class with private constructor?
+Answer: Using static factory methods inside the class.
 
 Q24. Can we create objects without new keyword?
 A: Yes, via reflection, cloning, or deserialization.
 
-Cross-question: Which method is most commonly used in frameworks? (Answer: Reflection.)
+Cross-question: Which method is most commonly used in frameworks?
+Answer: Reflection, especially in dependency injection frameworks.
 
 Q25. Can abstract classes have main()?
 A: Yes, but cannot be instantiated directly.
@@ -261,6 +316,10 @@ A: Yes, supports multiple inheritance.
 
 Q27. Can a class implement multiple interfaces?
 A: Yes, allows multiple contracts.
+
+Cross-question: How does this solve multiple inheritance problem?
+Answer: By separating contracts from implementation, avoiding ambiguity.
+
 */
 public class OopsConcept {
 
