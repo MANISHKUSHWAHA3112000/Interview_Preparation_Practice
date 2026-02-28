@@ -194,10 +194,15 @@ This bytecode is not tied to any specific hardware or operating system but requi
 Although the JVM itself is platform-dependent.
 
 Question -Difference between JVM, JRE and JDK.
-JVM: JVM also known as Java Virtual Machine is a part of JRE. JVM is a type of interpreter responsible for converting bytecode into machine-readable code. JVM itself is platform dependent 
-but it interprets the bytecode which is the platform-independent reason why Java is platform-independent. 
-JRE: JRE stands for Java Runtime Environment, it is an installation package that provides an environment to run the Java program or application on any machine.
-JDK: JDK stands for Java Development Kit which provides the environment to develop and execute Java programs.
+JVM (Java Virtual Machine):  
+It’s the runtime environment that executes Java bytecode. It doesn’t convert source code directly — the compiler (javac) converts source code into bytecode, and 
+then the JVM interprets or JIT‑compiles that bytecode into machine code. JVM is responsible for loading classes, verifying bytecode, managing memory, and executing instructions.
+
+JRE (Java Runtime Environment):  
+It provides everything needed to run Java applications — JVM + core libraries + supporting files. It does not include development tools like compilers.
+
+JDK (Java Development Kit):  
+It’s the full package for developers. It includes the JRE plus development tools like javac (compiler), javadoc, javap, and debugging tools. Without JDK, you can’t compile Java code.
 
 Question-What are Memory storages available with JVM?
 
@@ -796,3 +801,34 @@ A:
 - Use concurrent collections (e.g., `CopyOnWriteArrayList`, `ConcurrentHashMap`).  
 - Or iterate over a snapshot (`new ArrayList<>(list)`).
 
+
+
+----------------------------------------------------------------------Collection framework --------------------------------------------------------------------------------------
+
+
+Quesiton - What is the Collection Framework in Java?
+A Collection is a group of objects in Java. The collection framework is a set of interfaces and classes in Java that are used to represent and manipulate collections of objects in a variety of ways.
+ The collection framework contains classes (ArrayList, Vector, LinkedList, PriorityQueue, TreeSet) and multiple interfaces (Set, List, Queue, Deque) where every interface is used to store a specific type of data.
+ 
+ Question -What is the difference between Collection and Collections?
+1. Collection:
+
+It is an interface in the java.util package.
+It represents a group of objects (elements).
+Used as a parent interface for List, Set, and Queue.
+2. Collections:
+
+It is a utility class in the java.util package.
+Provides static methods like sort(), reverse(), shuffle().
+Used to perform operations on Collection objects.
+
+What is the List interface in Java?
+The List interface in Java extends the Collection interface and is part of the java.util package. It is used to store ordered collections where duplicates are allowed and elements can be accessed by their index.
+
+Maintains insertion order
+Allows duplicate elements
+Supports null elements (implementation dependent)
+Supports bidirectional traversal using ListIterator
+Syntax:
+
+public interface List<E> extends Collection<E> { }
