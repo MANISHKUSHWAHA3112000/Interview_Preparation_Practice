@@ -16,6 +16,7 @@ Code Example:
 class Car {
     String color; // property
     void drive() { // behavior
+    
         System.out.println("Car is driving");
     }
 }
