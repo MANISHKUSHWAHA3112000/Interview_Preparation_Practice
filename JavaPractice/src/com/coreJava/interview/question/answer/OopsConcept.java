@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 /**
-ava is a pure object-oriented programming language (with minor exceptions like primitives). OOP is one of the most frequently tested topics in interviews. It models real-world entities using classes and objects and promotes code reusability, modularity and scalability.
+Java is a pure object-oriented programming language (with minor exceptions like primitives). OOP is one of the most frequently tested topics in interviews. It models real-world entities using classes and objects and promotes code reusability, modularity and scalability.
 
 1. What is an object-oriented paradigm and What are the main concepts of OOP in Java?
 A paradigm means a method or style of programming. In programming, there are four main paradigms: Imperative, Logical, Functional and Object-Oriented. The object-oriented paradigm is based on using objects as the main entities. These objects can use features like encapsulation, inheritance, and polymorphism to build structured programs.
@@ -16,15 +16,18 @@ Polymorphism
 Abstraction
 Encapsulation 
 2. What is the difference between an object-oriented programming language and an object-based programming language?
-Object-Oriented Programming Language
 
-Object-Based Programming Language
 
-Object-oriented programming language covers larger concepts like inheritance, polymorphism, abstraction, etc.   The scope of object-based programming is limited to the usage of objects and encapsulation.
-It supports all the built-in objects    It doesn’t support all the built-in objects
-Examples: Java, C#, etc.    Examples: Java script, visual basics, etc.
+Object-Oriented Programming Language                          Object-Based Programming Language    
+                        
+Object-oriented programming language covers larger           The scope of object-based programming is limited to the usage of objects 
+concepts like inheritance, polymorphism, abstraction, etc.   and encapsulation.
+It supports all the built-in objects                         It doesn’t support all the built-in objects
+Examples: Java, C#, etc.                                     Examples: Java script, visual basics, etc.
+
 3. What are Classes in Java? 
-In Java, Classes are the collection of objects sharing similar characteristics and attributes. Classes represent the blueprint or template from which objects are created.  Classes are not real-world entities but help us to create objects which are real-world entities. A class is declared using the class keyword. and It contains:
+In Java, Classes are the collection of objects sharing similar characteristics and attributes. Classes represent the blueprint or template from which objects are created.  
+Classes are not real-world entities but help us to create objects which are real-world entities. A class is declared using the class keyword. and It contains:
 
 Fields / Variables (data of an object)
 Methods (operations/functions)
@@ -60,8 +63,10 @@ class GFG{
 
 Output
 BMW runs at 200 km/h
+
 4. What is an object?
-The object is a real-life entity that has certain properties and methods associated with it. The object is also defined as the instance of a class. An object can be declared using a new keyword.
+The object is a real-life entity that has certain properties and methods associated with it. 
+The object is also defined as the instance of a class. An object can be declared using a new keyword.
 
 Example:
 
@@ -192,8 +197,12 @@ Called when: Automatically vs Manually
 Default provided by compiler: Yes vs No
 
 19. What do you mean by data encapsulation?
-Encapsulation is one of the core principles of OOP. It wraps data and methods into a single unit (class), restricting direct access.
-
+Encapsulation is one of the core principles of OOP. It wraps data and methods into a single unit (class). 
+Encapsulation in Java
+	 * means hiding the internal state of an object by making fields private and
+	 * exposing controlled access through methods. It ensures data security,
+	 * controlled modification, and maintainability.
+	 * 
 20. What are the advantages of Encapsulation in Java?
 Data Hiding
 Flexibility
@@ -296,7 +305,8 @@ Output
 Abstract class example
 
 40. What is an Interface?
-An interface in Java is a collection of static final variables and abstract methods that define the contract or agreement for a set of linked classes. Any class that implements an interface is required to implement a specific set of methods.
+An interface in Java is a collection of static final variables and abstract methods that define the contract or agreement for a set of linked classes. 
+Any class that implements an interface is required to implement a specific set of methods.
 
 Example:
 
@@ -844,7 +854,8 @@ public class OopsConcept {
 	/**
 	 * Q: Explain Garbage Collection in Java. A: - Automatic memory management. -
 	 * Removes unused objects from heap. - Can request GC using System.gc(), but not
-	 * guaranteed.
+	 * guaranteed.garbage collection is important because it reduces the burden on developers (no need for manual memory management like in C/C++).
+	 * Mentioning “heap” and “unused objects” is good — keep that in.
 	 */
 	class GarbageCollectionExample {
 		@Override
