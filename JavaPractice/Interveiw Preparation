@@ -64,6 +64,9 @@ EventGridPublisherClient client = new EventGridPublisherClient(
     new AzureKeyCredential("<access-key>")
 );
 
+
+
+
 await client.SendEventAsync(new EventGridEvent(
     subject: "CargoUpdate",
     eventType: "Cargo.StatusChanged",
