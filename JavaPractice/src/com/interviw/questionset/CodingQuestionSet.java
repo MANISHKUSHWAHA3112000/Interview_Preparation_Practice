@@ -2,19 +2,193 @@ package com.interviw.questionset;
 
 public class CodingQuestionSet {
 	/**
-	 * 
-	 * Got it, Manish — you want **pure coding problems**, not theory. Let’s start building the **500+ coding question set** in chunks of 100. I’ll begin with **Java basics, Core Java, Advanced Java (8, 11, 17), and Collections**. These are **actual coding problems** you’d be asked to solve in interviews (from LeetCode, GeeksforGeeks, InterviewBit, and real interview reports).  
-
----
-
 # 🔹 First 100 Coding Problems (Java Basics → Core Java → Advanced Java → Collections)
 
 ### **Java Basics (20)**
 1. Reverse a string without using built-in functions.  
-2. Check if a string is a palindrome.  
+-- Code --
+import java.util.Scanner;
+
+public class Main
+
+{
+    public static String findReverseWithoutInBuild(String s){
+        String result="";
+        
+        for(int i=s.length()-1;i>=0;i--){
+            result+=s.charAt(i);
+        }
+        return result;
+    }
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		String s = sc.nextLine();
+		
+		String ans = findReverseWithoutInBuild(s);
+		
+		System.out.println(ans);
+	}
+}
+
+
+2. Check if a string is a palindrome. 
+---Code ---
+
+import java.util.Scanner;
+
+public class Main
+
+{
+    // if a string is single string 
+    // public static boolean findPalindrom(String s){
+    //     int start=0;int end=s.length()-1;
+        
+    //     for(int i=0;i<s.length();i++){
+    //         if(s.charAt(start)!=s.charAt(end)){
+    //             return false;
+    //         }
+    //         start++;
+    //         end--;
+    //     }
+    //     return true;
+    // }
+    
+    //if a string is sentences then this
+    public static boolean findPalindrom(String s){
+        String checkString = s.replaceAll("[^a-zA-Z]","").toLowerCase();
+        
+        String result= new StringBuilder(checkString).reverse().toString();
+        
+        if(checkString.equals(result)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		String s = sc.nextLine();
+		
+		boolean ans = findPalindrom(s);
+		
+		System.out.println(ans);
+	}
+}
+
 3. Find factorial of a number using recursion.  
+---Code---
+import java.util.Scanner;
+
+public class Main
+
+{
+  public static int findfactorial(int n) {
+        if (n == 0 || n == 1) {   // Base case
+            return 1;
+        } else {
+            return n * findfactorial(n - 1);  // Recursive call
+        }
+    }
+    
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int ans = findfactorial(n);
+		
+		System.out.println(ans);
+	}
+}
+
 4. Generate Fibonacci series up to N terms.  
+---Code---
+
+import java.util.Scanner;
+
+public class Main
+
+{
+  public static int findfibonaci(int n) {
+        if (n == 0 ) return 0;
+        if(n == 1) {   // Base case
+            return 1;
+        } 
+        return findfibonaci(n-1)+findfibonaci(n-2);
+    }
+    
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int ans = findfibonaci(n);
+		
+		for(int i=0;i<n;i++){
+		    System.out.println(findfibonaci(i)+ " ");
+		}
+		
+	}
+}
+
 5. Count vowels and consonants in a string.  
+---Code---
+
+import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
+public class Main
+
+{
+    public static void countVowelConsUsingRegex(String str){
+
+
+        // Count vowels using regex
+        int vowels = str.replaceAll("[^aeiou]", "").length();
+
+        // Count consonants using regex
+        int consonants = str.replaceAll("[^a-z]", "").replaceAll("[aeiou]", "").length();
+
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+    }
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+        countVowelConsUsingRegex(str);
+		
+		Map<Character, Integer> charCount = new HashMap<>();
+
+        // Count frequency of each letter
+        for (char ch : str.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') {
+                charCount.put(ch, charCount.getOrDefault(ch, 0) + 1);
+            }
+        }
+
+        int vowels = 0, consonants = 0;
+        for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+            char ch = entry.getKey();
+            if ("aeiou".indexOf(ch) != -1) {
+                vowels += entry.getValue();
+            } else {
+                consonants += entry.getValue();
+            }
+        }
+
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+		
+		
+	}
+}
+
 6. Find duplicate characters in a string.  
 7. Remove whitespace from a string.  
 8. Swap two numbers without using a third variable.  

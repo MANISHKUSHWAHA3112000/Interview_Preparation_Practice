@@ -1,0 +1,236 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot,
+    top=1.0 cm,
+    bottom=1.0 cm,
+    left=1.5 cm,
+    right=1.5 cm,
+    footskip=0.5 cm,
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={Manish Kushwaha - Full Stack Java Developer},
+    pdfauthor={Manish Kushwaha},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+
+% Ensure that generated PDF is machine readable / ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+\usepackage{fontawesome}
+
+% Settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    -1pt
+}{
+    0.15 cm
+}{
+    0.10 cm
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.04 cm,
+        parsep=0.04 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+\let\hrefWithoutArrow\href
+
+% ──────────────────────────────────────────────────────────────────────────────
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{22pt}{22pt}\selectfont \textbf{Manish Kushwaha}
+
+        \vspace{2pt}
+
+        \normalsize \textbf{Full Stack Java Developer}
+
+        \vspace{3pt}
+
+        \small
+        \faMapMarker \hspace{1pt} Bangalore \quad
+        \faEnvelope \hspace{1pt} \href{mailto:kushwahamannu311@gmail.com}{kushwahamannu311@gmail.com} \quad
+        \faPhone \hspace{1pt} \href{tel:+91-9098834262}{+91 90988 34262} \hspace{1pt}
+        \faLinkedin \hspace{1pt} \href{https://linkedin.com/in/manish-kushwaha-2b3757220}{linkedin.com/in/manish-kushwaha-2b3757220} \quad
+        \faGithub \hspace{2pt} \href{https://github.com/manishkushwaha3112000}{github.com/manishkushwaha3112000}
+    \end{header}
+
+    \vspace{2pt}
+
+\section{Professional Summary}
+\begin{onecolentry}
+Full Stack Java Developer with \textbf{2.5 years} of experience in \textbf{Java}, \textbf{Spring Boot}, \textbf{Spring Security}, \textbf{Microservices}, \textbf{Angular}, and \textbf{PostgreSQL} in logistics and cargo management. Skilled in \textbf{API Gateway}, \textbf{Cloud Functions}, \textbf{Monitoring}, \textbf{CI/CD Tools}, \textbf{Azure}, \textbf{Docker}, \textbf{Kubernetes}, \textbf{JWT}, \textbf{RBAC}, and \textbf{Agile/Scrum}. Certified \textbf{Microsoft Azure Developer (AZ-204)} and \textbf{Azure Fundamentals (AZ-900)}. Adept at delivering scalable, secure, and high-performance solutions.
+\end{onecolentry}
+
+\section{Skills}
+\begin{onecolentry}
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+    \textbf{Languages \& Databases:}  & Java, C++, TypeScript, JavaScript, SQL, HTML, CSS, PostgreSQL, MySQL, NoSQL \\
+    \textbf{Backend \& Security:}     & Spring Boot, Spring Security, Spring MVC, JPA, Hibernate, Microservices, RESTful API, JWT, RBAC, API Gateway, OAuth2, SSO \\
+    \textbf{Frontend \& Testing:}     & Angular, Angular Material, Bootstrap, React, JUnit, Mockito, Karma, Jasmine \\
+    \textbf{Cloud \& DevOps:}         & Microsoft Azure, Azure Event Grid, Azure Service Bus, Docker, Kubernetes, GitHub Actions, CI/CD Pipelines, Cloud Functions, Monitoring, Logging \\
+    \textbf{Tools \& Methodologies:}  & Git, GitHub, IntelliJ IDEA, VS Code, Maven, DBeaver, Postman, Bruno, Agile, Scrum, Jira, Confluence \\
+\end{tabularx}
+\end{onecolentry}
+
+\section{Work Experience}
+
+\vspace{0.05 cm}
+
+\begin{onecolentry}
+   \textbf{Software Engineer, Capgemini (Bangalore)} \hfill \textit{October 2023 -- Present}
+   \newline
+   \textit{Promoted to Senior Analyst, May 2025}
+    \begin{highlights}
+        \item Designed and developed \textbf{10+ Angular screens} for shipment tracking modules, serving over \textbf{500 users}; improved page load speed by \textbf{35\%} through lazy loading and code splitting
+        \item Engineered \textbf{RESTful APIs} with \textbf{Java}, \textbf{Spring Boot}, and \textbf{API Gateway} to integrate 5+ external systems, processing \textbf{10,000+ records/day}; optimized \textbf{PostgreSQL} queries, reducing cargo update latency by \textbf{25\%}
+        \item Developed and maintained \textbf{8+ microservices} for cargo operations, managing \textbf{15,000+ monthly transactions}; built responsive \textbf{Angular} and \textbf{React} components, improving booking efficiency by \textbf{30\%}
+        \item Integrated \textbf{Azure Event Grid}, \textbf{Azure Service Bus}, and \textbf{Cloud Functions} for real-time event-driven communication, achieving \textbf{99.9\% system uptime}
+        \item Implemented \textbf{RBAC} and \textbf{JWT} authentication for 5+ user roles across 3 application modules using \textbf{Spring Security} and \textbf{OAuth2}
+        \item Configured \textbf{CI/CD pipelines} with \textbf{Docker}, \textbf{Kubernetes}, \textbf{GitHub Actions}, and \textbf{Monitoring} tools, reducing deployment time and release errors by \textbf{40\%}; achieved \textbf{zero-downtime} deployments via Kubernetes rolling updates
+    \end{highlights}
+\end{onecolentry}
+
+\section{Projects}
+
+\vspace{0.02 cm}
+
+\begin{onecolentry}
+    \textbf{Flight Booking System} \href{https://github.com/MANISHKUSHWAHA3112000/Flight_Booking_System}{\faExternalLink} \hfill \textit{Technologies: Java, Spring Boot, Spring Security, MySQL, Angular, JWT, REST API}
+    \begin{highlights}
+        \item Developed a full-stack flight reservation platform supporting over \textbf{1,000 users} with secure authentication, flight search, seat selection, and payment processing
+        \item Implemented admin and user role management using \textbf{Spring Security}, \textbf{JWT}, and \textbf{RBAC}, with real-time seat availability tracking using \textbf{MySQL}
+        \item Built \textbf{RESTful APIs} for booking management, cancellation, and automated email notifications, reducing support queries by \textbf{20\%}; applied \textbf{MVC architecture} with Spring Boot and Angular
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.06 cm}
+
+\begin{onecolentry}
+    \textbf{Tourist Guide System} \href{https://github.com/MANISHKUSHWAHA3112000/advanced_tourist_guide_backend}{\faExternalLink} \hfill \textit{Technologies: Java, Spring Boot, Angular, JWT, REST API, MySQL}
+    \begin{highlights}
+        \item Built a full-stack tourist discovery platform with secure \textbf{JWT}-based authentication and responsive UI using \textbf{Angular} and \textbf{Angular Material}; onboarded over \textbf{150 users}
+        \item Designed \textbf{RESTful APIs} for attraction search, navigation, and personalized recommendations; improved trip planning efficiency by \textbf{30\%} through smart scheduling features
+    \end{highlights}
+\end{onecolentry}
+
+\section{Education}
+
+        \begin{onecolentry}
+            \textbf{Technocrates Institute of Technology} \hfill \textit{Aug 2019 -- May 2023} \\
+            Bachelor of Technology (B.Tech) in Computer Science and Engineering \hfill CGPA: \textbf{8.75/10}
+        \end{onecolentry}
+
+\section{Certifications}
+\begin{onecolentry}
+    \begin{highlights}
+        \item \textbf{Microsoft Certified: Azure Fundamentals (AZ-900)} -- \href{https://learn.microsoft.com/api/credentials/share/en-us/KushwahaManish-1510/4EF4DCA8B4581C86?sharingId=479F516FA4455767}{\faExternalLink}
+        \item \textbf{Microsoft Certified: Azure Developer Associate (AZ-204)} -- \href{https://learn.microsoft.com/api/credentials/share/en-us/KushwahaManish-1510/6BC4A82A5353552E?sharingId=479F516FA4455767}{\faExternalLink}
+    \end{highlights}
+\end{onecolentry}
+
+\end{document}
