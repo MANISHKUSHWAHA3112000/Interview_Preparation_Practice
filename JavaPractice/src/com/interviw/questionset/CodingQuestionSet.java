@@ -190,6 +190,41 @@ public class Main
 }
 
 6. Find duplicate characters in a string.  
+---Code---
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+
+public class Main
+{
+    
+    public static List<Character> findDuplicate(String s){
+       Set<Character> seen = new HashSet<>();
+        List<Character> duplicates = new ArrayList<>();
+
+        for (char c : s.toCharArray()) {
+            if (seen.contains(c) && !duplicates.contains(c)) {
+                duplicates.add(c); // add duplicate once
+            }
+            seen.add(c);
+        }
+        return duplicates;
+    }
+	public static void main(String[] args) {
+		// duplicate Character in a String(including space also it return )
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String s = sc.nextLine(); // Mannu
+		
+	    List<Character> ans  = findDuplicate(s);
+		
+		System.out.println(ans);
+	}
+}
+
 7. Remove whitespace from a string.  
 8. Swap two numbers without using a third variable.  
 9. Find largest of three numbers.  
