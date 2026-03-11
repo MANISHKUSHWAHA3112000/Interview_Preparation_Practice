@@ -1,0 +1,66 @@
+1. PROJECT INTRODUCTION (30 seconds)
+"I am working on LOGOPS — an Aircraft Maintenance Logistics Operations System built for Air France-KLM. The system manages the complete lifecycle of Part Requirements — when an aircraft needs a spare part during maintenance, LOGOPS tracks it from initial demand all the way through pre-ordering, ordering, reservation, transport, and delivery — and feeds real-time status back to the main maintenance system."
+
+2. TECH STACK (What technologies I used)
+Frontend: Angular 20, TypeScript, Tailwind CSS, Angular Material, WebSocket (STOMP/SockJS), ngx-translate (French i18n)
+
+Backend: Java 17, Spring Boot 3, Spring Security, Spring Batch, Spring Data JPA, Hibernate, Liquibase, MapStruct, Lombok
+
+Database: PostgreSQL hosted on Azure
+
+Messaging: IBM MQ (JMS) for async event-driven communication
+
+External Systems: Maintenix (MRO via REST + IBM MQ), Astre (Warehouse via SOAP — 13 web service calls), Tracking System (charter/shuttle transport via REST)
+
+Security: HABILE SSO (Air France internal auth), Azure AD, OAuth2/JWT, Role-Based Access Control
+
+DevOps: GitHub Actions CI/CD, AKS (Azure Kubernetes Service), Helm charts, Kafka (centralized logging via COMO)
+
+3. ARCHITECTURE (How the system works)
+"The architecture is a microservices-based system split into 4 backend modules:
+
+logops-api — REST API consumed by the Angular frontend
+logops-batch — 3 Spring Batch jobs that run on schedule in Kubernetes
+logops-message — IBM MQ consumer that listens to Maintenix events
+logops-common — shared library containing all business services, entities, repositories, and external system clients"
+4. EXTERNAL SYSTEM INTEGRATIONS (Most impressive part)
+"The system integrates with 3 major external systems:
+
+Maintenix — Air France's main aircraft MRO system. When Maintenix creates a part demand for a maintenance task, it publishes a MATORD JMS message to IBM MQ. Our logops-message module consumes it and creates a PartRequirement in our PostgreSQL database. When we reserve or order a part, we publish a MATRES JMS message back to Maintenix confirming the action. We also call Maintenix REST APIs to refresh WorkPackage and Task data via scheduled batch jobs.
+Astre — Air France's warehouse/logistics system. We call 13 different SOAP web services for operations like creating ICT orders, reserving parts, checking stock availability, cancelling orders, transferring parts between locations.
+Tracking System — For charter and shuttle transport. We create transport folders, manage tracking labels, and receive real-time scan notifications from barcode scanners via Azure APIM."
+5. KEY FLOWS (Tell a story)
+"For example, when a logistics operator clicks Order Part in the UI:
+
+Angular calls POST /api/part-requirements/orders
+Nginx proxies to logops-api
+HABILE SSO verifies the user's JWT token and role
+PartRequirementOrderController calls PartRequirementOrderService
+Service calls Astre via SOAP (SendPartOrdering) — Astre returns an ICT number
+We save the order to PostgreSQL
+We publish a MATRES JMS message to IBM MQ — Maintenix gets notified
+WebSocket pushes a real-time notification to the frontend
+The user sees the ICT number on screen instantly — without refreshing"
+6. MY ROLE & CONTRIBUTION
+"I contributed to both frontend and backend:
+
+On the frontend, I built Angular modules (LOA, LOC modules), implemented part requirement filtering, pagination, Excel export, and real-time WebSocket notifications
+On the backend, I developed REST controllers, business services in logops-common, integrated external Astre SOAP services, and worked on Spring Batch jobs
+I followed Agile methodology with sprints, code reviews via GitHub PRs, and maintained clean code standards"
+7. SECURITY (If asked)
+"Security is handled by HABILE — Air France's internal SSO framework built on top of Spring Security and Azure AD. Every request carries a JWT token validated by HABILE. Access is controlled by roles like P_LOGOPS_ADMIN, P_LOGOPS_LOC_CDG, P_LOGOPS_RACK etc. The only public endpoints are the barcode scanner callback and the tracking status update endpoint, which are protected at the Azure APIM level instead."
+
+8. DEPLOYMENT (If asked)
+"The application runs on Azure Kubernetes Service (AKS). Each microservice (logops-api, logops-batch, logops-message) has its own Helm chart deployed via GitHub Actions CI/CD pipeline. We have 5 environments: dev, cae, ete, acp, and prd. Logs are centralized via Kafka using the COMO log appender."
+
+QUICK TIPS FOR INTERVIEW
+Question	Key Point to Mention
+What is LOGOPS?	Aircraft part requirement lifecycle management for Air France-KLM
+What external systems?	Maintenix (MRO), Astre (Warehouse), Tracking System
+How does Maintenix communicate?	IBM MQ — MATORD inbound, MATRES outbound
+How does Astre communicate?	13 SOAP web service calls
+How is security handled?	HABILE SSO + Azure AD + JWT + RBAC
+How is real-time done?	WebSocket via STOMP/SockJS
+How is deployment done?	AKS + Helm + GitHub Actions CI/CD
+What database?	PostgreSQL on Azure, schema managed by Liquibase
+This covers everything you need. Practice the "Order Part" flow story — it demonstrates the full stack end-to-end perfectly in an interview!
