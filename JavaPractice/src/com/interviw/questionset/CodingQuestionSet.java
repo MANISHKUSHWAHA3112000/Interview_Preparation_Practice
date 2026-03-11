@@ -226,21 +226,481 @@ public class Main
 }
 
 7. Remove whitespace from a string.  
-8. Swap two numbers without using a third variable.  
-9. Find largest of three numbers.  
-10. Check if a number is prime.  
-11. Print multiplication table of a number.  
-12. Find GCD and LCM of two numbers.  
-13. Reverse an integer.  
-14. Check if a number is Armstrong.  
-15. Check if a number is perfect.  
-16. Find sum of digits of a number.  
-17. Convert string to integer without `Integer.parseInt()`.  
-18. Find second largest number in an array.  
-19. Sort an array without using built-in sort.  
-20. Find missing number in an array.  
+---Code---
+import java.util.Scanner;
 
----
+public class Main
+{
+    
+    public static String removeWhiteSpace(String s){
+        StringBuilder res = new StringBuilder();
+        
+        for(char c : s.toCharArray()){
+            if(!Character.isWhitespace(c)){
+                res.append(c);
+            }
+        }
+       return  res.toString();
+    }
+	public static void main(String[] args) {
+	    // Remove white space in the String
+	    Scanner sc = new Scanner(System.in);
+	    
+	    String s = sc.nextLine();
+	    
+	    String ans = removeWhiteSpace(s);
+	    
+	    // using trim() to remove white space from leading 
+	   // and trailing spaces(matlab aage se white space hata dega)
+	    System.out.println(s.trim());
+	    // it will remove all the white space including spaces, tabs, newlines)
+	    System.out.println(s.replaceAll("\\s+", ""));
+	    System.out.println(ans);
+	}
+}
+
+8. Swap two numbers without using a third variable.
+---Code--
+import java.util.Scanner;
+
+public class Main
+{
+   
+    
+	public static void main(String[] args) {
+	    // Remove white space in the String
+	    Scanner sc = new Scanner(System.in);
+	    int a = sc.nextInt();
+	    int b=sc.nextInt();
+	    
+	    a = a+b;
+	    b=a-b;
+	    a=a-b;
+	    
+	    System.out.println(a+" "+b);
+	}
+}
+  
+9. Find largest of three numbers.  
+---Code---
+import java.util.Scanner;
+
+public class Main
+{
+   
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int a = sc.nextInt();
+	    int b=sc.nextInt();
+	    int c = sc.nextInt();
+	    
+	   if(a>=b && a>=c){
+	       System.out.println(a);
+	   }
+	   else if(b>=a && b>=c){
+	       System.out.println(b);
+	   }
+	   else{
+	       System.out.println(c);
+	   }
+	}
+}
+10. Check if a number is prime. 
+---Code---
+import java.util.Scanner;
+
+
+public class Main
+{
+   
+   public static boolean findPrime(int n){
+       if(n<=1)return false;
+       
+       for(int i=2;i<=Math.sqrt(n);i++){
+           if(n%i==0)return false;
+       }
+       return true;
+   }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    int n = sc.nextInt();
+	    
+	    boolean ans = findPrime(n);
+	    
+	    System.out.println(ans);
+	}
+} 
+
+  // print all the prime number in the n = 11{2,3,5,7,11}
+  /// public static List<Integer> findAllPrime(int n) {
+    List<Integer> result = new ArrayList<>();
+    boolean[] isPrime = new boolean[n + 1];
+
+    // Assume all numbers are prime initially
+    for (int i = 2; i <= n; i++) {
+        isPrime[i] = true;
+    }
+
+    // Sieve process
+    for (int p = 2; p * p <= n; p++) {
+        if (isPrime[p]) {
+            for (int multiple = p * p; multiple <= n; multiple += p) {
+                isPrime[multiple] = false;
+            }
+        }
+    }
+
+    // Collect primes
+    for (int i = 2; i <= n; i++) {
+        if (isPrime[i]) {
+            result.add(i);
+        }
+    }
+
+    return result;
+}
+
+11. Print multiplication table of a number.  
+---Code---
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main
+{
+  
+
+   public static void multipication(int n){
+       for(int i=2;i<=n;i++){
+          System.out.println(n*i);
+       }
+   }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    int n = sc.nextInt();
+	    
+	    multipication(n);
+	    
+	   // System.out.println(ans);
+	}
+}
+12. Find GCD and LCM of two numbers.  
+---Code---
+import java.util.Scanner;
+
+public class Main {
+    
+    // Function to find GCD using Euclidean Algorithm
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    // Function to find LCM using GCD
+    public static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter first number: ");
+        int a = sc.nextInt();
+        
+        System.out.print("Enter second number: ");
+        int b = sc.nextInt();
+        
+        int gcdValue = gcd(a, b);
+        int lcmValue = lcm(a, b);
+        
+        System.out.println("GCD of " + a + " and " + b + " = " + gcdValue);
+        System.out.println("LCM of " + a + " and " + b + " = " + lcmValue);
+    }
+}
+
+
+13. Reverse an integer.  
+---Code---
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main
+{
+  
+   // reverse 10  {10,9,8,7,6,5,4,3,2,1,0}
+   public static void reverse(int n){
+       for(int i=n-1;i>=0;i--){
+           System.out.println(i);
+       }
+   }
+   
+   // reverseNumber 1234 {4321}
+   public static int reverseNumber(int n){
+       int result=0;
+       while(n!=0){
+           int lastDigit=n%10;
+          result=result*10+lastDigit;
+           n/=10;
+       }
+       return result;
+   }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    int n = sc.nextInt();
+	    
+	    reverse(n);
+	    
+	    int ans = reverseNumber(n);
+	    
+	    System.out.println(ans);
+	}
+}
+14. Check if a number is Armstrong.
+---Code---
+import java.util.Scanner;
+
+public class Armstrong {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int temp = n, sum = 0;
+        int digits = String.valueOf(n).length();
+
+        while (temp > 0) {
+            int digit = temp % 10;
+            sum += Math.pow(digit, digits);
+            temp /= 10;
+        }
+
+        if (sum == n)
+            System.out.println(n + " is an Armstrong number");
+        else
+            System.out.println(n + " is not an Armstrong number");
+    }
+}
+  
+15. Check if a number is perfect. 
+---Code---
+import java.util.Scanner;
+
+public class PerfectNumber {
+    public static boolean isPerfect(int n) {
+        int sum = 0;
+        for (int i = 1; i <= n / 2; i++) {
+            if (n % i == 0) {
+                sum += i;
+            }
+        }
+        return sum == n;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        if (isPerfect(n)) {
+            System.out.println(n + " is a Perfect Number");
+        } else {
+            System.out.println(n + " is not a Perfect Number");
+        }
+    }
+}
+ 
+16. Find sum of digits of a number.  
+---Code---
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main
+{
+  
+    public static int digitSum(int n){
+        int result=0;
+        
+        while(n!=0){
+            int lastDigit=n%10;
+            result=result+lastDigit;
+            n/=10;
+        }
+        return result;
+    }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	    int n = sc.nextInt();
+	    
+	    int ans = digitSum(n);
+	    
+	    System.out.println(ans);
+	}
+}
+17. Convert string to integer without `Integer.parseInt()`.  
+---Code---
+public class StringToInteger {
+    public static int stringToInt(String str) {
+        int result = 0;
+        boolean isNegative = false;
+        int startIndex = 0;
+
+        // Check for negative sign
+        if (str.charAt(0) == '-') {
+            isNegative = true;
+            startIndex = 1;
+        }
+
+        for (int i = startIndex; i < str.length(); i++) {
+            char c = str.charAt(i);
+
+            // Convert char to digit
+            int digit = c - '0';
+
+            // Build the number
+            result = result * 10 + digit;
+        }
+
+        return isNegative ? -result : result;
+    }
+
+    public static void main(String[] args) {
+        String str1 = "1234";
+        String str2 = "-567";
+
+        System.out.println(stringToInt(str1)); // Output: 1234
+        System.out.println(stringToInt(str2)); // Output: -567
+    }
+}
+
+
+18. Find second largest number in an array.  
+---Code--
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main
+{
+  
+   public static int findSecondLargest(int[] arr) {
+        if (arr.length < 2) {
+            throw new IllegalArgumentException("Array must have at least two elements");
+        }
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num > secondLargest && num != largest) {
+                secondLargest = num;
+            }
+        }
+
+        if (secondLargest == Integer.MIN_VALUE) {
+            throw new IllegalArgumentException("No second largest element (all elements equal)");
+        }
+
+        return secondLargest;
+    }
+    
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    
+	   // int n = sc.nextInt();
+	    int[] arr = {10, 20, 4, 45, 99, 99};
+	    int ans = findSecondLargest(arr);
+	    
+	    System.out.println(ans);
+	}
+}
+19. Sort an array without using built-in sort. 
+---Code---
+public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // swap arr[i+1] and arr[high] (pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11};
+        quickSort(arr, 0, arr.length - 1);
+
+        System.out.print("Sorted array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+20. Find missing number in an array.  
+---Code---
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main
+{
+  
+   public static int missingNumber(int arr[]){
+       int xor=0;
+       int n=arr.length;
+       for(int i=0;i<n-1;i++){
+           xor^=arr[i];
+       }
+       for(int i=1;i<=n;i++){
+           xor^=i;
+       }
+       return xor;
+   }
+    
+	public static void main(String[] args) {
+	    int arr[] = {1,2,3,4,6};
+	    int ans = missingNumber(arr);
+	    
+	    System.out.println(ans);
+	}
+}
 
 ### **Core Java (20)**
 21. Implement your own `equals()` and `hashCode()`.  
