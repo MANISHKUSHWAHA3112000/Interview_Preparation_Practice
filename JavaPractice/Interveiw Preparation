@@ -17,6 +17,53 @@ it aligns perfectly with my experience and the professional direction I’m purs
 
 
 Cross-Questions & Answers (Directly After Introduction)
+Clean Architecture
+Q: You mentioned clean architecture — can you explain what that means in practice and how you’ve applied it?  
+A:  
+“Clean architecture to me means designing applications with clear separation of concerns, where business logic is independent of frameworks and external systems.
+ In practice, I structure projects into layers — controllers for handling requests, services for business logic, repositories for persistence, and domain models 
+ that remain framework-agnostic. For example, in one of my Capgemini projects, I refactored a monolithic service into layered modules, which made the codebase easier to test,
+  maintain, and extend when new features were added.”
+
+🔹 Performance Optimization
+Q: How do you ensure performance optimization in a Spring Boot application?  
+A:  
+“I focus on multiple aspects: efficient database queries using JPA with proper indexing, caching frequently accessed data with tools like Redis,
+ and tuning thread pools for asynchronous tasks. I also monitor application performance using Actuator and integrate with tools like Prometheus and Grafana. 
+ In one case, I reduced API response time by 40% by replacing N+1 queries with batch fetching and adding a caching layer.”
+
+🔹 REST API Design
+Q: Can you walk me through a REST API you designed and the challenges you faced?  
+A:  
+“I designed a REST API for a customer onboarding system. It handled user registration, document uploads, and verification workflows. 
+The main challenge was ensuring security and scalability. I implemented JWT-based authentication, role-based authorization, and rate limiting to prevent abuse.
+ For scalability, I used pagination and async processing for heavy tasks like file uploads. This API is now serving thousands of requests daily with consistent performance.”
+
+🔹 Database Choice
+Q: Why did you choose PostgreSQL over other databases?  
+A:  
+“PostgreSQL offers strong support for relational integrity, advanced indexing, and JSON handling, which makes it versatile for both structured and semi-structured data.
+ It’s also highly reliable and open-source, which reduces licensing costs. In my projects, I’ve leveraged features like CTEs and JSONB columns to simplify queries and improve performance.”
+
+🔹 Agile Collaboration
+Q: How do you handle conflicts or blockers in Agile teams?  
+A:  
+“I believe in open communication. If I face a blocker, I raise it during stand-ups or directly with the concerned teammate. 
+For conflicts, I focus on aligning with the project’s goals rather than personal opinions. For example, when we had differing views on API versioning, 
+I facilitated a quick discussion, presented pros and cons, and we agreed on a versioning strategy that balanced backward compatibility with future scalability.”
+
+🔹 Security Practices
+Q: Can you give an example of a time you improved application security?  
+A:  
+“In one project, we identified that sensitive data was being logged in plain text. I implemented a logging filter to mask confidential fields and enforced HTTPS across all endpoints. 
+Additionally, I added input validation and CSRF protection. These changes passed the client’s security audit and reduced vulnerabilities significantly.”
+
+🔹 Passion & Growth
+Q: You said you’re passionate about learning new technologies — what’s the latest tool or framework you’ve explored?  
+A:  
+“Recently, I’ve been exploring Kubernetes for container orchestration. I deployed a Spring Boot microservice on a Kubernetes cluster, 
+experimented with auto-scaling, and learned how to manage secrets securely. This hands-on experience helped me understand how to build truly cloud-native applications.”
+
 Interviewer: You mentioned scalability — can you share a situation where scalability was a challenge and how you solved it?
 Answer: In the shipment tracking project, we had performance issues when handling large cargo updates. I optimized PostgreSQL queries by adding proper indexing and restructuring joins, which reduced update latency by 25% and improved scalability for 10K+ records processed daily.
 
