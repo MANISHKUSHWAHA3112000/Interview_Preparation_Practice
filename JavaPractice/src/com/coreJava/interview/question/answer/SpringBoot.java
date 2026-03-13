@@ -7,77 +7,59 @@ public class SpringBoot {
 
 	[Professional Comment: This document is a consolidated interview preparation resource. It covers 70+ questions, including 30+ real-time scenario, coding, and project-based questions. Each answer is annotated with professional commentary to highlight interview relevance.]
 
-
 Core Spring Framework Annotations
-@Component – Marks a class as a Spring-managed bean.
-
-@Service – Specialized form of @Component, used for service layer classes.
-
-@Repository – Specialized @Component, used for DAO classes; adds exception translation.
-
-@Autowired – Injects dependencies automatically by type.
-
-@Qualifier – Used with @Autowired to resolve ambiguity when multiple beans of the same type exist.
-
-@Value – Injects values from properties or environment variables.
-
-@Configuration – Marks a class as a source of bean definitions.
-
-@Bean – Declares a bean inside a @Configuration class.
-
-@Lazy – Delays bean initialization until it’s needed.
-
-@Primary – Marks a bean as the default when multiple candidates exist.
-
+Annotation	Full Definition
+@Component	Generic stereotype for any Spring-managed bean. Enables classpath scanning and automatic registration in the application context.
+@Service	Specialization of @Component for service-layer beans. Semantically indicates business logic and may be used for AOP targeting.
+@Repository	Specialization of @Component for persistence-layer beans. Enables automatic exception translation for JPA/Hibernate.
+@Autowired	Injects dependencies by type. Can be applied to constructors, fields, or setter methods. Supports optional injection with required=false.
+@Qualifier	Resolves ambiguity when multiple beans of the same type exist. Specifies which bean to inject by name.
+@Value("${property}")	Injects values from property files, environment variables, or SpEL expressions.
+@Configuration	Indicates that the class declares one or more @Bean methods. Used for Java-based configuration.
+@Bean	Declares a method that returns a Spring bean. Used inside @Configuration classes to define custom beans.
+@Lazy	Delays bean initialization until it's first requested. Can be applied at class or method level.
+@Primary	Marks a bean as the default candidate when multiple beans of the same type are available.
 🌐 Spring MVC Annotations
-@Controller – Marks a class as a web controller.
-
-@RestController – Combines @Controller + @ResponseBody for REST APIs.
-
-@RequestMapping – Maps HTTP requests to handler methods (supports path + method).
-
-@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping – Shorthand for @RequestMapping with specific HTTP methods.
-
-@ResponseBody – Binds method return value directly to the HTTP response body.
-
-@RequestBody – Binds HTTP request body to a method parameter.
-
-@PathVariable – Extracts values from URI path.
-
-@RequestParam – Extracts query parameters from URL.
-
-@ModelAttribute – Binds form data to model objects.
-
-@SessionAttributes – Stores attributes in session scope.
-
-@ExceptionHandler – Handles exceptions in controllers.
-
-@ControllerAdvice – Global exception handling and cross-cutting concerns.
-
+Annotation	Full Definition
+@Controller	Marks a class as a Spring MVC controller. Returns view names (e.g., JSP, Thymeleaf).
+@RestController	Combines @Controller and @ResponseBody. Returns JSON/XML directly from methods.
+@RequestMapping(path="/", method=...)	Maps HTTP requests to handler methods. Supports path, method, headers, params, and produces/consumes.
+@GetMapping / @PostMapping / @PutMapping / @DeleteMapping / @PatchMapping	Shorthand for @RequestMapping with specific HTTP methods. Improves readability.
+@RequestBody	Binds the HTTP request body to a method parameter. Used for deserializing JSON/XML into Java objects.
+@ResponseBody	Binds the method return value directly to the HTTP response body. Used for REST APIs.
+@PathVariable("id")	Extracts values from URI path segments and binds them to method parameters.
+@RequestParam("name")	Extracts query parameters from the URL and binds them to method parameters.
+@ModelAttribute	Binds form data to model objects or exposes attributes to views. Used in form submissions.
+@SessionAttributes("user")	Stores model attributes in HTTP session. Useful for multi-step forms.
+@ExceptionHandler(Exception.class)	Handles exceptions thrown by controller methods. Can return custom error responses.
+@ControllerAdvice	Global exception handler and cross-cutting concern manager for controllers. Can define @ModelAttribute, @InitBinder, and @ExceptionHandler.
 🚀 Spring Boot Annotations
-@SpringBootApplication – Entry point annotation; combines @Configuration, @EnableAutoConfiguration, and @ComponentScan.
-
-@EnableAutoConfiguration – Enables Spring Boot’s auto-configuration.
-
-@ComponentScan – Scans packages for Spring components.
-
-@EnableScheduling – Enables scheduled tasks (@Scheduled).
-
-@EnableAsync – Enables asynchronous method execution (@Async).
-
-@EnableJpaRepositories – Enables JPA repository scanning.
-
-@Entity – Marks a class as a JPA entity.
-
-@Table, @Column, @Id, @GeneratedValue – JPA annotations for database mapping.
-
-@ConfigurationProperties – Binds external configuration (YAML/Properties) to POJOs.
-
-@ConditionalOnProperty, @ConditionalOnClass, @ConditionalOnMissingBean – Conditional bean creation based on environment.
-
-@TestConfiguration – Special configuration for test contexts.
-
-@MockBean – Creates mock beans for testing.
+Annotation	Full Definition
+@SpringBootApplication	Combines @Configuration, @EnableAutoConfiguration, and @ComponentScan. Entry point for Spring Boot apps.
+@EnableAutoConfiguration	Enables Spring Boot’s auto-configuration mechanism based on classpath and beans.
+@ComponentScan(basePackages=...)	Scans specified packages for Spring components (@Component, @Service, etc.).
+@EnableScheduling	Enables scheduled tasks using @Scheduled.
+@EnableAsync	Enables asynchronous method execution using @Async.
+@ConfigurationProperties(prefix="app")	Binds external configuration (YAML/properties) to POJOs. Supports validation via JSR-303.
+@ConditionalOnProperty(name="feature.enabled", havingValue="true")	Creates beans conditionally based on property values.
+@ConditionalOnClass / @ConditionalOnMissingBean	Conditional bean creation based on class presence or absence in the classpath or context.
+@TestConfiguration	Specialized @Configuration for test contexts. Beans defined here override main config beans.
+@MockBean	Creates mock beans for testing. Replaces existing beans in the context with mocks.
+🗄️ JPA & Database Annotations
+Annotation	Full Definition
+@Entity	Marks a class as a JPA entity. Maps to a database table. Must have a no-arg constructor.
+@Table(name="users")	Specifies the table name for an entity. Optional if class name matches table name.
+@Id	Marks the primary key field. Required for every entity.
+@GeneratedValue(strategy=GenerationType.IDENTITY)	Specifies how the primary key is generated. Strategies include AUTO, IDENTITY, SEQUENCE, TABLE.
+@Column(name="email", nullable=false)	Maps a field to a specific column. Allows customization of column name, length, nullability, etc.
+@EnableJpaRepositories(basePackages=...)	Enables scanning and creation of JPA repositories. Required for Spring Data JPA.
+🧩 Cross-Cutting & Meta Annotations
+Annotation	Full Definition
+@ControllerAdvice	Global handler for exceptions, model attributes, and data binding across controllers.
+@EnableAsync	Enables asynchronous execution of methods annotated with @Async.
+@ConditionalOnProperty	Enables conditional bean registration based on property values.
+@Profile("dev")	Activates beans only when the specified profile is active.
+@Scope("prototype")	Defines bean scope (singleton, prototype, request, session).
 
 	Q1. What is Spring Boot and why is it used?
 Spring Boot is a framework built on top of Spring that simplifies application development by:
@@ -87,6 +69,7 @@ Spring Boot is a framework built on top of Spring that simplifies application de
 - Embedding servers like Tomcat/Jetty
 - Providing production-ready features (Actuator, metrics, health checks)
 Use case: Instead of configuring DispatcherServlet, DataSource, Hibernate manually, Spring Boot auto-configures them based on classpath.
+
 
 Q2. What is @SpringBootApplication?
 It is a meta-annotation combining:
