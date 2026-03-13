@@ -7,6 +7,78 @@ public class SpringBoot {
 
 	[Professional Comment: This document is a consolidated interview preparation resource. It covers 70+ questions, including 30+ real-time scenario, coding, and project-based questions. Each answer is annotated with professional commentary to highlight interview relevance.]
 
+
+Core Spring Framework Annotations
+@Component – Marks a class as a Spring-managed bean.
+
+@Service – Specialized form of @Component, used for service layer classes.
+
+@Repository – Specialized @Component, used for DAO classes; adds exception translation.
+
+@Autowired – Injects dependencies automatically by type.
+
+@Qualifier – Used with @Autowired to resolve ambiguity when multiple beans of the same type exist.
+
+@Value – Injects values from properties or environment variables.
+
+@Configuration – Marks a class as a source of bean definitions.
+
+@Bean – Declares a bean inside a @Configuration class.
+
+@Lazy – Delays bean initialization until it’s needed.
+
+@Primary – Marks a bean as the default when multiple candidates exist.
+
+🌐 Spring MVC Annotations
+@Controller – Marks a class as a web controller.
+
+@RestController – Combines @Controller + @ResponseBody for REST APIs.
+
+@RequestMapping – Maps HTTP requests to handler methods (supports path + method).
+
+@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping – Shorthand for @RequestMapping with specific HTTP methods.
+
+@ResponseBody – Binds method return value directly to the HTTP response body.
+
+@RequestBody – Binds HTTP request body to a method parameter.
+
+@PathVariable – Extracts values from URI path.
+
+@RequestParam – Extracts query parameters from URL.
+
+@ModelAttribute – Binds form data to model objects.
+
+@SessionAttributes – Stores attributes in session scope.
+
+@ExceptionHandler – Handles exceptions in controllers.
+
+@ControllerAdvice – Global exception handling and cross-cutting concerns.
+
+🚀 Spring Boot Annotations
+@SpringBootApplication – Entry point annotation; combines @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+
+@EnableAutoConfiguration – Enables Spring Boot’s auto-configuration.
+
+@ComponentScan – Scans packages for Spring components.
+
+@EnableScheduling – Enables scheduled tasks (@Scheduled).
+
+@EnableAsync – Enables asynchronous method execution (@Async).
+
+@EnableJpaRepositories – Enables JPA repository scanning.
+
+@Entity – Marks a class as a JPA entity.
+
+@Table, @Column, @Id, @GeneratedValue – JPA annotations for database mapping.
+
+@ConfigurationProperties – Binds external configuration (YAML/Properties) to POJOs.
+
+@ConditionalOnProperty, @ConditionalOnClass, @ConditionalOnMissingBean – Conditional bean creation based on environment.
+
+@TestConfiguration – Special configuration for test contexts.
+
+@MockBean – Creates mock beans for testing.
+
 	Q1. What is Spring Boot and why is it used?
 Spring Boot is a framework built on top of Spring that simplifies application development by:
 - Removing boilerplate configuration
