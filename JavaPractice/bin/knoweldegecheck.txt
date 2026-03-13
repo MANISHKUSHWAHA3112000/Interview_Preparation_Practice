@@ -1,0 +1,110 @@
+Alright Manish, let’s go through **model answers** for the questions I listed earlier. I’ll keep them structured so you can practice delivering them clearly in interviews.
+
+---
+
+## 🔹 Technical Answers
+
+**Angular**
+1. **Angular 17 vs earlier versions, migration to 20**  
+   *Answer:*  
+   “Angular 17 introduced a new control flow syntax (`@if`, `@for`) which improves readability and performance compared to `*ngIf` and `*ngFor`. It also enhanced hydration for server-side rendering and improved build performance. When migrating to Angular 20, I would first upgrade dependencies, run compatibility checks, and use Angular’s schematics to handle breaking changes. I’d also set up automated tests to ensure no regressions during migration.”
+
+2. **Change detection optimization**  
+   *Answer:*  
+   “Angular uses the Zone.js mechanism for change detection. By default, it checks all components, but we can optimize using `ChangeDetectionStrategy.OnPush` and immutability. For large apps, I rely on `trackBy` in `*ngFor`, lazy loading modules, and RxJS operators to reduce unnecessary re-renders.”
+
+3. **Lazy loading importance**  
+   *Answer:*  
+   “Lazy loading allows modules to be loaded only when needed, reducing initial bundle size and improving performance. For example, in a large enterprise app, the admin module can be lazy-loaded so regular users don’t download unnecessary code.”
+
+4. **Security in Angular apps**  
+   *Answer:*  
+   “To prevent XSS, Angular’s built-in sanitization automatically escapes HTML. For CSRF, I use tokens validated by the backend. I also enforce Content Security Policy headers and avoid using `innerHTML` directly.”
+
+---
+
+**Java / Backend**
+1. **Java 17 features**  
+   *Answer:*  
+   “Java 17 introduced sealed classes, records, and pattern matching for `switch`. Sealed classes restrict inheritance, improving design safety. Records reduce boilerplate for data classes. These features make code more concise and maintainable.”
+
+2. **REST API design**  
+   *Answer:*  
+   “I follow REST best practices: use nouns for endpoints (`/users`), proper HTTP methods (GET, POST, PUT, DELETE), versioning (`/api/v1`), and standardized error responses with meaningful status codes. I also document APIs with OpenAPI/Swagger.”
+
+3. **Quarkus vs Spring Boot**  
+   *Answer:*  
+   “Spring Boot is mature and widely adopted, great for enterprise apps. Quarkus is optimized for cloud-native and GraalVM, offering faster startup and lower memory footprint. I’d choose Quarkus for microservices in Kubernetes, and Spring Boot for complex enterprise systems with rich ecosystem support.”
+
+4. **Hibernate lazy vs eager loading**  
+   *Answer:*  
+   “Lazy loading fetches data only when accessed, reducing initial load. Eager loading fetches everything upfront, which can cause performance issues if not needed. I prefer lazy loading with proper `JOIN FETCH` queries when necessary.”
+
+---
+
+**System Design**
+- *Role-based access control:*  
+   “I’d design using a `Users` table, `Roles` table, and a `UserRoles` mapping. Each API endpoint checks JWT claims for roles. This ensures fine-grained access control.”  
+
+- *API gateway:*  
+   “I’d use an API gateway like Kong or Spring Cloud Gateway to handle routing, authentication, rate limiting, and monitoring across microservices.”  
+
+---
+
+**Behavioral**
+- *Mentoring juniors:*  
+   “In my last project, a junior struggled with Angular reactive forms. I created a small workshop, explained step-by-step, and paired with them for a sprint. They later independently delivered a complex form module, which boosted their confidence and productivity.”  
+
+---
+
+## 🔹 Coding Questions (Sample Answers)
+
+**Java – First Non-Repeating Character**
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class FirstUniqueChar {
+    public static void main(String[] args) {
+        String str = "swiss";
+        Character result = str.chars()
+            .mapToObj(c -> (char)c)
+            .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
+            .entrySet().stream()
+            .filter(e -> e.getValue() == 1)
+            .map(Map.Entry::getKey)
+            .findFirst()
+            .orElse(null);
+        System.out.println(result); // Output: w
+    }
+}
+```
+
+**Angular – Service with RxJS**
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeService {
+  constructor(private http: HttpClient) {}
+
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>('/api/employees').pipe(
+      retry(2),
+      catchError(error => {
+        console.error('Error fetching employees', error);
+        return throwError(() => new Error('Failed to load employees'));
+      })
+    );
+  }
+}
+```
+
+---
+
+✅ Now you have **model answers + coding samples**.  
+Next step: let’s simulate a **live interview round**. I’ll ask you **one technical, one behavioral, and one coding question**. You answer as if you’re in the interview, and I’ll give feedback.
+
+Would you like me to start with **Angular technical question first** or jump straight into a **coding problem**?
+
+Angular 17 introduced new control flow syntax (@if, @for) which compiles more efficiently than *ngIf and *ngFor, reducing runtime overhead. This improves performance and readability. For migration to Angular 20, I’d first upgrade dependencies, run Angular’s schematics to handle breaking changes, and rely on automated tests to catch regressions. Alongside that, I’d continue optimizing change detection with OnPush, immutability, and RxJS operators
