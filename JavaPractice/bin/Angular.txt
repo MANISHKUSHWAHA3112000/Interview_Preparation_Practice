@@ -1,0 +1,319 @@
+===============================
+Angular Interview Question Bank
+For 2+ Years Experience
+===============================
+
+### Core Fundamentals (Pre-17)
+
+1. What is Interpolation?
+Answer:
+Interpolation is one-way data binding from component to view using {{ }}.
+It evaluates expressions and displays their result in the template.
+
+Code Example:
+@Component({ selector: 'app-demo', template: `<p>Hello {{name}}</p>` })
+export class DemoComponent { name = 'Manish'; }
+
+---
+
+2. What is Data Binding?
+Answer:
+Data binding connects component data with the view.
+Types:
+- Interpolation: {{value}}
+- Property Binding: [property]="value"
+- Event Binding: (event)="handler"
+- Two-way Binding: [(ngModel)]="value"
+
+Code Example:
+<input [(ngModel)]="username">
+<p>Welcome {{username}}</p>
+
+---
+
+3. What are Angular Directives?
+Answer:
+Directives are instructions to manipulate DOM.
+- Structural: *ngIf, *ngFor
+- Attribute: [ngClass], [ngStyle]
+
+Code Example:
+<p *ngIf="isLoggedIn">Logged In!</p>
+<li *ngFor="let item of items">{{item}}</li>
+
+---
+
+4. What are Angular Components?
+Answer:
+Components are building blocks of Angular apps with template, class, styles, metadata.
+
+Code Example:
+@Component({
+  selector: 'app-hello',
+  template: `<h2>Hello {{name}}</h2>`
+})
+export class HelloComponent { name = 'Angular Developer'; }
+
+---
+
+5. Lifecycle Hooks
+Answer:
+Hooks let you run logic at different stages.
+- ngOnInit: after component init
+- ngOnChanges: when input changes
+- ngOnDestroy: before component destroyed
+
+Code Example:
+export class Demo implements OnInit, OnDestroy {
+  ngOnInit() { console.log('Init'); }
+  ngOnDestroy() { console.log('Destroy'); }
+}
+
+---
+
+6. Services & Dependency Injection
+Answer:
+Services hold business logic and are injected into components.
+
+Code Example:
+@Injectable({ providedIn: 'root' })
+export class UserService { getUsers() { return ['Alice','Bob']; } }
+
+@Component({ selector: 'app-users', template: `<p>{{users}}</p>` })
+export class UsersComponent {
+  users: string[];
+  constructor(private userService: UserService) {
+    this.users = this.userService.getUsers();
+  }
+}
+
+---
+
+7. Routing & Guards
+Answer:
+Guards control navigation (CanActivate, CanDeactivate).
+
+Code Example:
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanActivate {
+  canActivate(): boolean { return true; }
+}
+
+---
+
+8. Interceptors
+Answer:
+Interceptors modify HTTP requests/responses globally.
+
+Code Example:
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const cloned = req.clone({ setHeaders: { Authorization: 'Bearer token' } });
+    return next.handle(cloned);
+  }
+}
+
+---
+
+9. Forms (Template-driven vs Reactive)
+Answer:
+Template-driven: simpler, uses ngModel.
+Reactive: more powerful, uses FormControl/FormGroup.
+
+Code Example (Reactive):
+form = new FormGroup({
+  username: new FormControl('', Validators.required),
+  email: new FormControl('', Validators.email)
+});
+
+---
+
+10. Pipes
+Answer:
+Pipes transform data in templates.
+
+Code Example:
+{{ today | date:'short' }}
+
+Custom Pipe:
+@Pipe({ name: 'capitalize' })
+export class CapitalizePipe implements PipeTransform {
+  transform(value: string): string { return value.toUpperCase(); }
+}
+
+---
+
+11. Change Detection Strategies
+Answer:
+Default: checks all components.
+OnPush: checks only when inputs change.
+
+Code Example:
+@Component({ changeDetection: ChangeDetectionStrategy.OnPush })
+
+---
+
+12. EventEmitter
+Answer:
+Used for child-to-parent communication.
+
+Code Example:
+@Output() notify = new EventEmitter<string>();
+this.notify.emit('Hello Parent');
+
+---
+
+13. Async Pipe
+Answer:
+Automatically subscribes/unsubscribes to Observables.
+
+Code Example:
+<p>{{ data$ | async }}</p>
+
+---
+
+14. TrackBy in *ngFor
+Answer:
+Optimizes rendering by tracking items.
+
+Code Example:
+<li *ngFor="let item of items; trackBy: trackByFn">{{item}}</li>
+
+---
+
+15. Subject vs BehaviorSubject
+Answer:
+- Subject: Emits values but does not store the last value.
+- BehaviorSubject: Stores the latest value and emits it immediately to new subscribers.
+
+Code Example:
+const subject = new BehaviorSubject<number>(0);
+subject.subscribe(val => console.log('Subscriber A:', val));
+subject.next(1);
+subject.next(2);
+subject.subscribe(val => console.log('Subscriber B:', val)); // gets 2 immediately
+
+---
+
+### Advanced & Modern Features
+
+16. Standalone Components [Angular 14, Pre-17 feature]
+Answer:
+Standalone components remove need for NgModule.
+
+Code Example:
+@Component({
+  standalone: true,
+  selector: 'app-standalone',
+  template: `<p>Standalone!</p>`
+})
+export class StandaloneComponent {}
+
+---
+
+17. Signals [Angular 17]
+Answer:
+Signals are fine-grained reactive primitives.
+
+Code Example:
+import { signal } from '@angular/core';
+const counter = signal(0);
+function increment() { counter.set(counter() + 1); }
+console.log(counter()); // reactive primitive
+
+---
+
+18. Declarative Control Flow [Angular 17]
+Answer:
+New syntax replacing *ngIf, *ngFor.
+
+Code Example:
+@for (item of items) {
+  <li>{{item}}</li>
+}
+@if (isLoggedIn) {
+  <p>Welcome!</p>
+}
+
+---
+
+19. Deferrable Loading [Angular 17]
+Answer:
+Lazy load components with @defer.
+
+Code Example:
+@defer {
+  <expensive-component></expensive-component>
+}
+
+---
+
+20. SSR Hydration Improvements [Angular 18]
+Answer:
+Hydration ensures server-rendered DOM syncs with client efficiently.
+
+Code Example:
+bootstrapApplication(AppComponent, { providers: [provideClientHydration()] });
+
+---
+
+21. Ecosystem & RxJS 7 Support [Angular 19]
+Answer:
+Improved SSR, Node.js compatibility, RxJS 7 alignment.
+
+Migration Example:
+Replace deprecated operators with latest RxJS 7 equivalents.
+
+---
+
+22. TypeScript 5.8+ Support [Angular 20]
+Answer:
+Latest TypeScript features, stricter typing, performance optimizations.
+
+Code Example:
+type User = { id: number, name?: string };
+const u: User = { id: 1 };
+
+---
+
+23. Signals as Core Reactive Primitive [Angular 20]
+Answer:
+Signals continue evolving as default reactivity model.
+
+Code Example:
+const name = signal('Angular');
+effect(() => console.log(`Hello ${name()}`));
+name.set('Angular 20');
+
+---
+
+### Scenario-Based (Behavioral + Technical)
+
+24. Scenario: Optimizing Angular App
+Answer (STAR):
+- Situation: App slow due to large bundle size.
+- Task: Improve performance.
+- Action: Implement lazy loading, OnPush, trackBy, optimize RxJS subscriptions.
+- Result: Reduced load time by 40%.
+
+---
+
+25. Scenario: Handling Memory Leaks
+Answer:
+Use takeUntil for subscriptions, unsubscribe in ngOnDestroy, prefer async pipe.
+
+Code Example:
+this.data$.pipe(takeUntil(this.destroy$)).subscribe();
+
+---
+
+26. Scenario: Team Collaboration
+Answer:
+Use Angular CLI for consistency, enforce coding standards, mentor juniors on RxJS and Signals.
+
+---
+
+===============================
+End of Question Bank
+===============================
