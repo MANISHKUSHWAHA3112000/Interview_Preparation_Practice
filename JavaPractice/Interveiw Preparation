@@ -335,7 +335,7 @@ like in Collections (ArrayList, HashMap, etc.).
 Primitive	Wrapper Class
 byte	Byte
 short	Short
-int	Integer
+int	    Integer
 long	Long
 float	Float
 double	Double
