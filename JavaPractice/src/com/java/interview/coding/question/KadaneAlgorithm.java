@@ -25,6 +25,16 @@ public class KadaneAlgorithm {
 	return maxLen;
 
 	}
+	
+	public static int findMaxSubArray(int nums[]) {
+		int maxSum=nums[0];
+        int currSum=nums[0];
+        for(int i=1;i<nums.length;i++){
+            currSum=Math.max(nums[i],currSum+nums[i]);
+            maxSum=Math.max(maxSum,currSum);
+        }
+        return maxSum;
+	}
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner (System.in);
@@ -37,11 +47,13 @@ public class KadaneAlgorithm {
 			arr[i]=sc.nextInt();
 		}
 		
-		int k =sc.nextInt();
+//		int k =sc.nextInt();
 		
-		int ans = findKadaneAlgorithmWithSum(arr,n,k);
+//		int ans = findKadaneAlgorithmWithSum(arr,n,k);
+		int ans2 = findMaxSubArray(arr);
 		
-		System.out.println("Kadane Algorithm is : "+ ans );
+//		System.out.println("Kadane Algorithm is : "+ ans );
+		System.out.println("maximum subarray sum is :" + ans2 );
 	}
 
 }
