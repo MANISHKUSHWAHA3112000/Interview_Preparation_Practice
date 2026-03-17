@@ -3,12 +3,26 @@ package com.java.interview.coding.question;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ArrayDuplicates {
+	
+	public static int duplicateArray(int arr[],int n) {
+		Set<Integer> seen = new HashSet<>();
+		
+		for(int num : arr) {
+			if(seen.contains(num)) {
+				return num;
+			}
+			seen.add(num);
+		}
+		return -1;
+	}
 	
 	public static ArrayList<Integer> findArrayDuplicates(int arr[],int n){
 		ArrayList<Integer> result = new ArrayList<>();
@@ -52,11 +66,13 @@ public class ArrayDuplicates {
 			arr[i]= sc.nextInt();
 		}
 		
-		ArrayList<Integer> ans = findArrayDuplicates(arr,n);
-		ArrayList<Integer> ans1 = findArrayDuplicatesUsingJava8(arr,n);
+		int ans = duplicateArray(arr,n);
+		ArrayList<Integer> ans1 = findArrayDuplicates(arr,n);
+		ArrayList<Integer> ans2 = findArrayDuplicatesUsingJava8(arr,n);
 		
-		System.out.println("Duplicates of the array are : "+ans);
-		System.out.println("Duplicates of the array using java 8: "+ ans1);
+		System.out.println("Duplicates of the array using set : "+ans);
+		System.out.println("Duplicates of the array are : "+ans1);
+		System.out.println("Duplicates of the array using java 8: "+ ans2);
 		sc.close();
 	}
 
