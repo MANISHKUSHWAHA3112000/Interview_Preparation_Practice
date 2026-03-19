@@ -237,3 +237,89 @@ linkedList.stream()
           .filter(s -> s.startsWith("Y"))
           .forEach(System.out::println);
 
+Question : - Difference between HashSet and TreeSet ?
+Answer : - HashSet and TreeSet are both implementations of the Set interface in Java, but they differ in their internal structure, ordering, and performance.
+
+HashSet: Internally backed by a HashMap. It does not maintain any order of elements. Operations such as add, remove, and contains are generally O(1) 
+because they rely on hashing. HashSet allows one null element.
+
+TreeSet: Internally backed by a TreeMap, specifically a Red-Black Tree. It maintains elements in sorted order according to their natural ordering or a custom comparator. 
+Operations such as add, remove, and contains are O(log n) because they rely on tree traversal. TreeSet does not allow null elements.
+
+Set<String> hashSet = new HashSet<>();
+hashSet.add("Banana");
+hashSet.add("Apple");
+hashSet.add("Orange");
+System.out.println(hashSet); // Order not guaranteed
+
+Set<String> treeSet = new TreeSet<>();
+treeSet.add("Banana");
+treeSet.add("Apple");
+treeSet.add("Orange");
+System.out.println(treeSet); // Output: [Apple, Banana, Orange]
+
+In Java 8, both HashSet and TreeSet support functional-style operations:
+
+forEach(Consumer action) → Iterate with lambda.
+
+stream() / parallelStream() → Process elements using Streams API.
+
+removeIf(Predicate filter) → Remove elements conditionally.
+
+👉 Java 8 Usage Example:
+hashSet.forEach(System.out::println);
+
+long count = treeSet.stream().filter(s -> s.startsWith("A")).count();
+System.out.println("Count starting with A: " + count);
+
+Question : Difference between HashMap and HashTable ?
+Answer : - HashMap and Hashtable are both implementations of the Map interface in Java, but they differ in synchronization, null handling, and modern usage.
+
+HashMap: Introduced in Java 1.2, it is part of the Collections Framework. It is not synchronized, meaning multiple threads can access it simultaneously without guarantees of thread-safety. 
+HashMap allows one null key and multiple null values. It is generally preferred in modern applications due to better performance and flexibility.
+
+Hashtable: Introduced in Java 1.0, it predates the Collections Framework. It is synchronized, meaning all methods are thread-safe but at the cost of performance. 
+Hashtable does not allow null keys or null values. It is considered legacy and rarely used in new applications.
+
+Map<String, String> hashMap = new HashMap<>();
+hashMap.put(null, "Value1"); // Allowed
+hashMap.put("Key1", null);   // Allowed
+
+Map<String, String> hashtable = new Hashtable<>();
+// hashtable.put(null, "Value"); // Throws NullPointerException
+// hashtable.put("Key1", null);  // Throws NullPointerException
+
+In Java 8, HashMap supports functional-style operations such as forEach(), computeIfAbsent(), and merge(), making it more powerful and expressive. 
+Hashtable, being legacy, does not support these enhancements.
+
+Question : - StringBuilder and StringBuffer difference
+Answer : - StringBuilder and StringBuffer are both mutable classes in Java used to create and manipulate strings. 
+Unlike the immutable String class, they allow modifications such as appending, inserting, or deleting characters without creating new objects.
+
+StringBuffer: Introduced in Java 1.0, it is synchronized, meaning all its methods are thread-safe. This makes it suitable for multi-threaded environments 
+but slightly slower due to synchronization overhead.
+
+StringBuilder: Introduced in Java 5, it is not synchronized, making it faster and more efficient in single-threaded scenarios. However, 
+it is not safe for concurrent use without external synchronization.
+
+Internally, both use a resizable character array to store data. When the capacity is exceeded, the array is expanded automatically
+
+StringBuffer sbf = new StringBuffer("Hello");
+sbf.append(" World"); // Thread-safe
+
+StringBuilder sbd = new StringBuilder("Hello");
+sbd.append(" World"); // Faster, but not thread-safe
+
+In Java 8, both classes support methods such as:
+
+append() → Add text at the end.
+
+insert() → Insert text at a specific position.
+
+delete() / deleteCharAt() → Remove characters.
+
+reverse() → Reverse the sequence.
+
+capacity() / ensureCapacity() → Manage internal buffer size.
+
+forEachRemaining() (via CharSequence streams) → Process characters in functional style.
