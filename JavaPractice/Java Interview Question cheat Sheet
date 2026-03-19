@@ -144,3 +144,96 @@ Lists use arrays or linked lists.
 Sets use hashing or trees.
 
 Maps use hashing or balanced trees.
+
+Question : - Difference between ArrayList and LinkedList ?
+Answer : - ArrayList and LinkedList are both implementations of the List interface but differ in their internal structures. 
+ArrayList is backed by a dynamic array, offering O(1) random access but costly insertions and deletions due to shifting.
+ LinkedList is backed by a doubly linked list, offering O(1) insertions and deletions but O(n) random access.
+
+In Java 8, both support enhanced methods such as forEach() for lambda-based iteration and stream() / parallelStream() for functional-style operations. 
+For example, ArrayList is often used when frequent random access and iteration are required, while LinkedList is chosen for queue-like behavior or frequent insertions and deletions
+
+ArrayList Methods (Java 8)
+ArrayList is backed by a dynamic array. Commonly used methods:
+
+add(E e) → Adds element at the end.
+
+add(int index, E e) → Inserts element at specific index.
+
+get(int index) → Retrieves element at index (O(1)).
+
+set(int index, E e) → Updates element at index.
+
+remove(int index) → Removes element at index (O(n) due to shifting).
+
+remove(Object o) → Removes first occurrence of element.
+
+size() → Returns number of elements.
+
+contains(Object o) → Checks if element exists.
+
+isEmpty() → Checks if list is empty.
+
+clear() → Removes all elements.
+
+iterator() / listIterator() → Traverses elements.
+
+forEach(Consumer action) → Java 8 method for lambda iteration.
+
+stream() / parallelStream() → Java 8 method to process elements using Streams API.
+
+List<String> arrayList = new ArrayList<>();
+arrayList.add("A");
+arrayList.add("B");
+arrayList.add("C");
+
+// Java 8 forEach
+arrayList.forEach(System.out::println);
+
+// Java 8 Streams
+long count = arrayList.stream().filter(s -> s.equals("B")).count();
+System.out.println("Count of B: " + count);
+
+LinkedList Methods (Java 8)
+LinkedList is backed by a doubly linked list. Commonly used methods:
+
+add(E e) → Adds element at the end.
+
+addFirst(E e) → Adds element at the beginning.
+
+addLast(E e) → Adds element at the end.
+
+get(int index) → Retrieves element at index (O(n)).
+
+getFirst() / getLast() → Retrieves first/last element.
+
+remove(int index) → Removes element at index.
+
+removeFirst() / removeLast() → Removes first/last element.
+
+peek() / peekFirst() / peekLast() → Retrieves element without removing.
+
+poll() / pollFirst() / pollLast() → Retrieves and removes element.
+
+offer(E e) → Adds element at the end (queue style).
+
+size(), isEmpty(), clear() → Same as ArrayList.
+
+forEach(Consumer action) → Java 8 method for lambda iteration.
+
+stream() / parallelStream() → Java 8 method to process elements using Streams API.
+
+👉 Java 8 Usage Example:
+List<String> linkedList = new LinkedList<>();
+linkedList.add("X");
+linkedList.add("Y");
+linkedList.add("Z");
+
+// Java 8 forEach
+linkedList.forEach(System.out::println);
+
+// Java 8 Streams
+linkedList.stream()
+          .filter(s -> s.startsWith("Y"))
+          .forEach(System.out::println);
+
