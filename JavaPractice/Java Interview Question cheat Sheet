@@ -54,3 +54,93 @@ A simple analogy is a company office. The heap is like the storage room where al
 The stack is like each employee’s desk where they keep their current working papers (method calls and local variables).
 The Metaspace is like the HR department that maintains records of all employees (class metadata).
 The Garbage Collector acts as the cleaning staff, removing files that are no longer needed.
+
+Question : - What is Thread Safe in Java ?
+Answer : - Thread-safety in Java means that a class or a piece of code behaves correctly when accessed by multiple threads simultaneously.
+ A thread-safe class ensures that shared data is not corrupted and that operations produce consistent results regardless of concurrent execution.
+
+Internally, thread-safety can be achieved using several mechanisms:
+
+Synchronized keyword: Ensures that only one thread can access a critical section at a time.
+
+Volatile keyword: Guarantees visibility of changes to variables across threads.
+
+Locks (ReentrantLock, ReadWriteLock): Provide more advanced control over synchronization, such as fairness and read/write separation.
+
+Concurrent Collections: Classes like ConcurrentHashMap and CopyOnWriteArrayList are designed for safe concurrent access without manual synchronization.
+
+For example, consider a shared counter:
+
+java
+public class Counter {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+Here, the synchronized keyword ensures that only one thread can increment the counter at a time, preventing race conditions.
+
+Thread-safety is critical in multi-threaded applications such as web servers, financial systems, and concurrent caches. 
+Without it, data corruption, race conditions, and unpredictable behavior can occur. 
+In production, developers often use concurrent utilities from java.util.concurrent to balance safety and performance.
+
+Analogy (Real time Examples ) ---->
+
+A simple analogy is a bank counter. If multiple customers (threads) try to withdraw money from the same account (shared resource), 
+thread-safety ensures that the balance is updated correctly. Without thread-safety, two customers might withdraw simultaneously and cause inconsistent results.
+
+Question : -  What is Fail fast and Fail-safe in java ?
+Answer : - In Java, iterators are used to traverse collections. They can be categorized as fail-fast or fail-safe based on how they behave when the underlying collection is modified during iteration.
+
+Fail-Fast Iterators: These are used by collections like ArrayList, HashMap, and HashSet. They directly operate on the collection and maintain a modification count (modCount). 
+If the collection is structurally modified while iterating, the iterator immediately throws a ConcurrentModificationException. This design prevents unpredictable behavior but does not guarantee safety in concurrent environments.
+
+Fail-Safe Iterators: These are used by concurrent collections like ConcurrentHashMap and CopyOnWriteArrayList. They operate on a cloned copy of the collection rather than the original.
+This means modifications can occur safely during iteration without exceptions, but the iterator may not reflect the most recent changes.
+
+Question : - Why Strings are immutable in java ?
+Answer : - In Java, Strings are immutable, meaning once a String object is created, it cannot be changed.
+ Any modification such as concatenation or replacement results in the creation of a new String object rather than altering the existing one.
+
+Internally, this immutability is achieved because the String class is declared as final, and its character array is also private and final. This ensures that the contents of a String cannot be modified after creation.
+
+The benefits of immutability are significant:
+
+Thread-safety: Multiple threads can safely share the same String instance without synchronization.
+
+Security: Strings are often used for sensitive data such as class names, file paths, and network connections. Immutability prevents malicious code from altering them.
+
+Caching and Performance: The JVM maintains a String pool. When a new String literal is created, the JVM checks the pool first. If the literal already exists, it reuses the same object, saving memory and improving performance
+
+Question : - What is ForkJoin and How its works?
+Answer : - ForkJoinPool in Java is a special thread pool designed to efficiently execute tasks that can be broken down into smaller subtasks. 
+It was introduced in Java 7 as part of the java.util.concurrent package and is particularly useful for parallel programming and divide-and-conquer algorithms.
+
+Internally, ForkJoinPool uses the work-stealing algorithm. Each worker thread maintains its own deque (double-ended queue) of tasks.
+ When a thread finishes its tasks, instead of sitting idle, it can ‘steal’ tasks from the deque of other busy threads. This ensures better utilization of CPU cores and minimizes idle time.
+ 
+Question : - What is Collection framework and its hierarchy ?
+Answer : - The Java Collections Framework is a unified architecture that provides interfaces and classes for storing and manipulating groups of objects. It standardizes how collections are represented and accessed, making code more reusable and consistent.
+
+At the top level, we have the Collection interface, which represents a group of objects. It is further divided into three main sub-interfaces:
+
+List: An ordered collection that allows duplicates. Examples include ArrayList, LinkedList, and Vector.
+
+Set: A collection that does not allow duplicates. Examples include HashSet, LinkedHashSet, and TreeSet.
+
+Queue: A collection designed for holding elements prior to processing, typically in FIFO order. Examples include PriorityQueue and LinkedList.
+
+Apart from Collection, there is the Map interface, which represents key-value pairs. Examples include HashMap, TreeMap, LinkedHashMap, and ConcurrentHashMap.
+
+Internally, these collections differ in their data structures:
+
+Lists use arrays or linked lists.
+
+Sets use hashing or trees.
+
+Maps use hashing or balanced trees.
