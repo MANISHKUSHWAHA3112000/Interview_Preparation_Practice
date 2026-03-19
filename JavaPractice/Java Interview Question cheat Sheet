@@ -11,6 +11,11 @@ When we call get(), the same hash calculation is performed, the bucket is locate
 This design makes HashMap very efficient, with average O(1) access time. However, it is not thread-safe. In multi-threaded environments, 
 we use ConcurrentHashMap instead, which provides safe concurrent access without locking the entire map.
 
+Analogy(Real time Examples)----->
+
+A simple analogy is a parking lot with fixed slots. The car’s number plate (hashCode) decides which slot it should park in. 
+If two cars are assigned the same slot, they line up in that slot (linked list). If too many cars line up, the parking manager organizes them into a tree structure for faster searching.
+
 Question : - What is ConcurrentHashMap and how is it different from HashMap?
 Answer : - A ConcurrentHashMap in Java is a thread-safe variant of HashMap that allows concurrent access by multiple threads without corrupting the data structure. 
 It is part of the java.util.concurrent package and is widely used in multi-threaded applications where high-performance concurrent lookups and updates are required.
@@ -20,3 +25,32 @@ non-blocking algorithms, which further increased scalability.
 Reads are generally lock-free, while writes use minimal locking to ensure consistency. Iterators of ConcurrentHashMap are fail-safe, meaning they do not throw ConcurrentModificationException 
 and can tolerate concurrent modifications, though they may not reflect the most recent updates.
 This design makes ConcurrentHashMap highly efficient in multi-threaded environments, providing safe concurrent access with better throughput compared to synchronizing a regular HashMap
+
+Analogy (Real time Examples)------>
+
+A simple analogy is a large parking lot managed by multiple attendants. In a normal HashMap, only one attendant manages the entire lot, 
+so if one car is being parked, all others must wait. In a ConcurrentHashMap, each attendant manages a section of the lot. This means multiple cars can be parked or retrieved simultaneously in different sections, 
+ensuring smooth and efficient operations even under heavy traffic
+
+Question : -  JVM Memory Model and how the Java manages the memory ?
+Answer : - The JVM Memory Model defines how Java manages memory at runtime. It is divided into several key areas:
+
+Heap: This is where all objects and their instance variables are stored. The heap is managed by the Garbage Collector, which reclaims memory from unused objects.
+
+Stack: Each thread has its own stack that stores method calls, local variables, and references. The stack follows a Last-In-First-Out (LIFO) structure.
+
+Metaspace: Introduced in Java 8, it stores class metadata. Unlike the earlier PermGen space, Metaspace grows dynamically based on available native memory.
+
+Program Counter (PC) Register: Each thread has a PC register that keeps track of the current instruction being executed.
+
+Method Area: Stores class-level data such as static variables and method definitions.
+
+When a program runs, objects are created in the heap, methods are pushed onto the stack, and class information is loaded into Metaspace. 
+The Garbage Collector periodically frees unused objects from the heap to prevent memory leaks
+
+Analogy (Real time Examples ) ---->
+
+A simple analogy is a company office. The heap is like the storage room where all files (objects) are kept. 
+The stack is like each employee’s desk where they keep their current working papers (method calls and local variables).
+The Metaspace is like the HR department that maintains records of all employees (class metadata).
+The Garbage Collector acts as the cleaning staff, removing files that are no longer needed.
