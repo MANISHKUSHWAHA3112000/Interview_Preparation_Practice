@@ -1,0 +1,22 @@
+----------------------------------------------------- final Java Interview Cheat Sheet----------------------------------------------------------------------------
+
+Question : - What is HashMap ? and How HashMap internally works ?
+Answer : - A HashMap in Java is a data structure that stores key-value pairs and provides average constant-time complexity for insertion and lookup operations. 
+It is part of the Java Collections Framework and is widely used when we need fast access to data based on unique keys.
+Internally, a HashMap maintains an array of buckets. When we insert a key-value pair, the key’s hashCode() is calculated, and an index is derived using bitwise operations 
+with the array size. That index determines which bucket the entry will be placed in.
+If the bucket is empty, the entry is stored directly. If multiple keys map to the same bucket (a collision), Java 7 stored them in a linked list. 
+Starting with Java 8, if collisions exceed a threshold (typically 8), the linked list is converted into a balanced Red-Black Tree, which improves worst-case lookup time from O(n) to O(log n).
+When we call get(), the same hash calculation is performed, the bucket is located, and then the key is compared using equals() to retrieve the correct value.
+This design makes HashMap very efficient, with average O(1) access time. However, it is not thread-safe. In multi-threaded environments, 
+we use ConcurrentHashMap instead, which provides safe concurrent access without locking the entire map.
+
+Question : - What is ConcurrentHashMap and how is it different from HashMap?
+Answer : - A ConcurrentHashMap in Java is a thread-safe variant of HashMap that allows concurrent access by multiple threads without corrupting the data structure. 
+It is part of the java.util.concurrent package and is widely used in multi-threaded applications where high-performance concurrent lookups and updates are required.
+Internally, ConcurrentHashMap does not lock the entire map. Instead, it uses finer-grained locking mechanisms. In Java 7, it divided the map into segments, and
+ each segment could be locked independently, allowing multiple threads to operate on different segments concurrently. In Java 8, this design was improved by using bucket-level locks and
+non-blocking algorithms, which further increased scalability.
+Reads are generally lock-free, while writes use minimal locking to ensure consistency. Iterators of ConcurrentHashMap are fail-safe, meaning they do not throw ConcurrentModificationException 
+and can tolerate concurrent modifications, though they may not reflect the most recent updates.
+This design makes ConcurrentHashMap highly efficient in multi-threaded environments, providing safe concurrent access with better throughput compared to synchronizing a regular HashMap
