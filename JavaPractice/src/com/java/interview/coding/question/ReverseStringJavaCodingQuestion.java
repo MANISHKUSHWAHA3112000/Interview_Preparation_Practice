@@ -54,6 +54,31 @@ public class ReverseStringJavaCodingQuestion {
 				}));
 		return reversed;
 	}
+	// Reverse String using spaces Intact like Hello World  = dlroW olleH
+	public static String reverseWithSpacesIntact(String s) {
+		char [] arr = s.toCharArray();
+		int left = 0;
+		int right = arr.length-1;
+		
+		while(left<right) {
+			
+			if(arr[left]==' ') {
+				left++;
+				continue;
+			}
+			if(arr[right]==' ') {
+				right--;
+				continue;
+			}
+			
+			char temp = arr[left];
+			arr[left]=arr[right];
+			arr[right]=temp;
+			left++;
+			right--;
+		}
+		return new String(arr);
+	}
 
 	public static void main(String[] args) {
 
@@ -65,12 +90,14 @@ public class ReverseStringJavaCodingQuestion {
 		String ans3 = reverseStringUsingJava8(s);
 		String ans4 = reverseStringUsingJava11(s);
 		String ans5 = reverseStringUsingJava17(s);
+		String ans6 = reverseWithSpacesIntact(s);
 
 		System.out.println("String using loop: " + ans);
 		System.out.println("String using inBuiltFunction: " + ans2);
 		System.out.println("String using java8: " + ans3);
 		System.out.println("String using java11: " + ans4);
 		System.out.println("String using java17: " + ans5);
+		System.out.println("Reverse string using spaces Intact : "+ ans6);
 		sc.close();
 	}
 
