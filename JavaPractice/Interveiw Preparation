@@ -1192,18 +1192,3 @@ public interface List<E> extends Collection<E> { }
 	------------------------------------------------------------
 	FINAL PROFESSIONAL NOTE
 	------------------------------------------------------------
-
-	This resource now contains **90+ Spring Boot interview questions**, including **30+ real-time scenario, coding, and project-based questions**.  
-
-	It comprehensively covers:
-	- Architecture
-	- Security
-	- Performance
-	- Resilience
-	- Monitoring
-	- Deployment
-	- Scaling
-	- Messaging
-	- Testing
-	- Distributed systems
-	- Real-world project scenarios
