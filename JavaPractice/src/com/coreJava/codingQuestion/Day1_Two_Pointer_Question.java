@@ -1,7 +1,7 @@
 package com.coreJava.codingQuestion;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Day1_Two_Pointer_Question {
 	/**
@@ -188,6 +188,29 @@ version is {-4 -1 3 6 9}
 	      return new String(arr);
 	}
 	
+	public static ArrayList<String> extractIntegerWords(String s){
+		 ArrayList<String> res = new ArrayList<>();
+	        int n = s.length();
+	        int start = 0;
+
+	        while (start < n) {
+	            // move start until we find a digit
+	            if (Character.isDigit(s.charAt(start))) {
+	                int end = start;
+	                // move end until digits stop
+	                while (end < n && Character.isDigit(s.charAt(end))) {
+	                    end++;
+	                }
+	                // substring from start to end gives full number
+	                res.add(s.substring(start, end));
+	                start = end; // continue after the number
+	            } else {
+	                start++;
+	            }
+	        }
+	        return res;
+	}
+	
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -223,9 +246,15 @@ version is {-4 -1 3 6 9}
 //	            }
 	            
 	            //Day 2 : Reverse a string with spaces intact
-	            String s = "Hello World";
-	            String ans2 = reverseWithSpacesIntact(s);
-	            System.out.println(ans2);
+//	            String s = "Hello World";
+//	            String ans2 = reverseWithSpacesIntact(s);
+//	            System.out.println(ans2);
+		
+		        //Day 2 : Extract the Integer
+		        String s = "\"1: Prakhar Agrawal, 2: Manish Kumar Rai, \r\n"
+		        		+ "     3: Rishabh Gupta56";
+		        ArrayList<String> ans3 = extractIntegerWords(s);
+		        System.out.println(ans3);
 	        }
 
 //	        sc.close(); 
