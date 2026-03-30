@@ -401,6 +401,36 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		return ans;
 	}
 	
+	/**
+	 * Count increasing Subarrays Difficulty: EasyAccuracy: 55.05%Submissions:
+	 * 9K+Points: 2 Given an array arr[] of integers, count the number of subarrays
+	 * in arr[] which are strictly increasing with size greater or equal to 2. A
+	 * subarray is a contiguous part of array. A subarray is strictly increasing if
+	 * each element is greater then it's previous element if it exists.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [1, 3, 3, 2, 3, 5] Output: 4 Explanation: Increasing Subarrays
+	 * are : arr[0,1], arr[3,4], arr[3,5], arr[4,5]. Input: arr[] = [1, 5] Output: 1
+	 * Explanation:The only Increasing Subarray is arr[0,1]. Expected Time
+	 * Complexity: O(n) Expected Auxiliary Space: O(1)
+	 **/
+	public static int countIncreasing(int arr[]) {
+		int count=0;
+		int j=0;
+		
+		for(int i=1;i<arr.length;i++) {
+			if(arr[i]<=arr[i-1]) {
+				int length= i-j;
+				count+=(length*(length-1))/2;
+				j=i;
+			}
+		}
+		int length = arr.length-j;
+		count+=(length*(length-1))/2;
+		return count;
+	}
+	
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -462,9 +492,14 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans5);
 		        
 		        //Day 3 : Intersection of Arrays with Distint 
-		        int a[] = {89, 24, 75, 11, 23}, b[] = {89, 2, 4};
-		        int ans6 = intersectSize(a, b);
-		        System.out.println(ans6);
+//		        int a[] = {89, 24, 75, 11, 23}, b[] = {89, 2, 4};
+//		        int ans6 = intersectSize(a, b);
+//		        System.out.println(ans6);
+		
+		        //Day 4 : Count increasing Subarrays
+		        int arr[]= {1, 3, 3, 2, 3, 5};
+		        int ans7 = countIncreasing(arr);
+		        System.out.println(ans7);
 	        }
 
 //	        sc.close(); 
