@@ -2,6 +2,7 @@ package com.coreJava.codingQuestion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Day1_Two_Pointer_Question {
 	/**
@@ -188,6 +189,15 @@ version is {-4 -1 3 6 9}
 	      return new String(arr);
 	}
 	
+	/**Question : Extract the Integer (GFG)
+	 * Extract the integers Difficulty: BasicAccuracy: 48.37%Submissions:
+	 * 18K+Points: 1 Given a string s, extract all the integers from s.
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: s = "1: Prakhar Agrawal, 2: Manish Kumar Rai, 3: Rishabh Gupta56"
+	 * Output: 1 2 3 56 Explanation: 1, 2, 3, 56 are the integers present in s.
+	 **/
 	public static ArrayList<String> extractIntegerWords(String s){
 		 ArrayList<String> res = new ArrayList<>();
 	        int n = s.length();
@@ -209,6 +219,151 @@ version is {-4 -1 3 6 9}
 	            }
 	        }
 	        return res;
+	}
+	/**
+	 * Sum Pair closest to target
+Difficulty: EasyAccuracy: 44.75%Submissions: 75K+Points: 2
+Given an array arr[] and a number target, find a pair of elements (a, b) in arr[], where a ≤ b whose sum is closest to target.
+Note: Return the pair in sorted order and if there are multiple such pairs return the pair with maximum absolute difference. If no such pair exists return an empty array.
+
+Examples:
+
+Input: arr[] = [10, 30, 20, 5], target = 25
+Output: [5, 20]
+Explanation: As 5 + 20 = 25 is closest to 25.
+Input: arr[] = [5, 2, 7, 1, 4], target = 10
+Output: [2, 7]
+Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute difference of (4, 5) is 1, (2, 7) is 5 and (4, 7) is 3. Hence, [2, 7] has maximum absolute difference and closest to target. **/
+	 public static ArrayList<Integer> sumClosest(int[] arr, int target) {
+	        // code here
+	         int n = arr.length;
+	        if (n < 2) return new ArrayList<>(); // no pair possible
+
+	        Arrays.sort(arr);
+	        int left = 0, right = n - 1;
+	        int minDiff = Integer.MAX_VALUE;
+	        ArrayList<Integer> bestPair = new ArrayList<>();
+
+	        while (left < right) {
+	            int sum = arr[left] + arr[right];
+	            int diff = Math.abs(sum - target);
+
+	            if (diff < minDiff) {
+	                minDiff = diff;
+	                bestPair = new ArrayList<>(Arrays.asList(arr[left], arr[right]));
+	            } else if (diff == minDiff) {
+	                // choose pair with maximum absolute difference
+	                if (Math.abs(arr[right] - arr[left]) > Math.abs(bestPair.get(1) - bestPair.get(0))) {
+	                    bestPair = new ArrayList<>(Arrays.asList(arr[left], arr[right]));
+	                }
+	            }
+
+	            if (sum < target) {
+	                left++;
+	            } else {
+	                right--;
+	            }
+	        }
+
+	        return bestPair;
+	 }
+	
+	/** Question :  Three Sum Problem (Leetcode)
+	 * Given an integer array nums, return all the triplets [nums[i], nums[j],
+	 * nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] +
+	 * nums[k] == 0.
+	 * 
+	 * Notice that the solution set must not contain duplicate triplets.
+	 * 
+	 * 
+	 * 
+	 * Example 1:
+	 * 
+	 * Input: nums = [-1,0,1,2,-1,-4] Output: [[-1,-1,2],[-1,0,1]] Explanation:
+	 * nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0. nums[1] + nums[2] + nums[4] =
+	 * 0 + 1 + (-1) = 0. nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0. The
+	 * distinct triplets are [-1,0,1] and [-1,-1,2]. Notice that the order of the
+	 * output and the order of the triplets does not matter.
+	 **/
+	public static List<List<Integer>> threeSumProblem(int nums[]){
+		List<List<Integer>> res = new ArrayList<>();
+
+        Arrays.sort(nums);
+
+        for(int i=0;i<nums.length-2;i++){
+            if(i > 0 && nums[i]==nums[i-1])continue;
+
+            int left=i+1;
+            int right=nums.length-1;
+
+            while(left<right){
+                int sum = nums[i]+nums[left]+nums[right];
+
+                if(sum==0){
+                    res.add(Arrays.asList(nums[i],nums[left],nums[right]));
+
+                    while(left<right && nums[left]==nums[left+1])left++;
+                    while(left<right && nums[right]==nums[right-1])right--;
+                    left++;
+                    right--;
+                }
+                else if (sum <0){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+            }
+        }
+        return res;
+		
+	}
+	
+	/**Question : Distinct triplet with the given sum (Three sum problem )
+	 * Find all distinct triplets with given sum Difficulty: EasyAccuracy:
+	 * 48.82%Submissions: 1K+Points: 2Average Time: 25m Given an array arr[], and an
+	 * integer target, find all possible unique triplets in the array whose sum is
+	 * equal to the given target value. We can return triplets in any order, but all
+	 * the returned triplets should be internally sorted, i.e., for any triplet [q1,
+	 * q2, q3], the condition q1 ≤ q2 ≤ q3 should hold.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [12, 3, 6, 1, 6, 9], target = 24 Output: [[3, 9, 12], [6, 6,
+	 * 12]] Explanation: Triplets with sum 24 are (3, 9, 12) and (6, 6, 12). Input:
+	 * arr[] = [1, 1, 1, 1], target = 3 Output: [[1, 1, 1]] Explanation: Triplets
+	 * with sum 3 are (1, 1, 1). Input: arr[] = [10, 12, 10, 15], target = 32
+	 * Output: [[10, 10, 12]] Explanation: Triplets with sum 32 are (10, 10, 12).
+	 */
+	
+	public static List<List<Integer>> distinctThreeSum(int arr[],int target){
+		List<List<Integer>> res = new ArrayList<>();
+		Arrays.sort(arr);
+		
+		for(int i=0;i<arr.length-2;i++) {
+			if(i>0 && arr[i]==arr[i-1])continue;
+			
+			int left=i+1;
+			int right=arr.length-1;
+			while(left<right) {
+				int sum = arr[i]+arr[left]+arr[right];
+				
+				if(sum==target) {
+					res.add(Arrays.asList(arr[i],arr[left],arr[right]));
+					while(left<right && arr[left]==arr[left+1])left++;
+					while(left<right && arr[right]==arr[right-1])right--;
+					left++;
+					right--;
+				}
+				else if (sum<target) {
+					left++;
+				}
+				else {
+					right--;
+				}
+			}
+		}
+		return res;
 	}
 	
 	public static void main(String[] args) {
@@ -251,10 +406,25 @@ version is {-4 -1 3 6 9}
 //	            System.out.println(ans2);
 		
 		        //Day 2 : Extract the Integer
-		        String s = "\"1: Prakhar Agrawal, 2: Manish Kumar Rai, \r\n"
-		        		+ "     3: Rishabh Gupta56";
-		        ArrayList<String> ans3 = extractIntegerWords(s);
+//		        String s = "\"1: Prakhar Agrawal, 2: Manish Kumar Rai, \r\n"
+//		        		+ "     3: Rishabh Gupta56";
+//		        ArrayList<String> ans3 = extractIntegerWords(s);
+//		        System.out.println(ans3);
+		
+		        //Day 3 : Sum pairs to closet
+		        int arr[] = {10, 30, 20, 5} , target = 25;
+		        ArrayList<Integer>ans3 = sumClosest(arr,target);
 		        System.out.println(ans3);
+		
+		        //Day 3 : Three sum problem
+//		        int arr[]= {-1,0,1,2,-1,-4};
+//		        List<List<Integer>> ans4 = threeSumProblem(arr);
+//		        System.out.println(ans4);
+		
+		        //Day 3 : Distinct Element with the given sum (Three sum)
+//		        int arr[]= {12, 3, 6, 1, 6, 9}, target=24;
+//		        List<List<Integer>> ans5= distinctThreeSum(arr, target);
+//		        System.out.println(ans5);
 	        }
 
 //	        sc.close(); 

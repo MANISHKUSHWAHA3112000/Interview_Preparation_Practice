@@ -1,0 +1,84 @@
+
+## 📌 Arrays in Java
+### Declaration & Initialization
+- `int[] arr;` → Declaration  
+- `arr = new int[5];` → Initialization with default values  
+- `int[] arr = {1,2,3,4,5};` → Literal initialization  
+
+### Properties
+- **Fixed size** (cannot grow/shrink)  
+- **Index-based access** (0-based)  
+- **Default values**: `0` for numeric, `false` for boolean, `null` for objects  
+
+### Common Operations
+| Operation | Example | Notes |
+|-----------|---------|-------|
+| Length | `arr.length` | Returns size |
+| Access | `arr[2]` | O(1) |
+| Update | `arr[2] = 10;` | O(1) |
+| Loop | `for(int x: arr){}` | Enhanced for-loop |
+| Copy | `Arrays.copyOf(arr, newLen)` | Creates new array |
+| Compare | `Arrays.equals(arr1, arr2)` | Deep comparison |
+| Fill | `Arrays.fill(arr, val)` | Fill with value |
+| Sort | `Arrays.sort(arr)` | Ascending order |
+| Parallel Sort | `Arrays.parallelSort(arr)` | Faster on large arrays |
+| Search | `Arrays.binarySearch(arr, key)` | Requires sorted array |
+| Stream | `Arrays.stream(arr)` | Convert to Stream API |
+
+---
+
+## 📌 List Interface (java.util)
+### Key Implementations
+- **ArrayList** → Dynamic array, fast random access  
+- **LinkedList** → Doubly linked list, fast insertion/deletion  
+- **Vector** → Legacy synchronized list  
+
+### Core Methods
+| Method | Description |
+|--------|-------------|
+| `add(E e)` | Add element |
+| `add(int index, E e)` | Insert at index |
+| `get(int index)` | Access element |
+| `set(int index, E e)` | Update element |
+| `remove(int index)` | Remove by index |
+| `remove(Object o)` | Remove by value |
+| `size()` | Current size |
+| `isEmpty()` | Check empty |
+| `contains(Object o)` | Search |
+| `indexOf(Object o)` | First occurrence |
+| `lastIndexOf(Object o)` | Last occurrence |
+| `clear()` | Remove all |
+| `toArray()` | Convert to array |
+| `iterator()` | Get iterator |
+| `listIterator()` | Bidirectional iterator |
+| `subList(int from, int to)` | Extract portion |
+
+---
+
+## 📌 Arrays vs Lists
+| Feature | Arrays | List Interface |
+|---------|--------|----------------|
+| Size | Fixed | Dynamic |
+| Performance | Faster (primitive storage) | Flexible, but overhead |
+| Methods | Limited (`Arrays` utility class) | Rich API |
+| Use Case | Low-level, performance critical | High-level, flexible collections |
+
+---
+
+## 📌 Advanced Use Cases
+- **Multidimensional Arrays**: `int[][] matrix = new int[3][3];`  
+- **Collections Utility**: `Collections.sort(list)` vs `Arrays.sort(arr)`  
+- **Streams**: `list.stream().filter(...).collect(...)`  
+- **Conversion**:  
+  - Array → List: `Arrays.asList(arr)`  
+  - List → Array: `list.toArray(new String[0])`  
+
+---
+
+✅ **Tip for Interviews**:  
+- Arrays are best for **fixed-size, performance-critical** tasks.  
+- Lists are best for **dynamic, flexible** data structures.  
+- Know **time complexities**:  
+  - Array access/update → O(1)  
+  - ArrayList add/remove (end) → O(1) amortized  
+  - LinkedList add/remove → O(1) at ends, O(n) at index  

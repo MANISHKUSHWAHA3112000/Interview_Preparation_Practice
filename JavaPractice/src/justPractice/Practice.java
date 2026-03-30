@@ -6,31 +6,25 @@ import java.util.Arrays;
 public class Practice {
 
 	public static void main(String[] args) {
-//		int arr[] = {3,5,2,5,7,8}; 
-
-		String s = "helww ldlds";
-		char[] arr = s.toCharArray();
-
-		int left = 0;
-		int right = arr.length - 1;
-
-		while (left < right) {
-			if (arr[left] == ' ') {
+		int arr[] = {10, 30, 20, 5}; int target = 25;
+//				Output: [5, 20]
+//				Explanation: As 5 + 20 = 25 is closest to 25.
+		
+		Arrays.sort(arr);
+		int left=0;int right=arr.length-1;
+		
+		while(left<right) {
+			int sum = arr[left]+ arr[right];
+			
+			if(sum<target)left++;
+			else if(sum==target) {
+				System.out.println(arr[left]+ " "+arr[right]);
 				left++;
-				continue;
-			}
-			if (arr[right] == ' ') {
 				right--;
-				continue;
 			}
-
-			char temp = arr[left];
-			arr[left] = arr[right];
-			arr[right] = temp;
-			left++;
-			right--;
+			else {
+				right--;
+			}
 		}
-
-		System.out.println(new String(arr));
 	}
 }
