@@ -1,30 +1,28 @@
 package justPractice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Practice {
 
 	public static void main(String[] args) {
-		int arr[] = {10, 30, 20, 5}; int target = 25;
-//				Output: [5, 20]
-//				Explanation: As 5 + 20 = 25 is closest to 25.
-		
-		Arrays.sort(arr);
-		int left=0;int right=arr.length-1;
-		
-		while(left<right) {
-			int sum = arr[left]+ arr[right];
-			
-			if(sum<target)left++;
-			else if(sum==target) {
-				System.out.println(arr[left]+ " "+arr[right]);
-				left++;
-				right--;
-			}
-			else {
-				right--;
-			}
-		}
+		int a[] = {89, 24, 75, 11, 23}; int b[] = {89, 2, 4};
+		int ans = 0;
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        
+        for(int num1 : a){
+            set1.add(num1);
+        }
+        
+        for(int num2:b){
+            set2.add(num2);
+        }
+        
+        if(set1.contains(set2)){
+            ans = set1
+    
+        }
+       System.out.println(ans);
 	}
 }

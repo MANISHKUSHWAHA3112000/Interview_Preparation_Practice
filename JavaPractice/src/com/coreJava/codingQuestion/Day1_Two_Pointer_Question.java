@@ -2,7 +2,9 @@ package com.coreJava.codingQuestion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Day1_Two_Pointer_Question {
 	/**
@@ -366,6 +368,39 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		return res;
 	}
 	
+	/**Question : Intersection of Arrays with Distint Difficulty(GFG)
+	 * Intersection of Arrays with Distinct Difficulty: EasyAccuracy:
+	 * 32.83%Submissions: 238K+Points: 2Average Time: 20m Given two unsorted integer
+	 * arrays a[] and b[] each consisting of distinct elements, the task is to
+	 * return the count of elements in the intersection (or common elements) of the
+	 * two arrays.
+	 * 
+	 * Intersection of two arrays can be defined as the set containing distinct
+	 * common elements between the two arrays.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: a[] = [89, 24, 75, 11, 23], b[] = [89, 2, 4] Output: 1 Explanation: 89
+	 * is the only element in the intersection of two arrays. Input: a[] = [1, 2, 4,
+	 * 3, 5, 6], b[] = [3, 4, 5, 6, 7] Output: 4 Explanation: 3, 4, 5, and 6 are the
+	 * elements in the intersection of two arrays.
+	 **/
+	public static int intersectSize(int a[], int b[]) {
+		int ans =0;
+		
+		Set<Integer> seen1 = new HashSet<>();
+		
+		for(int num1:a) {
+			seen1.add(num1);
+		}
+		for(int num2:b) {
+			if(seen1.contains(num2)) {
+				ans++;
+			}
+		}
+		return ans;
+	}
+	
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -412,9 +447,9 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans3);
 		
 		        //Day 3 : Sum pairs to closet
-		        int arr[] = {10, 30, 20, 5} , target = 25;
-		        ArrayList<Integer>ans3 = sumClosest(arr,target);
-		        System.out.println(ans3);
+//		        int arr[] = {10, 30, 20, 5} , target = 25;
+//		        ArrayList<Integer>ans3 = sumClosest(arr,target);
+//		        System.out.println(ans3);
 		
 		        //Day 3 : Three sum problem
 //		        int arr[]= {-1,0,1,2,-1,-4};
@@ -425,6 +460,11 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        int arr[]= {12, 3, 6, 1, 6, 9}, target=24;
 //		        List<List<Integer>> ans5= distinctThreeSum(arr, target);
 //		        System.out.println(ans5);
+		        
+		        //Day 3 : Intersection of Arrays with Distint 
+		        int a[] = {89, 24, 75, 11, 23}, b[] = {89, 2, 4};
+		        int ans6 = intersectSize(a, b);
+		        System.out.println(ans6);
 	        }
 
 //	        sc.close(); 
