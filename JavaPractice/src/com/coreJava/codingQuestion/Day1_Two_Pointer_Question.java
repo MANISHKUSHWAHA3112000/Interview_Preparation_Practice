@@ -431,6 +431,84 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		return count;
 	}
 	
+	/**
+	 * Maximum sum of subarray less than or equal to x Difficulty: EasyAccuracy:
+	 * 43.78%Submissions: 17K+Points: 2 Given an array arr[] of integers and a
+	 * number x, the task is to find the sum of subarray having a maximum sum less
+	 * than or equal to the given value of x.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [1, 2, 3, 4, 5], x = 11 Output: 10 Explanation: Subarray
+	 * having maximum sum is [1, 2, 3, 4]. Input: arr[] = [2, 4, 6, 8, 10], x = 7
+	 * Output: 6 Explanation: Subarray having maximum sum is [2, 4] or [6]. Expected
+	 * Time Complexity: O(n). Expected Auxiliary Space: O(1).
+	 **/
+	
+	public static long findMaxSubarraySum(int[] arr, long x) {
+		long maxSum=0;
+		long currSum=0;
+		int j=0;
+		
+		for(int i=0;i<arr.length;i++) {
+			currSum+=arr[i];
+			
+			while(currSum>x && j<=i) {
+				currSum-=arr[j];
+				j++;
+			}
+			if(currSum<=x) {
+				maxSum=Math.max(maxSum, currSum);
+			}
+		}
+		return maxSum;
+	}
+	
+	/**
+	 * Intersection of Two arrays with Duplicate Elements Difficulty: EasyAccuracy:
+	 * 61.4%Submissions: 42K+Points: 2Average Time: 20m Given two integer arrays a[]
+	 * and b[], you have to find the intersection of the two arrays. Intersection of
+	 * two arrays is said to be elements that are common in both the arrays. The
+	 * intersection should not have duplicate elements and the result should contain
+	 * items in any order.
+	 * 
+	 * Note: The driver code will sort the resulting array in increasing order
+	 * before printing.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: a[] = [1, 2, 1, 3, 1], b[] = [3, 1, 3, 4, 1] Output: [1, 3]
+	 * Explanation: 1 and 3 are the only common elements and we need to print only
+	 * one occurrence of common elements. Input: a[] = [1, 1, 1], b[] = [1, 1, 1, 1,
+	 * 1] Output: [1] Explanation: 1 is the only common element present in both the
+	 * arrays. Input: a[] = [1, 2, 3], b[] = [4, 5, 6] Output: [] Explanation: No
+	 * common element in both the arrays. Constraints: 1 ≤ a.size(), b.size() ≤ 105
+	 * 0 ≤ a[i], b[i] ≤ 105
+	 * 
+	 * Expected Complexities Time Complexity: O(n + m) Auxiliary Space: O(n)
+	 **/
+	
+	public static ArrayList<Integer> intersect(int[] a, int[] b) {
+		
+		ArrayList<Integer> res = new ArrayList<>();
+		
+		Set<Integer> seen1 = new HashSet<>();
+		Set<Integer> seen2 = new HashSet<>();
+		
+		for(int num1:a) {
+			seen1.add(num1);
+		}
+		
+		for(int num2:b) {
+			seen2.add(num2);
+		}
+		for(int ans : seen2) {
+			if(seen1.contains(ans)) {
+				res.add(ans);
+			}
+		}
+		return res;
+	}
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -497,9 +575,21 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans6);
 		
 		        //Day 4 : Count increasing Subarrays
-		        int arr[]= {1, 3, 3, 2, 3, 5};
-		        int ans7 = countIncreasing(arr);
-		        System.out.println(ans7);
+//		        int arr[]= {1, 3, 3, 2, 3, 5};
+//		        int ans7 = countIncreasing(arr);
+//		        System.out.println(ans7);
+		        
+	            //Day 5 : Max sumbarray sum is <=x
+//		        int arr[]= {46, 22 ,71, 76, 19};
+//				int x = 73;
+//		        long ans8=findMaxSubarraySum(arr,x);
+//		        System.out.println(ans8);
+		
+		        //Day 5 : Intersection of two array
+		        int  a[] = {1, 2, 1, 3, 1}, b[] = {3, 1, 3, 4, 1};
+		        ArrayList<Integer> ans9 = intersect(a,b);
+		        System.out.println(ans9);
+		        
 	        }
 
 //	        sc.close(); 

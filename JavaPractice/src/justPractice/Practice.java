@@ -6,19 +6,28 @@ import java.util.Set;
 public class Practice {
 
 	public static void main(String[] args) {
-		int arr[]= {1, 3, 3, 2, 3, 5};
-		
-		int count=0;
+		int arr[]= {46, 22 ,71, 76, 19};
+				
+		int x = 73;
+		int start=0;
+		int currSum=0;
+		int maxSum = Integer.MIN_VALUE;
 		
 		for(int i=0;i<arr.length;i++) {
-			for(int j=i+1;j<arr.length;j++) {
-				if(arr[i]<arr[j] ) {
-					System.out.println(arr[i]+" "+arr[j]);
-					count++;
-				}
+			currSum+=arr[i];
+			System.out.print("CurrSum : "+ currSum+ " \n");
+			
+			while(currSum > x && start<=i) {
+				currSum-=arr[start];
+				start++;
+			}
+			if(currSum<=x) {
+				maxSum=Math.max(maxSum, currSum);
+				System.out.print("maxsum is : "+ maxSum + " \n");
 			}
 		}
-		System.out.println(count);
+		System.out.println("Final ans is : "+ maxSum);
+		
 		
 	}
 }
