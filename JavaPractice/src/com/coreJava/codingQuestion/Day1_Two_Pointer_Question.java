@@ -552,6 +552,21 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		res.add(-1);
 		return res;
 	}
+	
+	public static int longestSubarray(int arr[]) {
+		int currSum=0;int maxSum=0;
+		
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]>=0) {
+				currSum++;
+				maxSum=Math.max(maxSum, currSum);
+			}
+			else {
+				currSum=0;
+			}
+		}
+		return maxSum;
+	}
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -634,9 +649,14 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans9);
 		
 		        //Day 5 : Two Sum in Sorted Array 
-		        int arr[]= {2, 7, 11, 15}, target = 9;
-		        ArrayList<Integer> ans10 = twoSum(arr, target);
-		        System.out.println(ans10);
+//		        int arr[]= {2, 7, 11, 15}, target = 9;
+//		        ArrayList<Integer> ans10 = twoSum(arr, target);
+//		        System.out.println(ans10);
+		        
+		        //Day 6 : Length of longest subarray
+		        int arr[]= {2, 3, 4, -1, -2, 1, 5, 6, 3};
+		        int ans11=longestSubarray(arr);
+		        System.out.println(ans11);
 		        
 	        }
 
