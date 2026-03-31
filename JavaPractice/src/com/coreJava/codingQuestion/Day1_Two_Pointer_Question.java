@@ -509,6 +509,49 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		}
 		return res;
 	}
+	
+	/**
+	 * Two Sum in Sorted Array Difficulty: EasyAccuracy: 47.46%Submissions:
+	 * 6K+Points: 2 You are given a 1-based indexed integer array arr[] that is
+	 * sorted in non-decreasing order, along with an integer target. Your task is to
+	 * find two elements in the array such that their sum is equal to target. If
+	 * such a pair exists, return the indices of the two elements in increasing
+	 * order. If no such pair exists, return [-1, -1]. Note: If your answer is
+	 * correct then the driver code will print "true" otherwise "false".
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [2, 7, 11, 15], target = 9 Output: [1, 2] Explanation: Since
+	 * arr[0] + arr[1] = 2 + 7 = 9 equals the target, return their 1-based indices :
+	 * [1, 2] Input: arr[] = [1, 3, 4, 6, 8, 11], target = 10 Output: [3, 4]
+	 * Explanation: Since arr[2] + arr[3] = 4 + 6 = 10 equals the target, return
+	 * their 1-based indices : [3, 4] Constraints: 1 ≤ arr.size() ≤ 105 1 ≤ arr[i],
+	 * target ≤ 106
+	 **/
+	public static ArrayList<Integer>twoSum(int arr[],int target){
+		ArrayList<Integer> res = new ArrayList<>();
+		
+		int start=0;int end=arr.length-1;
+		
+		while(start<end) {
+			int sum = arr[start]+arr[end];
+			
+			if(sum==target) {
+				res.add(start+1);
+				res.add(end+1);
+				return res;
+			}
+			else if (sum<target) {
+				start++;
+			}
+			else {
+				end--;
+			}
+		}
+		res.add(-1);
+		res.add(-1);
+		return res;
+	}
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -586,9 +629,14 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans8);
 		
 		        //Day 5 : Intersection of two array
-		        int  a[] = {1, 2, 1, 3, 1}, b[] = {3, 1, 3, 4, 1};
-		        ArrayList<Integer> ans9 = intersect(a,b);
-		        System.out.println(ans9);
+//		        int  a[] = {1, 2, 1, 3, 1}, b[] = {3, 1, 3, 4, 1};
+//		        ArrayList<Integer> ans9 = intersect(a,b);
+//		        System.out.println(ans9);
+		
+		        //Day 5 : Two Sum in Sorted Array 
+		        int arr[]= {2, 7, 11, 15}, target = 9;
+		        ArrayList<Integer> ans10 = twoSum(arr, target);
+		        System.out.println(ans10);
 		        
 	        }
 
