@@ -78,4 +78,31 @@ Question 3 :Can you explain the CAP theorem and how consistency, availability, a
 			→ DNS systems — they always respond, even if data is slightly outdated.
 			
 			What’s an example of a system that prioritizes consistency over availability?  
-		    → Banking or financial transaction systems.
+		    → Banking or financial transaction systems
+		    
+Question 4 :“What is the difference between latency and throughput in system design? Can you give examples and explain why they matter?”
+
+			✅ Direct Answer
+			Latency: The time it takes to process a single request (speed).
+			Throughput: The number of requests a system can handle per unit of time (capacity).
+		
+			📖 Example
+			Latency: How long it takes for a Google search to return results (e.g., 200 ms).
+			
+			Throughput: How many searches Google can process per second (e.g., millions of queries per second).
+			
+			🎤 Interview-Expectation Answer
+			“Latency is the delay experienced in processing a single request, while throughput is the total number of requests a system can handle per unit of time. 
+			For example, Google search results may have a latency of 200 ms, but Google’s throughput is millions of queries per second. 
+			In interviews, it’s important to highlight that system design often requires balancing both — reducing latency improves user experience, 
+			while increasing throughput ensures scalability.”
+			
+			⚡ Common Follow-up Questions
+			Can a system have low latency but low throughput?  
+			→ Yes, if it processes requests quickly but can’t handle many at once.
+			
+			Can a system have high throughput but high latency?  
+			→ Yes, if it processes many requests but each takes longer to complete.
+			
+			Which matters more in real-world systems?  
+			→ Depends on the use case: latency is critical for user-facing apps (e.g., gaming), throughput is critical for batch processing (e.g., data pipelines).
