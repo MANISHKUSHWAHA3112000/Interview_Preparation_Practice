@@ -670,6 +670,57 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		}
 		return res;
 	}
+	
+	/**
+	 * Bird and maximum fruit gathering Difficulty: EasyAccuracy: 26.46%Submissions:
+	 * 8K+Points: 2 There are several trees, each with a fruit value associated with
+	 * it. A bird can gather all the fruits from a tree by sitting on it for 0.5
+	 * seconds and can move to a neighboring tree in another 0.5 seconds. Once all
+	 * the fruits are picked from a tree, the bird cannot pick any more from that
+	 * tree until all fruits are picked, it cannot move to next tree. The bird has
+	 * totalTime seconds to gather as many fruits as possible and can start from any
+	 * tree.
+	 * 
+	 * Given the array arr[] of fruit values and totalTime, determine the maximum
+	 * number of fruits the bird can gather.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [2, 1, 3, 5, 0, 1, 4], totalTime = 3 Output: 9 Explanation:
+	 * Starting at tree 1 and moving to tree 2, then to tree 3, the bird gathers 1 +
+	 * 3 + 5 = 9 fruits. Input: arr[] = [1, 6, 2, 5, 3, 4], totalTime = 2 Output: 8
+	 * Explanation: Starting at tree 1 and moving to tree 2, the bird gathers 6 + 2
+	 * = 8 fruits. Alternatively, starting at tree 3 and moving to tree 4, the bird
+	 * also gathers 5 + 3 = 8 fruits. Constraints: 2 ≤ arr.size() ≤ 106 1 ≤
+	 * totalTime ≤ 108 0 ≤ arr[i] ≤ 105
+	 * 
+	 * Expected Complexities Time Complexity: O(n) Auxiliary Space: O(1)
+	 **/
+	public static int maxFruits(int[] arr, int totalTime) {
+	       int n = arr.length;
+	        if (totalTime > n) {
+	            // If totalTime is larger than array length, just sum all elements
+	            int sum = 0;
+	            for (int x : arr) sum += x;
+	            return sum;
+	        }
+
+	        // Step 1: sum of first window
+	        int currentSum = 0;
+	        for (int i = 0; i < totalTime; i++) {
+	            currentSum += arr[i];
+	        }
+
+	        int maxSum = currentSum;
+
+	        // Step 2: slide the window
+	        for (int i = totalTime; i < n; i++) {
+	            currentSum += arr[i] - arr[i - totalTime];
+	            maxSum = Math.max(maxSum, currentSum);
+	        }
+
+	        return maxSum;
+	    }
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -767,8 +818,14 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans12);
 		
 		        //Day 6 : Two sum - Pairs with 0 sum
-		        int arr[] = {-1,0,1,2,-1,-4};
-		        ArrayList<ArrayList<Integer>> ans13 = getPairs(arr);
+//		        int arr[] = {-1,0,1,2,-1,-4};
+//		        ArrayList<ArrayList<Integer>> ans13 = getPairs(arr);
+//		        System.out.println(ans13);
+		
+		        //Day 6 : Bird and maximum fruit gathering
+		        int arr[]= {2,1,3,5,0,1,4};
+		        int totalTime=3;
+		        int ans13=maxFruits(arr,totalTime);
 		        System.out.println(ans13);
 		        
 	        }
