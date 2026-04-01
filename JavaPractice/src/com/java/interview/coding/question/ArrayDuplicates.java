@@ -12,6 +12,25 @@ import java.util.stream.Collectors;
 
 public class ArrayDuplicates {
 	
+	// this is one more approach using Two pointer (Floyd Cycle detection)
+//	public static int duplicateArray(int arr[],int n) {
+//		//{1,3,5,4}
+//		int slow = arr[0];
+//		int fast= arr[0];
+//		
+//		do {
+//			slow=arr[slow];
+//			fast=arr[arr[fast]];
+//		}while(slow!=fast);
+//		
+//		slow = arr[0];
+//		while(slow!=fast) {
+//			slow=arr[slow];
+//			fast=arr[fast];
+//		}
+//		return slow;
+//	}
+	
 	public static int duplicateArray(int arr[],int n) {
 		Set<Integer> seen = new HashSet<>();
 		

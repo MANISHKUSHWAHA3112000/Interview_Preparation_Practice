@@ -1,33 +1,33 @@
 package justPractice;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Practice {
 
 	public static void main(String[] args) {
 		
-		int arr[]={5, 3, 1, 6, 9};
+		int arr[]={6, 1, 8, 0, 4, -9, -1, -10, -6, -5};
 		
-		// second method
 		Arrays.sort(arr);
-		
-		int minElement=arr[0];
 		int left=0;int right=arr.length-1;
 		
 		while(left<right) {
-			if(arr[left]<minElement) {
-				left++;
-			}
-			else if (arr[left]==minElement) {
-				System.out.println(arr[left]);
+			int sum = arr[left]+arr[right];
+			
+			if(sum==0) {
+				List<Integer> ans = Arrays.asList(arr[left],arr[right]);
+				System.out.println(ans);
 				left++;
 				right--;
+			}
+			else if (sum<0) {
+				left++;
 			}
 			else {
 				right--;
 			}
 		}
+		
 	}
 }

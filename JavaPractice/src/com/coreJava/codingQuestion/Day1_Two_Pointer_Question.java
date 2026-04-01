@@ -553,6 +553,23 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 		return res;
 	}
 	
+	/**
+	 * Length of longest subarray Difficulty: EasyAccuracy: 50.87%Submissions:
+	 * 17K+Points: 2 Given an array arr[], return the length of the longest subarray
+	 * of non-negative integers. Note: Subarray here means a continuous part of the
+	 * array.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [2, 3, 4, -1, -2, 1, 5, 6, 3] Output: 4 Explanation: The
+	 * subarray [ 1, 5, 6, 3] has longest length 4 and contains no negative integers
+	 * Input: arr[] = [1, 0, 0, 1, -1, -1, 0, 0, 1, 0] Output: 4 Explanation:
+	 * Subarrays [1, 0, 0, 1] and [0, 0, 1, 0] have equal lengths but sum of first
+	 * one is greater so that will be the output. Constraints: 1 <= arr.size() <=
+	 * 106 -106 <= arr[i] <= 106
+	 * 
+	 * Expected Complexities Time Complexity: O(n) Auxiliary Space: O(1)
+	 **/
 	public static int longestSubarray(int arr[]) {
 		int currSum=0;int maxSum=0;
 		
@@ -566,6 +583,92 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 			}
 		}
 		return maxSum;
+	}
+	
+	/**
+	 * Find Only Repetitive Element from 1 to n-1 Difficulty: EasyAccuracy:
+	 * 59.22%Submissions: 25K+Points: 2 Given an array arr[] of size n, filled with
+	 * numbers from 1 to n-1 in random order. The array has only one repetitive
+	 * element. Your task is to find the repetitive element.
+	 * 
+	 * Note: It is guaranteed that there is a repeating element present in the
+	 * array.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [1, 3, 2, 3, 4] Output: 3 Explanation: The number 3 is the
+	 * only repeating element. Input: arr[] = [1, 5, 1, 2, 3, 4] Output: 1
+	 * Explanation: The number 1 is the only repeating element. Input: arr[] = [1,
+	 * 1] Output: 1 Explanation: The array is of size 2 with both elements being 1,
+	 * making 1 the repeating element. Constraints: 2 ≤ arr.size() ≤ 105 1 ≤ arr[i]
+	 * ≤ n-1
+	 * 
+	 * Expected Complexities Time Complexity: O(n) Auxiliary Space: O(1)
+	 **/
+	public static int findDuplicate(int arr[]) {
+		int slow=arr[0];
+		int fast=arr[0];
+		
+		do {
+			slow=arr[slow];
+			fast=arr[arr[fast]];
+		}while(slow!=fast);
+		
+		slow = arr[0];
+		while(slow!=fast) {
+			slow = arr[slow];
+			fast = arr[fast];
+		}
+		return slow;
+	}
+	
+	/**
+	 * Two sum -Pairs with 0 Sum Difficulty: EasyAccuracy: 31.49%Submissions:
+	 * 532K+Points: 2Average Time: 20m Given an integer array arr, return all the
+	 * unique pairs [arr[i], arr[j]] such that i != j and arr[i] + arr[j] == 0.
+	 * 
+	 * Note: The pairs must be returned in sorted order, the solution array should
+	 * also be sorted, and the answer must not contain any duplicate pairs.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr = [-1, 0, 1, 2, -1, -4] Output: [[-1, 1]] Explanation: arr[0] +
+	 * arr[2] = (-1)+ 1 = 0. arr[2] + arr[4] = 1 + (-1) = 0. The distinct pair are
+	 * [-1,1]. Input: arr = [6, 1, 8, 0, 4, -9, -1, -10, -6, -5] Output: [[-6,
+	 * 6],[-1, 1]] Explanation: The distinct pairs are [-1, 1] and [-6, 6]. Expected
+	 * Time Complexity: O(n log n) Expected Auxiliary Space: O(n).
+	 **/
+	public static ArrayList<ArrayList<Integer>>getPairs(int arr[]){
+		ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+		
+		Arrays.sort(arr);
+		int left=0;
+		int right=arr.length-1;
+		
+		while(left<right) {
+			int sum = arr[left]+arr[right];
+			
+			if(sum==0) {
+				res.add(new ArrayList<>(Arrays.asList(arr[left],arr[right])));
+				
+				int leftInterval = arr[left];
+				while(left<right && arr[left]==leftInterval) {
+					left++;
+				}
+				
+				int rightInterval=arr[right];
+				while(left<right && arr[right]==rightInterval) {
+					right--;
+				}
+			}
+			else if (sum<0) {
+				left++;
+			}
+			else {
+				right--;
+			}
+		}
+		return res;
 	}
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
@@ -654,9 +757,19 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans10);
 		        
 		        //Day 6 : Length of longest subarray
-		        int arr[]= {2, 3, 4, -1, -2, 1, 5, 6, 3};
-		        int ans11=longestSubarray(arr);
-		        System.out.println(ans11);
+//		        int arr[]= {2, 3, 4, -1, -2, 1, 5, 6, 3};
+//		        int ans11=longestSubarray(arr);
+//		        System.out.println(ans11);
+		
+		        //Day 6 : Find only repetive Element from 1 to n-1
+//	            int arr[] = {1,3,2,3,4};
+//		        int ans12=findDuplicate(arr);
+//		        System.out.println(ans12);
+		
+		        //Day 6 : Two sum - Pairs with 0 sum
+		        int arr[] = {-1,0,1,2,-1,-4};
+		        ArrayList<ArrayList<Integer>> ans13 = getPairs(arr);
+		        System.out.println(ans13);
 		        
 	        }
 
