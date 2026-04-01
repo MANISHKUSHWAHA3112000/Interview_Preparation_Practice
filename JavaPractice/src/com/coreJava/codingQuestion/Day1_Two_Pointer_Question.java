@@ -721,6 +721,37 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 
 	        return maxSum;
 	    }
+	
+	/**
+	 * Find Maximum value Difficulty: EasyAccuracy: 38.14%Submissions: 8K+Points: 2
+	 * Given an array arr[] you have to find the maximum value of abs(i – j)
+	 * *min(arr[i], arr[j]) where i and j vary from 0 to n-1 and i != j.
+	 * 
+	 * Examples:
+	 * 
+	 * Input: arr[] = [3, 2, 1, 4] Output: 9 Explanation: Here, a[0] = 3 and a[3] =
+	 * 4 and thus result is abs(0-3)*min(3,4) = 9. Input: arr[] = [8, 1, 9, 4]
+	 * Output: 16 Explanation: Here, a[0] = 8 and a[2] = 9 and thus result is
+	 * abs(0-2)*min(8,9)=16. Expected Time Complexity: O(n) Expected Auxiliary
+	 * Space: O(1)
+	 **/
+	public static int maxValue(int arr[]) {
+		int i=0;int j=arr.length-1;
+		int maxVal=0;
+		
+		while(i<j) {
+			int product = (j-i) * Math.min(arr[i], arr[j]);
+			maxVal = Math.max(maxVal, product);
+			
+			if(arr[i]<arr[j]) {
+				i++;
+			}
+			else {
+				j--;
+			}
+		}
+		return maxVal;
+	}
 	public static void main(String[] args) {
 //		 Scanner sc = new Scanner(System.in);
 		 
@@ -823,11 +854,16 @@ Explanation: As (4, 5), (2, 7) and (4, 7) both are closest to 10, but absolute d
 //		        System.out.println(ans13);
 		
 		        //Day 6 : Bird and maximum fruit gathering
-		        int arr[]= {2,1,3,5,0,1,4};
-		        int totalTime=3;
-		        int ans13=maxFruits(arr,totalTime);
-		        System.out.println(ans13);
-		        
+//		        int arr[]= {2,1,3,5,0,1,4};
+//		        int totalTime=3;
+//		        int ans13=maxFruits(arr,totalTime);
+//		        System.out.println(ans13);
+		 
+		        //Day 6 : Find Maximum Value
+		        int arr[]= {3,2,1,4};
+		        int ans14= maxValue(arr);
+		        System.out.println(ans14);
+//		        
 	        }
 
 //	        sc.close(); 
