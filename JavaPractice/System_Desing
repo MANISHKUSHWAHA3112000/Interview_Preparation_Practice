@@ -49,3 +49,33 @@ Answer : Availability: The percentage of time a system is operational and access
 
          What’s an example of a reliability issue?  
          → A system that is online but occasionally loses or corrupts data.
+         
+Question 3 :Can you explain the CAP theorem and how consistency, availability, and partition tolerance apply in distributed systems?”
+
+	        ✅ Direct Answer
+			Consistency (C): Every read receives the most recent write or an error.
+			Availability (A): Every request receives a response, even if it’s not the latest data.
+			Partition Tolerance (P): The system continues to operate despite network failures that split communication between nodes.
+			
+			CAP Theorem: In a distributed system, you can only guarantee two out of three (Consistency, Availability, Partition Tolerance) at the same time.
+			
+			📖 Example
+			CP System (Consistency + Partition Tolerance): Banking systems — correctness of transactions is critical, even if availability suffers.
+			AP System (Availability + Partition Tolerance): Social media feeds — users can always post/read, but data may be slightly stale.
+			CA System (Consistency + Availability): Only possible if there are no partitions (rare in distributed systems).
+			
+			🎤 Interview-Expectation Answer
+			“The CAP theorem states that in distributed systems, we can only guarantee two of the three properties: consistency, availability, and partition tolerance. 
+			For example, a banking system prioritizes consistency and partition tolerance, ensuring transactions are correct even if availability suffers. 
+			On the other hand, social media platforms often prioritize availability and partition tolerance, allowing users to interact even if data is slightly stale. 
+			Interviewers expect you to explain the trade-offs and give real-world examples.”
+			
+			⚡ Common Follow-up Questions
+			Why can’t we have all three (C, A, P)?  
+			→ Because network partitions are inevitable, and you must choose between consistency or availability when they occur.
+			
+			What’s an example of a system that prioritizes availability over consistency?  
+			→ DNS systems — they always respond, even if data is slightly outdated.
+			
+			What’s an example of a system that prioritizes consistency over availability?  
+		    → Banking or financial transaction systems.
