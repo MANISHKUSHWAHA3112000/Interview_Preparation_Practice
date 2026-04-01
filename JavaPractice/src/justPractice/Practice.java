@@ -1,33 +1,33 @@
 package justPractice;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Practice {
 
 	public static void main(String[] args) {
-		int arr[]= {46, 22 ,71, 76, 19};
-				
-		int x = 73;
-		int start=0;
-		int currSum=0;
-		int maxSum = Integer.MIN_VALUE;
 		
-		for(int i=0;i<arr.length;i++) {
-			currSum+=arr[i];
-			System.out.print("CurrSum : "+ currSum+ " \n");
-			
-			while(currSum > x && start<=i) {
-				currSum-=arr[start];
-				start++;
+		int arr[]={5, 3, 1, 6, 9};
+		
+		// second method
+		Arrays.sort(arr);
+		
+		int minElement=arr[0];
+		int left=0;int right=arr.length-1;
+		
+		while(left<right) {
+			if(arr[left]<minElement) {
+				left++;
 			}
-			if(currSum<=x) {
-				maxSum=Math.max(maxSum, currSum);
-				System.out.print("maxsum is : "+ maxSum + " \n");
+			else if (arr[left]==minElement) {
+				System.out.println(arr[left]);
+				left++;
+				right--;
+			}
+			else {
+				right--;
 			}
 		}
-		System.out.println("Final ans is : "+ maxSum);
-		
-		
 	}
 }

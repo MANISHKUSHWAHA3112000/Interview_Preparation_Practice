@@ -1,0 +1,51 @@
+--------------------------------------System Design----------------------------------------
+
+Question 1 : What is scalability in system design? Can you explain vertical vs. horizontal scaling with examples?
+Answer : Scalability is the ability of a system to handle increased load (more user,requests, or data) by expanding resoucres.
+         There are two types of scalability : vertical and horizontal scalability
+         
+         Vertical Scability (Scale Up) : Add more power (CPU,RAM,storage)to a single machine.
+         Horizontal Scalability (Scale Out) : Add More machines/servers to distribute the load. 
+         
+         Example:
+         Vertical Scaling: Upgrading a database server from 16 GB RAM to 64 GB RAM.
+         Horizontal Scaling: Adding more web servers behind a load balancer to serve millions of users.
+         
+         Final Answer / Interview Expectation Answer
+         Scalability means designing systems that can handle growth in traffic or data. 
+         There are two approaches: vertical scaling, where we add more resources to a single machine, and 
+         horizontal scaling, where we add more machines to share the load. For example, upgrading a database server is vertical scaling, 
+         while adding multiple web servers behind a load balancer is horizontal scaling. Most modern large-scale systems prefer horizontal scaling 
+         because it avoids single points of failure and allows near-infinite growth
+         
+         Which is better: vertical or horizontal scaling?  
+         → Horizontal scaling is generally preferred for fault tolerance and distributed growth, but vertical scaling is simpler for small systems.
+
+        What challenges come with horizontal scaling?  
+        → Data consistency, network latency, load balancing complexity.
+        
+Question 2 : What is availability in system design, and how do you ensure reliability in large-scale systems?
+Answer : Availability: The percentage of time a system is operational and accessible. Often measured in “nines” (e.g., 99.9% uptime).
+
+         Reliability: The ability of a system to consistently perform its intended function correctly over time.
+         
+         Example
+         Availability: A website that is down for 8 hours in a year has ~99.9% availability.
+
+         Reliability: A payment system that always processes transactions correctly, even under heavy load.
+         
+         Final Answer / Interview Expectation Answer
+         Availability refers to how often a system is up and accessible, typically measured in uptime percentages. 
+         Reliability means the system consistently performs its intended function without errors. For example, 
+         a web service with 99.9% uptime is highly available, while a payment gateway that never loses transactions is reliable. 
+         To achieve both, we use redundancy, replication, failover mechanisms, and monitoring. Interviewers expect you to mention strategies 
+         like load balancing, database replication, and disaster recovery plans.
+         
+         What’s the difference between availability and reliability?  
+         → Availability is about uptime; reliability is about correctness of operations.
+
+         How do you achieve high availability?  
+         → Redundancy, replication, failover systems, load balancing, monitoring.
+
+         What’s an example of a reliability issue?  
+         → A system that is online but occasionally loses or corrupts data.
