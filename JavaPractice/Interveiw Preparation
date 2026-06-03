@@ -3,17 +3,24 @@
                                     
  # Tell me about yourself 
  
- -- Good [morning/afternoon], my name is Manish Kushwaha. I’m a Java Full Stack Developer specializing in building scalable, production-grade web applications.
-
-On the backend, I work extensively with Java and Spring Boot, designing RESTful APIs, implementing Hibernate/JPA for ORM, and using PostgreSQL as my primary database.
- I focus strongly on clean architecture, performance optimization, and security best practices.
-On the frontend, I develop responsive, user-friendly interfaces with Angular, TypeScript, HTML, CSS, and Bootstrap, ensuring alignment with business requirements.
-
-Currently, I’m working at Capgemini as a Software Developer, contributing to projects for a French client. I follow Agile methodologies, maintain clean version control practices with Git/GitHub, 
-and collaborate closely with cross-functional teams.
-What drives me is a genuine passion for full stack development — solving real-world problems through clean, well-structured code, 
-and continuously learning new technologies to deliver meaningful impact. I’m excited about this opportunity because 
-it aligns perfectly with my experience and the professional direction I’m pursuing... 
+	 -- Good morning/afternoon, my name is Manish Kushwaha. I’m a Full Stack Java Developer with proven expertise in designing and deploying scalable, 
+	 production‑grade web applications.
+	
+	On the backend, I specialize in Java and Spring Boot, building secure RESTful APIs, implementing Hibernate/JPA for ORM, and optimizing PostgreSQL databases for reliability 
+	and performance. My approach emphasizes clean architecture, security best practices, and maintainable code that supports long‑term scalability.
+	
+	On the frontend, I craft responsive, user‑friendly interfaces using Angular, TypeScript, HTML, CSS, and Bootstrap — ensuring seamless alignment with business requirements 
+	and delivering intuitive user experiences.
+	
+	At Capgemini, I contribute to mission‑critical projects for a French client, working in Agile teams and maintaining clean version control with Git/GitHub. 
+	My responsibilities include designing microservices, integrating external systems, and collaborating across cross‑functional teams to deliver high‑quality solutions. I’ve also worked extensively with Microsoft Azure services such as Event Grid, Service Bus, and Cloud Functions to enable event‑driven communication, and I’ve configured CI/CD pipelines with Docker and GitHub Actions to ensure smooth, reliable deployments.
+	
+	I hold certifications in Microsoft Azure Fundamentals (AZ‑900) and Azure Developer Associate (AZ‑204), which reinforce my ability to design cloud‑ready, secure, 
+	and scalable solutions.
+	
+	What drives me is a genuine passion for end‑to‑end development — solving complex problems through clean, well‑structured code, leveraging modern frameworks, 
+	and continuously learning emerging technologies. I’m excited about this opportunity to bring both my technical expertise and collaborative mindset to deliver solutions
+	 that create meaningful impact.... 
 
 
 Cross-Questions & Answers (Directly After Introduction)
